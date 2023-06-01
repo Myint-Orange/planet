@@ -2,14 +2,14 @@
 <html>
 
 <head>
-	<?php require('inc_head.php'); ?>
+	@include('user.inc_head')
 </head>
 
 <body>
 
 <div class="container-fluid">
 	
-<?php require('inc_menu.php'); ?>
+@include('user.inc_menu')
 
 
 <section class="row">
@@ -157,7 +157,7 @@
 </section>
 
 
-<?php require('inc_footer.php'); ?>
+@include('user.inc_footer')
 
 <script>
 	$( ".box-menu > ul > li:nth-child(3) > a" ).addClass( "here" );

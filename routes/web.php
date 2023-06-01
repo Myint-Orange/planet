@@ -31,7 +31,21 @@ use App\Http\Controllers\User\AboutUs\UserBusinessController;
 use App\Http\Controllers\User\AboutUs\UserCoreValueController;
 use App\Http\Controllers\User\AboutUs\UserVisionMissionController;
 use App\Http\Controllers\User\ForAllPageController;
+use App\Http\Controllers\User\UserIR\GeneralInformationController;
+use App\Http\Controllers\User\UserIR\FinancialStatementsController;
+use App\Http\Controllers\User\UserIR\MangementDicussionInformationController;
 use App\Http\Controllers\User\MainPage\UserController;
+use App\Http\Controllers\User\UserIR\ShareHolderStructureInformationController;
+use App\Http\Controllers\User\UserIR\SetNewsInformationController;
+use App\Http\Controllers\User\UserIR\EmailNotificationInformationController;
+use App\Http\Controllers\User\UserIR\ShareholdermeetingInformationController;
+use App\Http\Controllers\User\UserIR\FinancialInformationController;
+use App\Http\Controllers\User\UserIR\CreditRaringInformationController;
+use App\Http\Controllers\User\UserIR\PurchaseInformationController;
+use App\Http\Controllers\User\UserIR\DividendpolicyandpaymentInformationController;
+use App\Http\Controllers\User\UserIR\AnnualReportInformationController;
+use App\Http\Controllers\User\UserIR\ContactIVInformationController;
+use App\Http\Controllers\User\UserIR\NewsFromPrintInformationController;
 use App\Http\Controllers\User\UserKnowledgeController;
 use App\Http\Controllers\User\UserOurBusinessController;
 use App\Http\Controllers\User\UserOverViewController;
@@ -42,7 +56,10 @@ use App\Http\Controllers\WorkWithUs\WorkWithUsController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 
+
 Route::group(['namespace' => 'App\Http\Controllers'], function () {
+   
+
     Route::get('/clearcache', function () {
         $exitCode = Artisan::call('cache:clear');
 
@@ -293,7 +310,26 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/login', [LoginController::class, 'show'])->name('login.show');
         Route::get('/show', [LoginController::class, 'show'])->name('show');
     });
+
     Route::get('/', [UserController::class, 'index'])->name('user.index');
+
+    //IR
+    Route::get('/generalInformation', [GeneralInformationController::class, 'index'])->name('user.generalInformation.index');
+    Route::get('/financialStatements', [FinancialStatementsController::class, 'index'])->name('user.financialStatements.index');
+    Route::get('/financialInformation', [FinancialInformationController::class, 'index'])->name('user.financialInformation.index');
+    Route::get('/managementDisscussion', [MangementDicussionInformationController::class, 'index'])->name('user.managementDiscussion.index');
+    Route::get('/shareHolderStructure', [ShareHolderStructureInformationController::class, 'index'])->name('user.shareHolderStructure.index');
+    Route::get('/dividendpolicy', [DividendpolicyandpaymentInformationController::class, 'index'])->name('user.dividendpolicy.index');
+    Route::get('/shareHolderMeeting', [ShareHolderMeetingInformationController::class, 'index'])->name('user.shareHolderMeeting.index');
+    Route::get('/purchasePolicy', [PurchaseInformationController::class, 'index'])->name('user.purchasePolicy.index');
+    Route::get('/creditrating', [CreditRaringInformationController::class, 'index'])->name('user.creditrating.index');
+    Route::get('/news', [SetNewsInformationController::class, 'index'])->name('user.news.index');
+    Route::get('/newsfrom', [NewsFromPrintInformationController::class, 'index'])->name('user.newsfrom.index');
+    Route::get('/annualReport', [AnnualReportInformationController::class, 'index'])->name('user.annualReport.index');
+    Route::get('/contactIV', [ContactIVInformationController::class, 'index'])->name('user.contactIV.index');
+    Route::get('/emailnotification', [EmailNotificationInformationController::class, 'index'])->name('user.emailnotification.index');
+
+
     Route::get('/home', [UserController::class, 'index'])->name('home.index');
     Route::get('/VisionAndMission', [UserVisionMissionController::class, 'index'])->name('user.vision.index');
     Route::get('/CoreValue', [UserCoreValueController::class, 'index'])->name('user.corevalue.index');

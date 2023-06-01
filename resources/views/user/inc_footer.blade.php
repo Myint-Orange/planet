@@ -47,12 +47,14 @@
             method: 'GET',
             dataType: 'json',
             success: function(response) {
-                // console.log("Success to group menu");
+                console.log("Here");
+                console.log("Success to group menu");
                 console.log(response);
                 var menuBar = response.menuBar;
                 var imgMenu = response.imgMenu;
                 console.log("img Menu=" + imgMenu);
-                //console.log(menuBar); 
+                console.log(menuBar); 
+                console.log("ok");
                 $('#about_us').html(menuBar['about_us']);
                 $('#sub_about_us').html(menuBar['about_us']);
                 $('#bus_group').html(menuBar['bus_group']);

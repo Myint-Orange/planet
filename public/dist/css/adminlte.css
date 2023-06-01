@@ -1266,6 +1266,7 @@ pre code {
 }
 
 @media (min-width: 992px) {
+
   .col-lg {
     -ms-flex-preferred-size: 0;
     flex-basis: 0;
@@ -1315,8 +1316,9 @@ pre code {
     max-width: 8.333333%;
   }
   .col-lg-2 {
+
     -ms-flex: 0 0 16.666667%;
-    flex: 0 0 16.666667%;
+    flex: 0 0 auto;
     max-width: 16.666667%;
   }
   .col-lg-3 {

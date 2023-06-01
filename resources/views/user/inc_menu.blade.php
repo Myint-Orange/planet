@@ -68,7 +68,6 @@
                                             <div class="col-12 col-lg-7">
                                                 <div class="topic-submenu" id="sub_about_us">เกี่ยวกับเรา</div>
                                                 <ul>
-
                                                     <li><a href="{{route('user.indexOverView')}}" id="overview">ประวัติความเป็นมา</a></li>
                                                     <li><a href="{{route('user.history.index')}}" id="history">ประวัติความเป็นมา</a></li>
                                                     <li><a href="{{route('user.vision.index')}}" id="vision">วิสัยทัศน์ และ พันธกิจ</a></li>
@@ -124,7 +123,60 @@
                             </li>
 
                             <li><a href="{{route('user.indexWorkWithUs')}}" id="work_with_us">ร่วมงานกับเรา</a></li>
-                            <li><a href="#" id="investor">นักลงทุนสัมพันธ์</a></li>
+                            
+                            <li class="hassub">
+                                <a id="investor">นักลงทุนสัมพันธ์</a>
+                                <div class="submenu submenu-ir">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-12 col-lg-2">
+                                                <div class="topic-submenu2">ข้อมูลพื้นฐาน</div>
+                                                <ul>
+                                                    <li><a href="{{ route('user.generalInformation.index') }}">ข้อมูลทั่วไป</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-12 col-lg-2">
+                                                <div class="topic-submenu2">ข้อมูลทางการเงิน</div>
+                                                <ul>
+                                                    <li><a href="{{ route('user.financialInformation.index') }}">ข้อมูลสำคัญทางการเงิน</a></li>
+                                                    <li><a href="{{ route('user.financialStatements.index') }}">งบการเงิน</a></li>
+                                                    <li><a href="{{ route('user.managementDiscussion.index') }}">คำอธิบายและการวิเคราะห์ของฝ่ายจัดการ</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-12 col-lg-2">
+                                                <div class="topic-submenu2">ข้อมูลถือหุ้น</div>
+                                                <ul>
+                                                    <li><a href="{{ route('user.shareHolderStructure.index') }}">โครงสร้างผู้ถือหุ้น</a></li>
+                                                    <li><a href="{{ route('user.dividendpolicy.index') }}">นโยบายและการจ่ายเงินปันผล</a></li>
+                                                    <li><a href="{{ route('user.shareHolderMeeting.index') }}">การประชุมผู้ถือหุ้น</a></li>
+                                                    <li><a href="{{ route('user.purchasePolicy.index') }}">การซื้อหุ้นสามัญเพิ่มทุน</a></li>
+                                                    <li><a href="{{ route('user.creditrating.index') }}">อันดับความน่าเชื่อถือ</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-12 col-lg-2">
+                                                <div class="topic-submenu2">ห้องข่าว</div>
+                                                <ul>
+                                                    <li><a href="{{ route('user.news.index') }}">ข่าวแจ้งตลาดหลักทรัพย์</a></li>
+                                                    <li><a href="{{ route('user.newsfrom.index') }}">ข่าวจากสื่อสิ่งพิมพ์</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-12 col-lg-2">
+                                                <div class="topic-submenu2">เอกสารเผยแพร่</div>
+                                                <ul>
+                                                    <li><a href="{{ route('user.annualReport.index') }}">รายงานประจำปี</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-12 col-lg-2">
+                                                <div class="topic-submenu2">สอบถามข้อมูล</div>
+                                                <ul>
+                                                    <li><a href="{{ route('user.contactIV.index') }}">ติดต่อนักลงทุนสัมพันธ์</a></li>
+                                                    <li><a href="{{ route('user.emailnotification.index') }}">อีเมลรับข่าวสาร</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
                             <li><a href="{{route('user.indexContact')}}" id="contactus">ติดต่อเรา</a></li>
                         </ul>
                     </nav>
@@ -133,3 +185,4 @@
         </div>
     </div>
 </header>
+
