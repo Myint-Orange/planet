@@ -1,0 +1,325 @@
+
+.wrap_menu{
+	position:fixed;
+	width:100%;
+	display:block;
+	top:0;
+    left: 0;
+    right: 0;
+    z-index: 11;
+    margin: 0;
+    padding: 0;
+    transition: 0.5s;
+}
+.wrap_menu:hover{
+    background: #fff;
+    border-bottom: 1px solid #eee;
+}
+.wrap_menu.sticky{
+    position: fixed;
+    top: 0;
+    background: rgba(255,255,255,0.95);
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+    transition: 0.5s;
+}
+.wrap_menu.sticky:hover{
+    background-color: rgba(255,255,255,1);
+}
+.wrap_menu .logo img{
+    transition: 0.5s;
+}
+.wrap_btn_menu{
+    display: none;
+    text-align: center;
+    height: 30px;
+    width: auto;
+    position: relative;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.5);
+    border-radius: 50px;
+    font-size: 1rem;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+.wrap_btn_menu i{
+    line-height: 1.6;
+}
+.mainmenu{
+	list-style:none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    position: relative;
+    padding-bottom: 15px;
+}
+.wrap_menu.sticky .mainmenu{
+    padding-bottom: 10px;
+}
+.mainmenu ul{
+    padding: 0;
+    margin: 0;
+    display: inline-flex;
+    justify-content: flex-end;
+}
+.mainmenu ul li{
+	display:inline-block;
+    color:#fff;
+    cursor: pointer;
+    list-style: none;
+}
+.mainmenu ul li:hover{
+    color: #fff;
+    cursor: pointer;
+}
+.mainmenu ul li > a{
+	display:block;
+    font-size: 1rem;
+	color:#fff;
+	position:relative;
+	text-decoration:none;
+    transition: 0.5s;
+    line-height: 1;
+    padding-right: 40px;
+}
+.mainmenu ul li > a:hover{
+    text-decoration: none;
+    color: #fff;
+    opacity: 0.7;
+}
+.mainmenu ul li:last-child > a{
+    padding-right: 0;
+}
+.wrap_menu.sticky .mainmenu ul > li > a.here{
+    color: #98865F;
+}
+.wrap_menu:hover .mainmenu ul li > a{
+    color: #444;
+}
+.wrap_menu.sticky .mainmenu ul li > a{
+    color: #444;
+    font-size: 0.95rem;
+}
+.mainmenu ul li.logo_menuopen{
+	display: none;
+}
+.submenu{
+    display: none;
+}
+.mainmenu ul li .submenu{
+	position:absolute;
+	background: rgba(255,255,255,0.95) ;
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+	top:100%;
+    left: 50%;
+    transform: translate(-50%, 0);
+	z-index:999999;
+	margin:0;
+	width:100%;
+    text-align: left;
+    display: none;
+    white-space: nowrap;
+    padding: 50px 0 40px;
+}
+.mainmenu ul li > .submenu ul li{
+    margin-bottom: 10px;
+    padding: 7px 15px;
+    line-height: 1;
+    position: relative;
+    width: 50%;
+}
+.mainmenu ul li > .submenu li:before{
+    content: "";
+    background-color: #999;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    position: absolute;
+    top: 13px;
+    left: 0;
+}
+.mainmenu ul li > .submenu li a{
+    font-size: 1rem;
+    color: #000;
+}
+.mainmenu ul li > .submenu ul{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+    justify-content: flex-start;
+}
+
+
+
+/*responsive*/
+@media (max-width: 1600px){
+    
+}
+@media (max-width: 1440px){
+    
+}
+@media (max-width: 1380px){
+    .mainmenu ul li > a{
+        padding-right: 30px;
+    }
+}
+@media (max-width: 1199px){
+    .mainmenu ul li > a{
+        padding-right: 15px;
+        font-size: 0.9rem;
+    }
+    .wrap_menu.sticky .mainmenu ul li > a{
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 991px) {
+     .mainmenu{
+        display: block;
+        position: fixed;
+        z-index: 9999;
+        background:rgba(0,0,0,0.9);
+        top: 0px;
+        height: 100vh;
+        left: -115%;
+         width: 100%;
+         transform: translate(0,0);
+        -webkit-transition: all 1s ease-in-out;
+        -moz-transition: all 1s ease-in-out;
+        -o-transition: all 1s ease-in-out;
+        transition: all 1s ease-in-out;
+    }
+    .mainmenu.open{
+        left: 0;
+        overflow: auto;
+        background-color: #f4f1e8;
+		padding: 30px 15px;
+    }
+    .mainmenu ul{
+        display: block;
+        margin-bottom: 50px;
+        width: 100%;
+    }
+     .mainmenu > li{
+        display: block;
+        position: relative;
+        color: #002F79;
+    }
+    .wrap_btn_menu{
+        height: 32px;
+		width: auto;
+		padding: 0;
+         display: inline-block;
+        text-align: center;
+        line-height: 32px;
+        font-size: 0.65rem;
+        float: right;
+        letter-spacing: 1px;
+        padding: 0 10px;
+    }
+     body.menuopened{
+        overflow: hidden;
+    }
+     .close_menu{
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        color: #B5A594;
+    }
+	.close_menu i{
+		font-size: 1.3rem;
+		vertical-align: top;
+	}
+    .mainmenu ul li.logo_menuopen{
+        display: block;
+        line-height: 1px;
+        padding: 10px 15px;
+        text-align: left;
+        height: auto;
+        border-bottom: 0;
+    }
+   
+    .mainmenu ul li{
+        display: block;
+        margin: 0;
+        font-size: 1.1rem;
+        padding: 0;
+        color: #000;
+        text-align: left;
+        margin-bottom: 30px;
+    }
+    .mainmenu ul li:last-child{
+        border-bottom: 0;
+    } 
+    
+    .mainmenu > ul > li > a.here{
+        color: #1C8B2F;
+    }
+    .mainmenu ul li a{
+        color: #000;
+    font-size: 1rem;
+    }
+    .mainmenu ul li:hover{
+        color: #000;
+    }
+    
+    .mainmenu{
+        padding: 0;
+    }
+   
+    .mainmenu ul li > a{
+        font-size: 1.1rem;
+        padding: 0;
+        text-shadow: none;
+        line-height: 1;
+    }
+    .wrap_menu.hide{
+        transform: translate(0, 0);
+    }
+    .wrap_menu .container{
+        max-width: 100%;
+    }
+    .mainmenu ul li .submenu{
+        position: relative;
+        padding: 20px;
+        margin-top: 15px;
+    }
+    .wrap_menu.sticky .mainmenu{
+        height: 100vh;
+    }
+    .wrap_menu{
+        padding: 15px 20px;
+    }
+    .wrap_btn_menu i{
+        font-size: 1rem;
+    }
+    .wrap_menu.sticky{
+        padding: 10px 20px;
+    }
+    .wrap_menu.sticky .wrap_btn_menu{
+        background-color: #B5A594;
+        margin-top: 10px;
+    }
+}
+
+
+@media (max-width: 767px){
+    .wrap_menu{
+        padding: 15px 10px;
+    }
+    .close_menu{
+        right: 15px;
+    }
+    .wrap_btn_menu i{
+        line-height: 1.5;
+    }
+    .wrap_menu.sticky{
+        padding: 10px;
+    }
+    .mainmenu ul li > .submenu ul li{
+        width: 100%;
+    }
+  
+}
+
