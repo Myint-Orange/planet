@@ -11,7 +11,7 @@
         @include('user.inc_menu')
 
         <section class="row">
-            <div class="col-12 wrapbanner wow fadeInDown"">
+            <div class="col-12 wrapbanner wow fadeInDown">
         <div class=" owl-bannerslide owl-carousel owl-theme">
 
                 @foreach($group->gpImages as $image)
