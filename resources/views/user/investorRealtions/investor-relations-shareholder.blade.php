@@ -13,9 +13,9 @@
 
 
 <section class="row">
-    <div class="col-12 banner-inside wow fadeInDown"">
-        <figure><img src="images/banner-shareholder.webp" alt=""></figure>
-        <h1>โครงสร้างผู้ถือหุ้น</h1>
+    <div class="col-12 banner-inside wow fadeInDown">
+        <figure><img src="{{ asset('storage/types/'.$type->imgname)}}" alt=""></figure>
+        <h1>{{$type->typeTitles[0]->title_en}}</h1>
     </div>
 </section>
 
@@ -37,66 +37,14 @@
                                 </tr>
                             </thead>
                             <tbody class="table-group-divider">
+                                @foreach($type->posts as $post)
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>บริษัท เอ็มบริโอ แพลนเนท จำกัด</td>
-                                    <td>326,355,876</td>
-                                    <td class="text-right">38.51%</td>
+                                    <th scope="row">{{ $post->id}}</th>
+                                    <td>{{$post->titles[0]->title_en}}</td>
+                                    <td> {{$post->titles[1]->title_en}}</td>
+                                    <td class="text-right"> {{$post->titles[2]->title_en}}</td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>King's Eye Investments Ltd.</td>
-                                    <td>296,450,000</td>
-                                    <td class="text-right">34.99%</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>BNP PARIBAS HONG KONG BRANCH</td>
-                                    <td>42,489,513</td>
-                                    <td class="text-right">5.01%</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">4</th>
-                                    <td>บริษัท ไทยเอ็นวีดีอาร์ จำกัด</td>
-                                    <td>13,936,483</td>
-                                    <td class="text-right">1.64%</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">5</th>
-                                    <td>กองกุนเปิดเคเคพี หุ้นระยะยาวปันผล</td>
-                                    <td>12,623,700</td>
-                                    <td class="text-right">1.49%</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">6</th>
-                                    <td>N.C.B.TRUST LIMITED-NORGES BANK 1</td>
-                                    <td>7,224,500</td>
-                                    <td class="text-right">0.85%</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">7</th>
-                                    <td>น.ส.สุธิดา มงคลสุธี</td>
-                                    <td>5,757,839</td>
-                                    <td class="text-right">0.68%</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">8</th>
-                                    <td>กองทุนเปิด เคเคพี หุ้นทุนเพื่อการเลี้ยงชีพ</td>
-                                    <td>3,900,320</td>
-                                    <td class="text-right">0.66%</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">9</th>
-                                    <td>นายสุระ คณิตทวีกุล</td>
-                                    <td>3,110,110</td>
-                                    <td class="text-right">0.37%</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">10</th>
-                                    <td>นายพิชญ์ เทวอักษร</td>
-                                    <td>2,725,100</td>
-                                    <td class="text-right">0.32%</td>
-                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
