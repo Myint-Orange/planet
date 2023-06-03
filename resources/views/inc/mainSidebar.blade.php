@@ -90,6 +90,12 @@
             'route' => 'shareholder.index',
             'title' => 'IR Shareholder Structure',
           ],
+          [  
+            'prefix'=> 'IREmailNotification',
+            'route' => 'emailNotification.index',
+            'title' => 'IR Email Notification',
+          ],
+
           
         ];
         @endphp

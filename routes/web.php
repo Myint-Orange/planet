@@ -18,6 +18,7 @@ use App\Http\Controllers\IR\AnalysisController;
 use App\Http\Controllers\IR\BasicInfoController;
 use App\Http\Controllers\IR\FinancialStatemantController;
 use App\Http\Controllers\IR\ShareHolderController;
+use App\Http\Controllers\IR\EmailNotificationController;
 use App\Http\Controllers\Knowledge\ActivityController;
 use App\Http\Controllers\Knowledge\InterestController;
 use App\Http\Controllers\Knowledge\KnowledgeController;
@@ -293,6 +294,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/IRAnalysis/storeFile',[AnalysisController::class,'storeFile'])->name('IRAnalysis.storeFile');
 
         Route::get('/IRShareHolders/index', [ShareHolderController::class,'index'])->name('shareholder.index');
+        Route::get('/EmailNotifications/index', [EmailNotificationController::class,'index'])->name('emailNotification.index');
+        Route::post('/EmailNotifications/storeNotification', [EmailNotificationController::class,'store'])->name('emailNotification.store');
+        Route::post('/EmailNotifications/editNotification', [EmailNotificationController::class,'editBanner'])->name('emailNotification.editBanner');
+        
+    
         Route::post('/IRShareHolders/editBanner', [ShareHolderController::class,'editBanner'])->name('shareholder.editBanner');
         Route::post('/IRShareHolders/editFile', [ShareHolderController::class,'editPost'])->name('shareholder.editPost');
         Route::get('/IRShareHolders/deleteFile/{post_id}',[ShareHolderController::class,'destroyPost'])->name('shareholder.destroyPost');
