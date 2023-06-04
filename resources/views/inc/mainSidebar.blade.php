@@ -106,6 +106,12 @@
             'title' => 'Annualual Report ',
           ],
         
+          [  
+            'prefix'=> 'IRNews',
+            'route' => 'news.indexs',
+            'title' => 'IR News ',
+          ],
+        
         
 
           

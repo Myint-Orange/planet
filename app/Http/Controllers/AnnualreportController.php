@@ -105,7 +105,7 @@ class AnnualreportController extends Controller
     //         'created_at'=>$yearDate,
     //         'user_id'=>$user->id,
     //         ]);     
-      return redirect()->route('IRFinancial.updateFile',$post->id);
+      //return redirect()->route('IRFinancial.updateFile',$post->id);
 
     }
 }

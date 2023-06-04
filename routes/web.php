@@ -21,6 +21,7 @@ use App\Http\Controllers\IR\BasicInfoController;
 use App\Http\Controllers\IR\FinancialStatemantController;
 use App\Http\Controllers\IR\ShareHolderController;
 use App\Http\Controllers\IR\EmailNotificationController;
+use App\Http\Controllers\IrnewsController;
 use App\Http\Controllers\Knowledge\ActivityController;
 use App\Http\Controllers\Knowledge\InterestController;
 use App\Http\Controllers\Knowledge\KnowledgeController;
@@ -299,12 +300,20 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
         Route::get('/IRShareHolders/index', [ShareHolderController::class,'index'])->name('shareholder.index');
         Route::get('/EmailNotifications/index', [EmailNotificationController::class,'index'])->name('emailNotification.index');
-
         Route::post('/EmailNotifications/storeNotification', [EmailNotificationController::class,'store'])->name('emailNotification.store');
         Route::post('/EmailNotifications/editNotification', [EmailNotificationController::class,'editBanner'])->name('emailNotification.editBanner');
         Route::resource('/City', CityController::class);
         Route::get('/City/delete/{post_id}',[CityController::class,'destroyPost'])->name('city.destroyPost');
 
+
+        //
+        Route::get('/news/index', [IrnewsController::class,'indexs'])->name('news.indexs');
+        Route::post('/news/storenews', [IrnewsController::class,'stored'])->name('news.stored');
+        Route::post('/news/editnews', [EmailNotificationController::class,'editBanner'])->name('news.editBanner');
+        Route::resource('/news', IrnewsController::class);
+        Route::get('/news/delete/{post_id}',[IrnewsController::class,'destroyPost'])->name('news.destroyPost');
+
+        //
         
         Route::get('/contact/index', [IRContactController::class,'index'])->name('contact.index');
         Route::post('/contact/storecontact', [IRContactController::class,'store'])->name('contact.store');
@@ -345,6 +354,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::get('/purchasePolicy', [PurchaseInformationController::class, 'index'])->name('user.purchasePolicy.index');
     Route::get('/creditrating', [CreditRaringInformationController::class, 'index'])->name('user.creditrating.index');
     Route::get('/news', [SetNewsInformationController::class, 'index'])->name('user.news.index');
+    Route::post('/news/search', [SetNewsInformationController::class, 'search'])->name('user.news.search');
     Route::get('/newsfrom', [NewsFromPrintInformationController::class, 'index'])->name('user.newsfrom.index');
     Route::get('/nnualReports', [AnnualReportInformationController::class, 'index'])->name('user.annualReports.index');
     Route::get('/contactIV', [ContactIVInformationController::class, 'index'])->name('user.contactIV.index');
