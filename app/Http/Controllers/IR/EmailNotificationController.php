@@ -54,7 +54,7 @@ class EmailNotificationController extends Controller
             'name_th' => $request->menu_th,
             'name_ch' => $request->menu_ch,
         ]);
-        return redirect()->route('shareholder.index');
+        return redirect()->route('emailNotification.index');
 
     }
     public function createPost(){

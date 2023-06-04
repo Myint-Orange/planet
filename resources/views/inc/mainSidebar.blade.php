@@ -95,6 +95,14 @@
             'route' => 'emailNotification.index',
             'title' => 'IR Email Notification',
           ],
+          [  
+            'prefix'=> 'IRContact',
+            'route' => 'contact.index',
+            'title' => 'IR Contact ',
+          ],
+          
+
+        
 
           
         ];

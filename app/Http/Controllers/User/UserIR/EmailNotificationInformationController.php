@@ -39,5 +39,5 @@ class EmailNotificationInformationController extends Controller
         }
 
     }
-
+    
 }

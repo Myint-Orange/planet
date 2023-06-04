@@ -47,6 +47,7 @@ use App\Http\Controllers\User\UserIR\PurchaseInformationController;
 use App\Http\Controllers\User\UserIR\DividendpolicyandpaymentInformationController;
 use App\Http\Controllers\User\UserIR\AnnualReportInformationController;
 use App\Http\Controllers\User\UserIR\ContactIVInformationController;
+use App\Http\Controllers\User\UserIR\IRContactController;
 use App\Http\Controllers\User\UserIR\NewsFromPrintInformationController;
 use App\Http\Controllers\User\UserKnowledgeController;
 use App\Http\Controllers\User\UserOurBusinessController;
@@ -296,11 +297,20 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
         Route::get('/IRShareHolders/index', [ShareHolderController::class,'index'])->name('shareholder.index');
         Route::get('/EmailNotifications/index', [EmailNotificationController::class,'index'])->name('emailNotification.index');
+
         Route::post('/EmailNotifications/storeNotification', [EmailNotificationController::class,'store'])->name('emailNotification.store');
         Route::post('/EmailNotifications/editNotification', [EmailNotificationController::class,'editBanner'])->name('emailNotification.editBanner');
         Route::resource('/City', CityController::class);
         Route::get('/City/delete/{post_id}',[CityController::class,'destroyPost'])->name('city.destroyPost');
 
+        
+        Route::get('/contact/index', [IRContactController::class,'index'])->name('contact.index');
+        Route::post('/contact/storecontact', [IRContactController::class,'store'])->name('contact.store');
+        Route::post('/contact/editcontact', [IRContactController::class,'editBanner'])->name('contact.editBanner');
+        Route::post('/contact/storecontactdetail', [IRContactController::class,'storedetail'])->name('contact.detailstore');
+        Route::post('/contact/editcontactdetail', [IRContactController::class,'editdetail'])->name('contact.detailedit');
+     
+        
 
         Route::post('/IRShareHolders/editBanner', [ShareHolderController::class,'editBanner'])->name('shareholder.editBanner');
         Route::post('/IRShareHolders/editFile', [ShareHolderController::class,'editPost'])->name('shareholder.editPost');
