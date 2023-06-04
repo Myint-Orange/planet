@@ -35,7 +35,7 @@ return [
     |
     | Supported: "phpstorm", "vscode", "vscode-insiders", "textmate", "emacs",
     |            "sublime", "atom", "nova", "macvim", "idea", "netbeans",
-    |            "xdebug", "phpstorm-remote"
+    |            "xdebug"
     |
     */
 
@@ -237,5 +237,5 @@ return [
     /*
      * When a key is set, we'll send your exceptions to Open AI to generate a solution
      */
-    'open_ai_key' => env('IGNITION_OPEN_AI_KEY'),
+    'open_ai_key' => null,
 ];

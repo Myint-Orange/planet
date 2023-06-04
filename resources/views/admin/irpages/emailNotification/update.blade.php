@@ -37,53 +37,25 @@
         <!-- general form elements -->
         <div class="card card-info">
           <div class="card-header">
-            <h3 class="card-title">Add Shareholder Information</h3>
+            <h3 class="card-title">Add City Information</h3>
           </div>
        
-          <form action='{{route('shareholder.editPost')}}' method="post" enctype="multipart/form-data" id='regform'>
+          <form action='{{ route('City.update',['City' => $post]) }}' method="post" enctype="multipart/form-data">
+            @method('PUT')
             @csrf
             <input type="hidden" name="post_id" value="{{$post->id}}">
             <div class="card-body">
-              
               <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-8">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Shareholder Name Thai</label>
-                      <input type="text" class="form-control" id="title" name="name_th" placeholder="Enter.." value="{{$post->titles[0]->title_th}}">
+                      <label for="exampleInputEmail1">City Name </label>
+                      <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your City Name" value="{{$post->name}}">
                     </div>
                 </div>
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Shareholder Name English</label>
-                    <input type="text" class="form-control" id="title" name="name_en" placeholder="Enter.." value="{{$post->titles[0]->title_th}}">
-                  </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Shareholder Name Chinese</label>
-                  <input type="text" class="form-control" id="title" name="name_ch" placeholder="Enter.." value="{{$post->titles[0]->title_th}}">
-                </div>
-              </div>
+               
             </div>
 
-              <div class="row">
-                  <div class="col-md-4">
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Number Of Share Holder</label>
-                        <input type="text" class="form-control" id="title" name="num_holder" placeholder="Enter.." oninput="formatNumber(this)" value="{{$post->titles[1]->title_th}}">
-
-                      </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Shareholding Proportion(%)</label>
-                      <input type="text" class="form-control" id="title" name="proportion" placeholder="Enter.." value="{{$post->titles[2]->title_th}}">
-                    </div>
-                </div>
-                
-              </div>
-            </div>
-            <!-- /.card-body -->
+                          <!-- /.card-body -->
 
             <div class="card-footer">
               <button type="submit" class="btn btn-primary">Submit</button>

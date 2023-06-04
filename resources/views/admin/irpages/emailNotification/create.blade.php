@@ -37,57 +37,27 @@
         <!-- general form elements -->
         <div class="card card-info">
           <div class="card-header">
-            <h3 class="card-title">Add Shareholder Information</h3>
+            <h3 class="card-title">Add City Information</h3>
           </div>
        
-          <form action='{{route('shareholder.storePost')}}' method="post" enctype="multipart/form-data" id='regform'>
+          <form action='{{route('City.store')}}' method="post" enctype="multipart/form-data" id='regform'>
             @csrf
          
             <div class="card-body">
               
               <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-8">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Shareholder Name Thai</label>
-                      <input type="text" class="form-control" id="title" name="name_th" placeholder="Enter.." >
+                      <label for="exampleInputEmail1">City Name </label>
+                      <input type="text" class="form-control" id="name" name="name" placeholder="Enter City Name.." >
                     </div>
                 </div>
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Shareholder Name English</label>
-                    <input type="text" class="form-control" id="title" name="name_en" placeholder="Enter.." >
-                  </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Shareholder Name Chinese</label>
-                  <input type="text" class="form-control" id="title" name="name_ch" placeholder="Enter.." >
-                </div>
-              </div>
-            </div>
-
-              <div class="row">
-                  <div class="col-md-4">
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Number Of Share Holder</label>
-                        <input type="text" class="form-control" id="title" name="num_holder" placeholder="Enter.." oninput="formatNumber(this)">
-
-                      </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Shareholding Proportion(%)</label>
-                      <input type="text" class="form-control" id="title" name="proportion" placeholder="Enter.." >
-                    </div>
-                </div>
-                
-              </div>
-            </div>
-            <!-- /.card-body -->
+              </div>  
+             <!-- /.card-body -->
 
             <div class="card-footer">
               <button type="submit" class="btn btn-primary">Submit</button>
-              <a href="{{route('shareholder.index')}}"  class="btn btn-default">Exist</a>
+              <a href="{{route('City.index')}}"  class="btn btn-default">Exist</a>
             </div>
           </form>
         </div>

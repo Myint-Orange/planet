@@ -14,7 +14,6 @@ class IRBannerController extends Controller
     public function index()
     {
         $irbanner= IRBanner::all();
-        dd($irbanner);
     }
 
     /**

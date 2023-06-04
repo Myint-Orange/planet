@@ -7,6 +7,7 @@ use App\Http\Controllers\AboutUs\HistoryController;
 
 use App\Http\Controllers\AboutUs\NetworkController;
 use App\Http\Controllers\AboutUs\OrgController;
+use App\Http\Controllers\CityController;
 use App\Http\Controllers\AboutUs\PrideController;
 use App\Http\Controllers\AboutUs\VisionMissionController;
 use App\Http\Controllers\Auth\LoginController;
@@ -297,8 +298,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/EmailNotifications/index', [EmailNotificationController::class,'index'])->name('emailNotification.index');
         Route::post('/EmailNotifications/storeNotification', [EmailNotificationController::class,'store'])->name('emailNotification.store');
         Route::post('/EmailNotifications/editNotification', [EmailNotificationController::class,'editBanner'])->name('emailNotification.editBanner');
-        
-    
+        Route::resource('/City', CityController::class);
+        Route::get('/City/delete/{post_id}',[CityController::class,'destroyPost'])->name('city.destroyPost');
+
+
         Route::post('/IRShareHolders/editBanner', [ShareHolderController::class,'editBanner'])->name('shareholder.editBanner');
         Route::post('/IRShareHolders/editFile', [ShareHolderController::class,'editPost'])->name('shareholder.editPost');
         Route::get('/IRShareHolders/deleteFile/{post_id}',[ShareHolderController::class,'destroyPost'])->name('shareholder.destroyPost');
@@ -334,6 +337,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::get('/annualReport', [AnnualReportInformationController::class, 'index'])->name('user.annualReport.index');
     Route::get('/contactIV', [ContactIVInformationController::class, 'index'])->name('user.contactIV.index');
     Route::get('/emailnotification', [EmailNotificationInformationController::class, 'index'])->name('user.emailnotification.index');
+    Route::post('/emailnotification', [EmailNotificationInformationController::class, 'store'])->name('user.emailnotification.store');
 
 
     Route::get('/home', [UserController::class, 'index'])->name('home.index');

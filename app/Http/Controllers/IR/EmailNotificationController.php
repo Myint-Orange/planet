@@ -15,8 +15,10 @@ use Illuminate\Support\Facades\DB;
 class EmailNotificationController extends Controller
 {
     public function index(){
-        $type = DB::table('irbanners')->first();
-        return view('admin.irpages.emailNotification.index', compact('type'));
+        $type = DB::table('irbanners')->where('irtype', 'EmailNotification')->first();
+        $posts =DB::table('cities')->get();
+       $useremailnotifications= DB::table('useremailnotifications')->get();
+        return view('admin.irpages.emailNotification.index', compact('type','posts','useremailnotifications'));
     }
     public function store(Request $request){
         $irBanner = new IRBanner();

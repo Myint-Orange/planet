@@ -112,46 +112,37 @@
       </div>
     </div>
   </section>
-  {{-- <section class="content">
+  <section class="content">
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
           <div class="card">
             <div class="card-header">
 
-              <a href="{{route('shareholder.createPost')}}" class="btn btn-primary">
+              <a href="{{route('City.create')}}" class="btn btn-primary">
                 <i class="fas fa-plus"></i> Add
               </a>
 
               <div class="card-body">
-                <h3 class="card-title"><b>Shareholder Structure</b></h3>
+                <h3 class="card-title"><b>Cit List</b></h3>
                 <table id="example2" class="table table-bordered table-hover">
 
                   <thead>
 
                     <tr>
                       <th>ID</th>
-                      <th>Name Of Shareholders</th>
-                      <th>Number Of Shares</th>
-                      <th>Shareholding Proportion(%)</th>
+                      <th>City Name</th>
                       <th>Action</th>
                     </tr>
 
                   </thead>
                   <tbody>
-                    @foreach($type->posts as $post)
+                    @foreach($posts as $post)
                     <tr>
                       <td>{{ $post->id}}</td>
                       <td>
-                        {{$post->titles[0]->title_en}}
+                        {{$post->name}}
                       </td>
-                      <td>
-                        {{$post->titles[1]->title_en}}
-                      </td>
-                      <td>
-                        {{$post->titles[2]->title_en}}
-                      </td>
-                    
                       <td>
                         <div class="btn-group">
                           <button type="button" class="btn btn-info">Action</button>
@@ -159,9 +150,8 @@
                             <span class="sr-only">Toggle Dropdown</span>
                           </button>
                           <div class="dropdown-menu" role="menu">
-                            <a class="dropdown-item" href="{{route('shareholder.updatePost',$post->id)}}">Edit</a>
-                            <a class="dropdown-item delete-row" href="" id="delete-post-{{$post->id}}">Delete</a>
-                          </div>
+                            <a class="dropdown-item" href="{{route('City.edit',$post->id)}}">Edit</a>
+                            <a class="dropdown-item delete-row" href="" id="delete-post-{{$post->id}}">Delete</a></div>
                       </td>
 
                      
@@ -171,9 +161,7 @@
                   <tfoot>
                     <tr>
                       <th>ID</th>
-                      <th>Name Of Shareholders</th>
-                      <th>Number Of Shares</th>
-                      <th>Shareholding Proportion(%)</th>
+                      <th>Name</th>
                       <th>Action</th>
                     </tr>
                   </tfoot>
@@ -189,49 +177,87 @@
 
       </div>
     </div>
-  </section> --}}
+  </section>
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+
+
+              <div class="card-body">
+                <h3 class="card-title"><b>Member List</b></h3>
+                <table id="example2" class="table table-bordered table-hover">
+
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Email</th>
+                      <th>SurName</th>
+                      <th>Country</th>
+                      <th>Occupation</th>
+                      <th>Job Position</th>
+                      <th>Industry</th>
+                    </tr>
+
+                  </thead>
+                  <tbody>
+                    @foreach($useremailnotifications as $useremailnotification)
+                    <tr>
+                      <td>{{ $useremailnotification->id}}</td>
+                      <td>
+                        {{$useremailnotification->email}}
+                      </td>
+                      <td>
+                        {{$useremailnotification->surname}}
+                      </td>
+
+                      <?php
+                      $cities = \App\Models\City::all();
+                      foreach ($cities as $key => $city) {
+                        if($city->id == $useremailnotification->country){
+                          echo '<td>'.$city->name.'</td>';
+                        }
+                      }
+                      ?> 
+                      <td>
+                        {{$useremailnotification->occupation}}
+                      </td>
+                      <td>
+                        {{$useremailnotification->jobposition}}
+                      </td>
+                      <td>
+                        {{$useremailnotification->industry}}
+                      </td>
+                    </tr>
+                    @endforeach
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th>ID</th>
+                      <th>Email</th>
+                      <th>SurName</th>
+                      <th>Country</th>
+                      <th>Occupation</th>
+                      <th>Job Position</th>
+                      <th>Industry</th>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+
+      </div>
+    </div>
+  </section>
 
 </div>
-
-<script>
-   $(document).ready(function() {
-    $('.dropdown-toggle').dropdown();
-  });
-  function updateLabel(inputId, previewId) {
-    var input = document.getElementById(inputId);
-    var preview = document.getElementById(previewId);
-    var file = input.files[0];
-    var reader = new FileReader();
-
-    reader.onload = function(e) {
-      preview.src = e.target.result;
-    };
-
-    reader.readAsDataURL(file);
-  }
-  $(function() {
-    $("#example2").DataTable({
-      "responsive": true,
-      "lengthChange": true,
-      "ordering": true,
-      "autoWidth": true,
-      "info": true,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-  
-  });
-
-  $(document).ready(function() {
-    $('.delete-row').click(function(event) {
-      event.preventDefault();
-      var postId = $(this).attr('id').replace('delete-post-', '');
-      if (confirm("Are you sure you sure to delete this row?")) {
-        window.location.href = "{{ route('shareholder.destroyPost', ':id') }}".replace(':id', postId);
-      }
-    });
-  });
-  
-
-</script>
 
 @endsection

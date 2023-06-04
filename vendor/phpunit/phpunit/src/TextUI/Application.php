@@ -290,29 +290,16 @@ final class Application
         try {
             include_once $filename;
         } catch (Throwable $t) {
-            $message = sprintf(
-                'Error in bootstrap script: %s:%s%s%s%s',
-                $t::class,
-                PHP_EOL,
-                $t->getMessage(),
-                PHP_EOL,
-                $t->getTraceAsString()
-            );
-
-            while ($t = $t->getPrevious()) {
-                $message .= sprintf(
-                    '%s%sPrevious error: %s:%s%s%s%s',
-                    PHP_EOL,
-                    PHP_EOL,
+            $this->exitWithErrorMessage(
+                sprintf(
+                    'Error in bootstrap script: %s:%s%s%s%s',
                     $t::class,
                     PHP_EOL,
                     $t->getMessage(),
                     PHP_EOL,
-                    $t->getTraceAsString(),
-                );
-            }
-
-            $this->exitWithErrorMessage($message);
+                    $t->getTraceAsString()
+                )
+            );
         }
 
         EventFacade::emitter()->testRunnerBootstrapFinished($filename);
