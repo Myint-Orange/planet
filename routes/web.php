@@ -8,6 +8,7 @@ use App\Http\Controllers\AboutUs\HistoryController;
 use App\Http\Controllers\AboutUs\NetworkController;
 use App\Http\Controllers\AboutUs\OrgController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\AnnualreportController;
 use App\Http\Controllers\AboutUs\PrideController;
 use App\Http\Controllers\AboutUs\VisionMissionController;
 use App\Http\Controllers\Auth\LoginController;
@@ -285,6 +286,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/IRFinancialStatements/deleteFile/{post_id}',[FinancialStatemantController::class,'destroyFile'])->name('IRFinancial.destroyFile');
         Route::get('/IRFinancialStatements/updateFile/{post_id}',[FinancialStatemantController::class,'updateFile'])->name('IRFinancial.updateFile');
         Route::get('/IRFinancialStatements/createFile',[FinancialStatemantController::class,'createFile'])->name('IRFinancial.createFile');
+        ///
         Route::post('/IRFinancialStatements/storeFile',[FinancialStatemantController::class,'storeFile'])->name('IRFinancial.storeFile');
 
         Route::get('/IRAnalysis/index', [AnalysisController::class,'index'])->name('IRAnalysis.index');
@@ -344,11 +346,19 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::get('/creditrating', [CreditRaringInformationController::class, 'index'])->name('user.creditrating.index');
     Route::get('/news', [SetNewsInformationController::class, 'index'])->name('user.news.index');
     Route::get('/newsfrom', [NewsFromPrintInformationController::class, 'index'])->name('user.newsfrom.index');
-    Route::get('/annualReport', [AnnualReportInformationController::class, 'index'])->name('user.annualReport.index');
+    Route::get('/nnualReports', [AnnualReportInformationController::class, 'index'])->name('user.annualReports.index');
     Route::get('/contactIV', [ContactIVInformationController::class, 'index'])->name('user.contactIV.index');
     Route::get('/emailnotification', [EmailNotificationInformationController::class, 'index'])->name('user.emailnotification.index');
     Route::post('/emailnotification', [EmailNotificationInformationController::class, 'store'])->name('user.emailnotification.store');
 
+    Route::get('/annualReport', [AnnualreportController::class, 'index'])->name('user.annualReport.index');
+    Route::post('/annualReport/store', [AnnualreportController::class,'store'])->name('user.annualReport.store');
+    Route::post('/annualReport/edit', [AnnualreportController::class,'editBanner'])->name('user.annualReport.editBanner');
+    Route::get('/annualReport/createFile',[AnnualreportController::class,'createFile'])->name('annualReport.createFile');
+    Route::post('/annualReport/storeFile',[AnnualreportController::class,'storeFile'])->name('annualReport.storeFile');
+
+       
+   
 
     Route::get('/home', [UserController::class, 'index'])->name('home.index');
     Route::get('/VisionAndMission', [UserVisionMissionController::class, 'index'])->name('user.vision.index');

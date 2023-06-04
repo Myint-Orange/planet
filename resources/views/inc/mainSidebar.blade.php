@@ -100,8 +100,12 @@
             'route' => 'contact.index',
             'title' => 'IR Contact ',
           ],
-          
-
+          [  
+            'prefix'=> 'AnnualReport',
+            'route' => 'user.annualReport.index',
+            'title' => 'Annualual Report ',
+          ],
+        
         
 
           
