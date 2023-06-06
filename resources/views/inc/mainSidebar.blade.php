@@ -115,6 +115,12 @@
             'route' => 'news.indexs',
             'title' => 'IR News ',
           ],
+          [  
+            'prefix'=> 'IRCreditRating',
+            'route' => 'creditrating.index',
+            'title' => 'IR Credit Rating ',
+          ],
+          
         
         
 

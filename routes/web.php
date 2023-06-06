@@ -8,6 +8,7 @@ use App\Http\Controllers\AboutUs\HistoryController;
 use App\Http\Controllers\AboutUs\NetworkController;
 use App\Http\Controllers\AboutUs\OrgController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\CreditratingController;
 use App\Http\Controllers\AnnualreportController;
 use App\Http\Controllers\AboutUs\PrideController;
 use App\Http\Controllers\AboutUs\VisionMissionController;
@@ -314,19 +315,29 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::resource('/news', IrnewsController::class);
         Route::get('/news/delete/{post_id}',[IrnewsController::class,'destroyPost'])->name('news.destroyPost');
         //
-
+        Route::get('/setnews/index', [IrsetnewsController::class,'indexs'])->name('setnews.indexs');
+        Route::post('/setnews/storenews', [IrsetnewsController::class,'stored'])->name('setnews.stored');
+        Route::post('/setnews/editnews', [IrsetnewsController::class,'editBanner'])->name('setnews.editBanner');
+        Route::resource('/setnews', IrsetnewsController::class);
+        Route::get('/setnews/delete/{post_id}',[IrsetnewsController::class,'destroyPost'])->name('setnews.destroyPost');
+        //
         Route::get('/setnews/index', [IrsetnewsController::class,'indexs'])->name('setnews.indexs');
         Route::post('/setnews/storenews', [IrsetnewsController::class,'stored'])->name('setnews.stored');
         Route::post('/setnews/editnews', [IrsetnewsController::class,'editBanner'])->name('setnews.editBanner');
         Route::resource('/setnews', IrsetnewsController::class);
         Route::get('/setnews/delete/{post_id}',[IrsetnewsController::class,'destroyPost'])->name('setnews.destroyPost');
 
-        
-        Route::get('/contact/index', [IRContactController::class,'index'])->name('contact.index');
-        Route::post('/contact/storecontact', [IRContactController::class,'store'])->name('contact.store');
-        Route::post('/contact/editcontact', [IRContactController::class,'editBanner'])->name('contact.editBanner');
-        Route::post('/contact/storecontactdetail', [IRContactController::class,'storedetail'])->name('contact.detailstore');
-        Route::post('/contact/editcontactdetail', [IRContactController::class,'editdetail'])->name('contact.detailedit');
+        //
+        //CreditratingController
+        Route::get('/creditrating/index', [CreditratingController::class,'indexs'])->name('creditrating.indexs');
+        Route::post('/creditrating/storecontact', [CreditratingController::class,'stored'])->name('creditrating.stored');
+
+        Route::get('/creditrating/index', [CreditratingController::class,'index'])->name('creditrating.index');
+        Route::get('/creditrating/create', [CreditratingController::class,'create'])->name('creditrating.create');
+        Route::post('/creditrating/storecontact', [CreditratingController::class,'store'])->name('creditrating.store');
+        Route::post('/creditrating/editcontact', [CreditratingController::class,'editBanner'])->name('creditrating.editBanner');
+        Route::post('/creditrating/storecontactdetail', [CreditratingController::class,'storedetail'])->name('creditrating.detailstore');
+        Route::post('/creditrating/editcontactdetail', [CreditratingController::class,'editdetail'])->name('creditrating.detailedit');
      
         
 
@@ -359,6 +370,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::get('/dividendpolicy', [DividendpolicyandpaymentInformationController::class, 'index'])->name('user.dividendpolicy.index');
     Route::get('/shareHolderMeeting', [ShareHolderMeetingInformationController::class, 'index'])->name('user.shareHolderMeeting.index');
     Route::get('/purchasePolicy', [PurchaseInformationController::class, 'index'])->name('user.purchasePolicy.index');
+    
+    
+    //
     Route::get('/creditrating', [CreditRaringInformationController::class, 'index'])->name('user.creditrating.index');
     //
     Route::get('/news', [SetNewsInformationController::class, 'index'])->name('user.news.index');
