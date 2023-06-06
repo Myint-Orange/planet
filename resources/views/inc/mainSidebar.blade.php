@@ -120,6 +120,11 @@
             'route' => 'creditrating.index',
             'title' => 'IR Credit Rating ',
           ],
+          [  
+            'prefix'=> 'IRPurchaseIssuses',
+            'route' => 'purchase.index',
+            'title' => 'IR Purchase Issuses',
+          ],
           
         
         

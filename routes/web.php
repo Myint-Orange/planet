@@ -33,6 +33,7 @@ use App\Http\Controllers\OurBusiness\BusinessController;
 use App\Http\Controllers\OurBusiness\BusinessGroupController;
 use App\Http\Controllers\OurBusiness\BusinessPostController;
 use App\Http\Controllers\OverView\OverViewController;
+use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\User\AboutUs\UserBusinessController;
 use App\Http\Controllers\User\AboutUs\UserCoreValueController;
 use App\Http\Controllers\User\AboutUs\UserVisionMissionController;
@@ -330,7 +331,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         //
         //CreditratingController
         Route::get('/creditrating/index', [CreditratingController::class,'indexs'])->name('creditrating.indexs');
-        Route::post('/creditrating/storecontact', [CreditratingController::class,'stored'])->name('creditrating.stored');
+        Route::post('/creditrating/storecontact', [CreditratingController::class,'stored'])->name('creditratings.stored');
 
         Route::get('/creditrating/index', [CreditratingController::class,'index'])->name('creditrating.index');
         Route::get('/creditrating/create', [CreditratingController::class,'create'])->name('creditrating.create');
@@ -338,6 +339,18 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/creditrating/editcontact', [CreditratingController::class,'editBanner'])->name('creditrating.editBanner');
         Route::post('/creditrating/storecontactdetail', [CreditratingController::class,'storedetail'])->name('creditrating.detailstore');
         Route::post('/creditrating/editcontactdetail', [CreditratingController::class,'editdetail'])->name('creditrating.detailedit');
+     
+        //PurchaseInformationController
+        Route::get('/purchase/index', [PurchaseController::class,'indexs'])->name('purchase.indexs');
+        Route::post('/purchase/storecontact', [PurchaseController::class,'stored'])->name('purchase.stored');
+
+
+        Route::get('/purchase/index', [PurchaseController::class,'index'])->name('purchase.index');
+        Route::get('/purchase/create', [PurchaseController::class,'create'])->name('purchase.create');
+        Route::post('/purchase/storecontact', [PurchaseController::class,'store'])->name('purchase.store');
+        Route::post('/purchase/editcontact', [PurchaseController::class,'editBanner'])->name('purchase.editBanner');
+        Route::post('/purchase/storecontactdetail', [PurchaseController::class,'storedetail'])->name('purchase.detailstore');
+        Route::post('/purchase/editcontactdetail', [PurchaseController::class,'editdetail'])->name('purchase.detailedit');
      
         
 
@@ -369,6 +382,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::get('/shareHolderStructure', [ShareHolderStructureInformationController::class, 'index'])->name('user.shareHolderStructure.index');
     Route::get('/dividendpolicy', [DividendpolicyandpaymentInformationController::class, 'index'])->name('user.dividendpolicy.index');
     Route::get('/shareHolderMeeting', [ShareHolderMeetingInformationController::class, 'index'])->name('user.shareHolderMeeting.index');
+    
     Route::get('/purchasePolicy', [PurchaseInformationController::class, 'index'])->name('user.purchasePolicy.index');
     
     
