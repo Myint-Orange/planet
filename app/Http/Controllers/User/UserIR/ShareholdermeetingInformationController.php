@@ -14,6 +14,8 @@ class ShareholdermeetingInformationController extends Controller
 
       $all_data =DB::table('shareholdermeetings')->get();
       $invitationletters =DB::table('shareholdermeetings')->where('type', 'Invitation_letter')->get();
-        return view('user.investorRealtions.investor-relations-shareholder-meeting', compact('type','invitationletters','all_data'));
+      $attachmentposts = DB::table('shareholdermeetings')->where('type','Attachement')->get();
+      $criteriaposts = DB::table('shareholdermeetings')->where('type','Criteria')->get();
+        return view('user.investorRealtions.investor-relations-shareholder-meeting', compact('type','invitationletters','all_data','attachmentposts','criteriaposts'));
     }
 }

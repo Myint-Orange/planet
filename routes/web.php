@@ -352,18 +352,25 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/purchase/editcontactdetail', [PurchaseController::class,'editdetail'])->name('purchase.detailedit');
      
      
-        //PurchaseInformationController
+        //PurchaseInformationController Letter
         Route::get('/shareholdermeeting/index', [ShareholdermeetingController::class,'indexs'])->name('shareholdermeeting.indexs');
         Route::post('/shareholdermeeting/storeconta', [ShareholdermeetingController::class,'storeBanner'])->name('shareholdermeeting.storeBanner');
         Route::get('/shareholdermeeting/index', [ShareholdermeetingController::class,'index'])->name('shareholdermeeting.index');
+
         Route::get('/shareholdermeeting/create', [ShareholdermeetingController::class,'create'])->name('shareholdermeeting.create');
         Route::post('/shareholdermeeting/storecontact', [ShareholdermeetingController::class,'store'])->name('shareholdermeeting.store');
         Route::post('/shareholdermeeting/editcontact', [ShareholdermeetingController::class,'editBanner'])->name('shareholdermeeting.editBanner');
         Route::post('/shareholdermeeting/storecontactdetail', [ShareholdermeetingController::class,'storedetail'])->name('purchase.detailstore');
         Route::post('/shareholdermeeting/editcontactdetail', [ShareholdermeetingController::class,'editdetail'])->name('purchase.detailedit');
         
-        
+        //PurchaseInformationController Attachement
+        Route::get('/shareholdermeeting/attachementcreate', [ShareholdermeetingController::class,'attachementcreate'])->name('shareholdermeeting.attachementcreate');
+        Route::post('/shareholdermeeting/attachementstore', [ShareholdermeetingController::class,'attachementstore'])->name('shareholdermeeting.attachementstore');
 
+        //PurchaseInformationController Criteria
+        Route::get('/shareholdermeeting/criteriacreate', [ShareholdermeetingController::class,'criteriacreate'])->name('shareholdermeeting.criteriacreate');
+        Route::post('/shareholdermeeting/criteriastore', [ShareholdermeetingController::class,'criteriastore'])->name('shareholdermeeting.criteriastore');
+        
         Route::post('/IRShareHolders/editBanner', [ShareHolderController::class,'editBanner'])->name('shareholder.editBanner');
         Route::post('/IRShareHolders/editFile', [ShareHolderController::class,'editPost'])->name('shareholder.editPost');
         Route::get('/IRShareHolders/deleteFile/{post_id}',[ShareHolderController::class,'destroyPost'])->name('shareholder.destroyPost');

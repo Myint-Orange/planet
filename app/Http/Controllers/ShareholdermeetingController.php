@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Irnews;
 use App\Models\IRBanner;
-use App\Models\Purchase;
 use App\Models\Shareholdermeeting;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -15,8 +14,10 @@ class ShareholdermeetingController extends Controller
     public function indexs()
     {
         $type = DB::table('irbanners')->where('irtype', 'ShareHolderMeeting')->first();
-        $posts = DB::table('shareholdermeetings')->get();
-        return view('admin.irpages.shareholdermeeting.index', compact('type', 'posts'));
+        $posts = DB::table('shareholdermeetings')->where('type','Invitation_letter')->get();
+        $attachmentposts = DB::table('shareholdermeetings')->where('type','Attachement')->get();
+        $criteriaposts = DB::table('shareholdermeetings')->where('type','Criteria')->get();
+        return view('admin.irpages.shareholdermeeting.index', compact('type', 'posts', 'attachmentposts', 'criteriaposts'));
     }
     
     public function storeBanner(Request $request)
@@ -60,21 +61,20 @@ class ShareholdermeetingController extends Controller
     public function index()
     {
         $type = DB::table('irbanners')->where('irtype', 'ShareHolderMeeting')->first();
-        $posts = DB::table('shareholdermeetings')->get();
-        return view('admin.irpages.shareholdermeeting.index', compact('type', 'posts'));
+        $posts = DB::table('shareholdermeetings')->where('type','Invitation_letter')->get();
+        $attachmentposts = DB::table('shareholdermeetings')->where('type','Attachement')->get();
+        $criteriaposts = DB::table('shareholdermeetings')->where('type','Criteria')->get();
+        return view('admin.irpages.shareholdermeeting.index', compact('type', 'posts', 'attachmentposts', 'criteriaposts'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
+    //Letter
     public function create()
     {
         return view('admin.irpages.shareholdermeeting.create');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $validation = $request->validate([
@@ -94,6 +94,56 @@ class ShareholdermeetingController extends Controller
             return redirect()->route('shareholdermeeting.index');
         }
     }
+    //attachment
+    public function attachementcreate()
+    {
+        return view('admin.irpages.shareholdermeeting.attachment_create');
+    }
+    public function attachementstore(Request $request)
+    {
+        $validation = $request->validate([
+            'name' => 'required',
+            'pdflink' => 'required',
+        ]);
+        $purhcase = new Shareholdermeeting();
+        $purhcase->name = $request->name;
+        $purhcase->type = "Attachement";
+        $pdf = $request->file('pdflink');
+        $purhcase->pdflink = $pdf->getClientOriginalName();
+        $pdfName = $pdf->getClientOriginalName();
+        $pdf->move(public_path('images'), $pdfName);
+        $purhcase->pdflink = $pdfName;
+        $purhcase->save();
+        if ($purhcase) {
+            return redirect()->route('shareholdermeeting.index');
+        }
+    }
+
+    //criteria
+    public function criteriacreate()
+    {
+        return view('admin.irpages.shareholdermeeting.criteria_create');
+    }
+    public function criteriastore(Request $request)
+    {
+        $validation = $request->validate([
+            'name' => 'required',
+            'pdflink' => 'required',
+        ]);
+        $purhcase = new Shareholdermeeting();
+        $purhcase->name = $request->name;
+        $purhcase->type = "Criteria";
+        $pdf = $request->file('pdflink');
+        $purhcase->pdflink = $pdf->getClientOriginalName();
+        $pdfName = $pdf->getClientOriginalName();
+        $pdf->move(public_path('images'), $pdfName);
+        $purhcase->pdflink = $pdfName;
+        $purhcase->save();
+        if ($purhcase) {
+            return redirect()->route('shareholdermeeting.index');
+        }
+    }
+
 
     /**
      * Display the specified resource.

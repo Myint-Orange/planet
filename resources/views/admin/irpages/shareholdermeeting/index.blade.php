@@ -124,7 +124,7 @@
               </a>
 
               <div class="card-body">
-                <h3 class="card-title"><b>Cit List</b></h3>
+                <h3 class="card-title"><b>Invitation letter List</b></h3>
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
                     <tr>
@@ -138,6 +138,151 @@
                   </thead>
                   <tbody>
                     @foreach($posts as $post)
+                    <tr>
+                      <td>{{ $post->id}}</td>
+                      <td>
+                        {{$post->name}}
+                      </td>
+                      <td>
+                        {{$post->type}}
+                      </td>
+                      <td>{{ $post->pdflink}}</td>
+                      <td>
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-info">Action</button>
+                          <button type="button" class="btn btn-info dropdown-toggle dropdown-hover dropdown-icon" data-toggle="dropdown">
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+                          <div class="dropdown-menu" role="menu">
+                            <a class="dropdown-item" href="{{route('purchase.editBanner',$post->id)}}">Edit</a>
+                            <a class="dropdown-item delete-row" href="" id="delete-post-{{$post->id}}">Delete</a></div>
+                      </td>
+
+                     
+                    </tr>
+                    @endforeach
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>PDF Link</th>
+                      <th>Action</th>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <a href="{{route('shareholdermeeting.attachementcreate')}}" class="btn btn-primary mx-1">
+                <i class="fas fa-plus"></i> Add New Attachment
+              </a>
+
+              <div class="card-body">
+                <h3 class="card-title"><b>Attachment List</b></h3>
+                <table id="example2" class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>PDF Link</th>
+                      <th>Action</th>
+                    </tr>
+
+                  </thead>
+                  <tbody>
+                    @foreach($attachmentposts as $post)
+                    <tr>
+                      <td>{{ $post->id}}</td>
+                      <td>
+                        {{$post->name}}
+                      </td>
+                      <td>
+                        {{$post->type}}
+                      </td>
+                      <td>{{ $post->pdflink}}</td>
+                      <td>
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-info">Action</button>
+                          <button type="button" class="btn btn-info dropdown-toggle dropdown-hover dropdown-icon" data-toggle="dropdown">
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+                          <div class="dropdown-menu" role="menu">
+                            <a class="dropdown-item" href="{{route('purchase.editBanner',$post->id)}}">Edit</a>
+                            <a class="dropdown-item delete-row" href="" id="delete-post-{{$post->id}}">Delete</a></div>
+                      </td>
+
+                     
+                    </tr>
+                    @endforeach
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>PDF Link</th>
+                      <th>Action</th>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+
+              <a href="{{route('shareholdermeeting.criteriacreate')}}" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Add New Criteria
+              </a>
+
+              <div class="card-body">
+                <h3 class="card-title"><b>Criteria List</b></h3>
+                <table id="example2" class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>PDF Link</th>
+                      <th>Action</th>
+                    </tr>
+
+                  </thead>
+                  <tbody>
+                    @foreach($criteriaposts as $post)
                     <tr>
                       <td>{{ $post->id}}</td>
                       <td>
