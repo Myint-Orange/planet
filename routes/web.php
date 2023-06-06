@@ -8,6 +8,7 @@ use App\Http\Controllers\AboutUs\HistoryController;
 use App\Http\Controllers\AboutUs\NetworkController;
 use App\Http\Controllers\AboutUs\OrgController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\ShareholdermeetingController;
 use App\Http\Controllers\CreditratingController;
 use App\Http\Controllers\AnnualreportController;
 use App\Http\Controllers\AboutUs\PrideController;
@@ -343,8 +344,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         //PurchaseInformationController
         Route::get('/purchase/index', [PurchaseController::class,'indexs'])->name('purchase.indexs');
         Route::post('/purchase/storecontact', [PurchaseController::class,'stored'])->name('purchase.stored');
-
-
         Route::get('/purchase/index', [PurchaseController::class,'index'])->name('purchase.index');
         Route::get('/purchase/create', [PurchaseController::class,'create'])->name('purchase.create');
         Route::post('/purchase/storecontact', [PurchaseController::class,'store'])->name('purchase.store');
@@ -352,6 +351,17 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/purchase/storecontactdetail', [PurchaseController::class,'storedetail'])->name('purchase.detailstore');
         Route::post('/purchase/editcontactdetail', [PurchaseController::class,'editdetail'])->name('purchase.detailedit');
      
+     
+        //PurchaseInformationController
+        Route::get('/shareholdermeeting/index', [ShareholdermeetingController::class,'indexs'])->name('shareholdermeeting.indexs');
+        Route::post('/shareholdermeeting/storeconta', [ShareholdermeetingController::class,'storeBanner'])->name('shareholdermeeting.storeBanner');
+        Route::get('/shareholdermeeting/index', [ShareholdermeetingController::class,'index'])->name('shareholdermeeting.index');
+        Route::get('/shareholdermeeting/create', [ShareholdermeetingController::class,'create'])->name('shareholdermeeting.create');
+        Route::post('/shareholdermeeting/storecontact', [ShareholdermeetingController::class,'store'])->name('shareholdermeeting.store');
+        Route::post('/shareholdermeeting/editcontact', [ShareholdermeetingController::class,'editBanner'])->name('shareholdermeeting.editBanner');
+        Route::post('/shareholdermeeting/storecontactdetail', [ShareholdermeetingController::class,'storedetail'])->name('purchase.detailstore');
+        Route::post('/shareholdermeeting/editcontactdetail', [ShareholdermeetingController::class,'editdetail'])->name('purchase.detailedit');
+        
         
 
         Route::post('/IRShareHolders/editBanner', [ShareHolderController::class,'editBanner'])->name('shareholder.editBanner');

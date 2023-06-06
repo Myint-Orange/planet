@@ -126,6 +126,12 @@
             'title' => 'IR Purchase Issuses',
           ],
           
+          [  
+            'prefix'=> 'IRShareHolderMeeing',
+            'route' => 'shareholdermeeting.index',
+            'title' => 'IR Share Holder Meeting',
+          ],
+          
         
         
 

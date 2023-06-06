@@ -10,15 +10,21 @@
 <div class="container-fluid">
 	
 @include('user.inc_menu')
-
-
+@if ($type)
 <section class="row">
-    <div class="col-12 banner-inside wow fadeInDown"">
-        <figure><img src="images/banner-shareholder.webp" alt=""></figure>
+    <div class="col-12 banner-inside wow fadeInDown">
+        <figure><img src="{{ asset('/images/'.$type->image)}}" alt=""></figure>
+        <h1>{{ $type->name_en }}</h1>
+    </div>
+</section>
+@else
+<section class="row">
+    <div class="col-12 banner-inside wow fadeInDown">
+        <figure><img src="images/banner-irnews.webp" alt=""></figure>
         <h1>การประชุมผู้ถือหุ้น</h1>
     </div>
 </section>
-
+@endif
 <section class="row">
     <div class="col-12 wrap-top-homeir wrap-tophistory wow fadeInDown">
         <div class="container">
@@ -29,9 +35,16 @@
                 <div class="col-12 col-md-6">
                     <div class="ir-boxselect">
                         <span>ปี :</span>
-                        <select name="" id="">
-                            <option value="">เลือกปี</option>
-                            <option value="">2565</option>
+                        <select name="year" class="form-select" id="">
+                            <option selected disabled value="">เลือกปี</option>
+                            @foreach($all_data as $posts)
+                            <option class="selectbox" value="{{ $posts->created_at }}">
+                                <?php
+                                    $date = date("Y", strtotime($posts->created_at));
+                                    echo $date;
+                                    ?>
+                            </option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -45,10 +58,13 @@
                                 </tr>
                             </thead>
                             <tbody class="table-group-divider">
-                                <tr>
-                                    <th scope="row">หนังสือเชิญประชุมสามัญผู้ถือหุ้น ประจำปี 2566 (เผยแพร่ วันที่ 28 มีนาคม 2566)</th>
-                                    <td><a href="#" class="btn-download" target="_blank"><span>ดาวน์โหลด</span>  <i class="bi bi-file-earmark-arrow-down-fill"></i></a></td>
-                                </tr>
+                                
+                                    @foreach ($invitationletters as $invitationletter)
+                                    <tr>
+                                    <th scope="row">{{  $invitationletter->name }}</th>
+                                    <td><a href="{{ asset('/images/'.$invitationletter->pdflink)}}" class="btn-download" target="_blank"><span>ดาวน์โหลด</span>  <i class="bi bi-file-earmark-arrow-down-fill"></i></a></td>
+                                    <tr>
+                                    @endforeach
                             </tbody>
                             <thead>
                                 <tr>
