@@ -27,12 +27,12 @@
             <div class="card-header">
               <h3 class="card-title">
                 <i class="fas fa-edit"></i>
-              IR News
+              IR Set News
               </h3>
             </div>
             <div class="card-body">
               @if ($type)
-              <form action='{{route('news.editBanner')}}' method="post" enctype="multipart/form-data" id='regform'>
+              <form action='{{route('setnews.editBanner')}}' method="post" enctype="multipart/form-data" id='regform'>
                 @csrf
                 <input type="hidden" name="type_id" value="{{ $type->id}}">
                 <div class="row justify-content-center">
@@ -69,7 +69,7 @@
                 </div>
               </form>
               @else
-               <form action='{{route('news.stored')}}' method="post" enctype="multipart/form-data" id='regform'>
+               <form action='{{route('setnews.stored')}}' method="post" enctype="multipart/form-data" id='regform'>
                 @csrf
                 <div class="row justify-content-center">
                   <img src="{{ asset('storage/img/default.png')}}"  id="preview" class="img-fluid mx-auto" alt="..." style="height: 300px; width: 650px;">
@@ -119,7 +119,7 @@
           <div class="card">
             <div class="card-header">
 
-              <a href="{{route('news.create')}}" class="btn btn-primary">
+              <a href="{{route('setnews.create')}}" class="btn btn-primary">
                 <i class="fas fa-plus"></i> Add
               </a>
 
@@ -144,7 +144,7 @@
                       <td>
                         {{$post->created}}
                       </td>
-                      <td>{!! $post->headline!!}</td>
+                      <td>{!! $post->headline !!}</td>
 
                       <td>
                         <div class="btn-group">
@@ -153,7 +153,7 @@
                             <span class="sr-only">Toggle Dropdown</span>
                           </button>
                           <div class="dropdown-menu" role="menu">
-                            <a class="dropdown-item" href="{{route('City.edit',$post->id)}}">Edit</a>
+                            <a class="dropdown-item" href="{{route('setnews.edit',$post->id)}}">Edit</a>
                             <a class="dropdown-item delete-row" href="" id="delete-post-{{$post->id}}">Delete</a></div>
                       </td>
 
@@ -164,9 +164,11 @@
                   <tfoot>
                     <tr>
                       <th>ID</th>
-                      <th>Name</th>
+                      <th>Created At</th>
+                      <th>Headlines</th>
                       <th>Action</th>
                     </tr>
+
                   </tfoot>
                 </table>
               </div>

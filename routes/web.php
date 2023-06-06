@@ -22,6 +22,7 @@ use App\Http\Controllers\IR\FinancialStatemantController;
 use App\Http\Controllers\IR\ShareHolderController;
 use App\Http\Controllers\IR\EmailNotificationController;
 use App\Http\Controllers\IrnewsController;
+use App\Http\Controllers\IrsetnewsController;
 use App\Http\Controllers\Knowledge\ActivityController;
 use App\Http\Controllers\Knowledge\InterestController;
 use App\Http\Controllers\Knowledge\KnowledgeController;
@@ -312,8 +313,14 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/news/editnews', [EmailNotificationController::class,'editBanner'])->name('news.editBanner');
         Route::resource('/news', IrnewsController::class);
         Route::get('/news/delete/{post_id}',[IrnewsController::class,'destroyPost'])->name('news.destroyPost');
-
         //
+
+        Route::get('/setnews/index', [IrsetnewsController::class,'indexs'])->name('setnews.indexs');
+        Route::post('/setnews/storenews', [IrsetnewsController::class,'stored'])->name('setnews.stored');
+        Route::post('/setnews/editnews', [IrsetnewsController::class,'editBanner'])->name('setnews.editBanner');
+        Route::resource('/setnews', IrsetnewsController::class);
+        Route::get('/setnews/delete/{post_id}',[IrsetnewsController::class,'destroyPost'])->name('setnews.destroyPost');
+
         
         Route::get('/contact/index', [IRContactController::class,'index'])->name('contact.index');
         Route::post('/contact/storecontact', [IRContactController::class,'store'])->name('contact.store');
@@ -353,9 +360,13 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::get('/shareHolderMeeting', [ShareHolderMeetingInformationController::class, 'index'])->name('user.shareHolderMeeting.index');
     Route::get('/purchasePolicy', [PurchaseInformationController::class, 'index'])->name('user.purchasePolicy.index');
     Route::get('/creditrating', [CreditRaringInformationController::class, 'index'])->name('user.creditrating.index');
+    //
     Route::get('/news', [SetNewsInformationController::class, 'index'])->name('user.news.index');
     Route::post('/news/search', [SetNewsInformationController::class, 'search'])->name('user.news.search');
-    Route::get('/newsfrom', [NewsFromPrintInformationController::class, 'index'])->name('user.newsfrom.index');
+    
+    Route::get('/setnews', [NewsFromPrintInformationController::class, 'index'])->name('user.newsfrom.index');
+    Route::post('/setnews/search', [NewsFromPrintInformationController::class, 'index'])->name('user.newsfrom.search');
+    //
     Route::get('/nnualReports', [AnnualReportInformationController::class, 'index'])->name('user.annualReports.index');
     Route::get('/contactIV', [ContactIVInformationController::class, 'index'])->name('user.contactIV.index');
     Route::get('/emailnotification', [EmailNotificationInformationController::class, 'index'])->name('user.emailnotification.index');

@@ -105,7 +105,11 @@
             'route' => 'user.annualReport.index',
             'title' => 'Annualual Report ',
           ],
-        
+          [  
+            'prefix'=> 'IR Set News',
+            'route' => 'setnews.indexs',
+            'title' => 'IR Set News ',
+          ],
           [  
             'prefix'=> 'IRNews',
             'route' => 'news.indexs',
