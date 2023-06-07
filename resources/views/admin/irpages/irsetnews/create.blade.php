@@ -38,7 +38,8 @@
                             <div class="card-header">
                                 <h3 class="card-title">IR Set News Information</h3>
                             </div>
-                            <form action='{{ route('setnews.store') }}' method="post" enctype="multipart/form-data" id='regform'>
+                            <form action='{{ route('setnews.store') }}' method="post" enctype="multipart/form-data"
+                                id='regform'>
                                 @csrf
                                 @method('post')
                                 <div class="card-body">
@@ -63,6 +64,7 @@
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                         <a href="{{ route('setnews.indexs') }}" class="btn btn-default">Exist</a>
                                     </div>
+                                </div>
                             </form>
                         </div>
                     </div>

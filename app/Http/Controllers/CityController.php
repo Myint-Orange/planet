@@ -74,12 +74,6 @@ class CityController extends Controller
         $city->save();
         return redirect()->route('City.index');
     }
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id){
-    }
-    
     public function destroyPost($post_id){
         $post=City::find($post_id);
         $post->delete();

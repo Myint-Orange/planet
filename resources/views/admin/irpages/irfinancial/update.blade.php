@@ -19,13 +19,13 @@
               <div class="card-header">
                 <h3 class="card-title">
                   <i class="fas fa-edit"></i>
-                  Edit Financial Statements
+                  Annual Statements
                 </h3>
               </div>
               <div class="card-body">
                 <input type="hidden" name="post_id" value="{{$post->id}}">
                 <div class="row justify-content-center">
-                  <embed id="pdf-preview" src="{{asset('storage/pdf/'.$post->imgname)}}"  width="650" height="300" />
+                  <embed id="pdf-preview" src="{{asset('storage/pdf/'.$post->image)}}"  width="650" height="300" />
                 </div>
         
                 <div class="row justify-content-center">

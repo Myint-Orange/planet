@@ -12,13 +12,15 @@ use Illuminate\Http\Request;
 class IrsetnewsController extends Controller
 {
 
-    public function indexs(){
+    public function indexs()
+    {
         $type = DB::table('irbanners')->where('irtype', 'IRSetNews')->first();
-        $posts =DB::table('irsetnews')->get();
-        
-        return view('admin.irpages.irsetnews.index', compact('type','posts'));
+        $posts = DB::table('irsetnews')->get();
+
+        return view('admin.irpages.irsetnews.index', compact('type', 'posts'));
     }
-    public function stored(Request $request){
+    public function stored(Request $request)
+    {
         $irBanner = new IRBanner();
         $irBanner->name_en = $request->menu_en;
         $irBanner->name_th = $request->menu_th;
@@ -32,9 +34,10 @@ class IrsetnewsController extends Controller
         $irBanner->save();
         return redirect()->route('setnews.indexs');
     }
-    public function editBanner(Request $request){
-        $type = IRBanner::where('irtype', 'IRSetNews')->where('id', $request->id)->first();
-        if($request->image != null && $request->hasFile('image')){
+    public function editBanner(Request $request)
+    {
+        $type = IRBanner::where('irtype', 'IRSetNews')->where('id', $request->type_id)->first();
+        if ($request->image != null && $request->hasFile('image')) {
             $filename = str_replace('/embryo-planet/public', '', public_path('/images/'));
             $filename =  $filename . $type->image;
             if (file_exists($filename)) {
@@ -52,14 +55,12 @@ class IrsetnewsController extends Controller
             'name_ch' => $request->menu_ch,
         ]);
         return redirect()->route('setnews.indexs');
-
     }
     public function index()
     {
         $type = DB::table('irbanners')->where('irtype', 'IRNews')->first();
-        $posts =DB::table('irnews')->get();
-       return view('admin.irpages.irsetnews.index', compact('type','posts'));
-        
+        $posts = DB::table('irnews')->get();
+        return view('admin.irpages.irsetnews.index', compact('type', 'posts'));
     }
 
     /**
@@ -83,7 +84,7 @@ class IrsetnewsController extends Controller
             'created' => $request->name,
             'headline' => $request->headline
         ]);
-        if($irnews){
+        if ($irnews) {
             return redirect()->route('setnews.indexs');
         }
     }
@@ -93,30 +94,36 @@ class IrsetnewsController extends Controller
      */
     public function show(Irnews $irnews)
     {
-        
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Irnews $irnews)
+    public function edit($post_id)
     {
-        
+        $post = Irsetnews::findOrFail($post_id);
+        return view('admin.irpages.irsetnews.update', compact('post'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Irnews $irnews)
+    public function editFiled(Request $request)
     {
-        //
+        $post = Irsetnews::findOrFail($request->$post_id);
+        return view('admin.irpages.irsetnews.update', compact('post'));
+    }
+    public function updated(Request $request)
+    {
+        $post = Irsetnews::findOrFail($request->post_id);
+        $post->update($request->all());
+        return redirect()->route('setnews.indexs');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Irnews $irnews)
-    {
-        //
+
+    public function destroyPost($post_id)
+    {   $post = Irsetnews::findOrFail($post_id);
+        $post->delete();
+        return redirect()->route('setnews.indexs');
     }
 }

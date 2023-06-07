@@ -89,24 +89,42 @@ class AnnualreportController extends Controller
     }
     public function destroyFile($post_id){
     }
-    public function updateFile($post_id){
-        dd($post_id);
-        return view('admin.irpages.irfinancial.update',compact('post'));
+
+    public function editFile(Request $request,$post_id){
+      $post=Annualreport::findOrFail($request->post_id);
+      return view('admin.irpages.annualreport.update',compact('post'));
     }
 
-    public function editFile(Request $request){
+    public function editFiled(Request $request){
+        $annual_report=Annualreport::findOrFail($request->post_id);
+        if($request->has('iamge')){
+        $image = $request->file('image');
+        $imageName = $image->getClientOriginalName();
+        $image->move(public_path('images'), $imageName);
+        $annual_report->image = $imageName;
+        $annual_report->save();
+        }
+        if($request->has('pdf')){
+        $pdf= $request->has('pdf');  
+        $sizeInMB = round($pdf->getSize() / (1024 * 1024), 2);
+        $annual_report->title = $request->name;
+        $annual_report->pdflink = $pdf->getClientOriginalName();
+        $annual_report->filesize = $sizeInMB;
+        $pdfName = $pdf->getClientOriginalName();
+        $pdf->move(public_path('images'), $pdfName);
+        $annual_report->pdflink = $pdfName;
+        $annual_report->save();
+        }
+        if($request->name){
+            $annual_report->title = $request->name;
+            $annual_report->save();
+        }
 
-    //   $post=Post::find($request->post_id);
-    //   $fileName= ImageController::updatePdf($request);
-    //   $yearDate = Carbon::createFromFormat('Y', $request->year)->startOfYear();   
-    //   $user = Auth::user();
-    //     $post->update([
-    //         'imgname'=>$fileName,
-    //         'name'=>$request->fileName,
-    //         'created_at'=>$yearDate,
-    //         'user_id'=>$user->id,
-    //         ]);     
-      //return redirect()->route('IRFinancial.updateFile',$post->id);
-
-    }
+        return redirect()->route('user.annualReport.index');
+}
+public function destroyPost($post_id){
+    $post=Annualreport::findOrFail($post_id);
+    $post->delete();
+    return redirect()->route('user.annualReport.index');
+}
 }

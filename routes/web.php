@@ -323,12 +323,13 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/setnews/storenews', [IrsetnewsController::class,'stored'])->name('setnews.stored');
         Route::post('/setnews/editnews', [IrsetnewsController::class,'editBanner'])->name('setnews.editBanner');
         Route::resource('/setnews', IrsetnewsController::class);
-        Route::get('/setnews/delete/{post_id}',[IrsetnewsController::class,'destroyPost'])->name('setnews.destroyPost');
-        //
         Route::get('/setnews/index', [IrsetnewsController::class,'indexs'])->name('setnews.indexs');
         Route::post('/setnews/storenews', [IrsetnewsController::class,'stored'])->name('setnews.stored');
-        Route::post('/setnews/editnews', [IrsetnewsController::class,'editBanner'])->name('setnews.editBanner');
-        Route::resource('/setnews', IrsetnewsController::class);
+        Route::get('/setnews/editFile', [IrsetnewsController::class,'update'])->name('setnews.updated');
+        Route::post('/setnews/editFile', [IrsetnewsController::class,'updated'])->name('setnews.updated');
+        Route::get('/setnews/deleteFile/{post_id}',[IrsetnewsController::class,'destroyPost'])->name('setnews.destroyPostd');
+
+
         Route::get('/setnews/delete/{post_id}',[IrsetnewsController::class,'destroyPost'])->name('setnews.destroyPost');
 
         //
@@ -429,6 +430,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::post('/annualReport/edit', [AnnualreportController::class,'editBanner'])->name('user.annualReport.editBanner');
     Route::get('/annualReport/createFile',[AnnualreportController::class,'createFile'])->name('annualReport.createFile');
     Route::post('/annualReport/storeFile',[AnnualreportController::class,'storeFile'])->name('annualReport.storeFile');
+    Route::get('/annualReport/updateFile/{post_id}',[AnnualreportController::class,'editFile'])->name('annualReport.updateFile');
+    Route::post('/annualReport/updateFile',[AnnualreportController::class,'editFiled'])->name('annualReport.editFiled');
+    Route::get('/annualReport/{post_id}',[AnnualreportController::class,'destroyPost'])->name('annualReport.destroyPost');
+
+   
 
        
    

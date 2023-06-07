@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{{asset('dist/css/custom.css')}}"> @endsection
 @section('contents')
 <div class="content-wrapper">
-  <form action='{{route('IRAnalysis.editFile')}}' method="post" enctype="multipart/form-data" id='regform'>
+  <form action='{{route('annualReport.editFiled')}}' method="post" enctype="multipart/form-data" id='regform'>
     @csrf
     <section class="content">
       <div class="container-fluid">
@@ -19,38 +19,37 @@
               <div class="card-header">
                 <h3 class="card-title">
                   <i class="fas fa-edit"></i>
-                  Edit IR Management & Analysis PDF
+                  Edit IR Management & Analysis PDF 
                 </h3>
               </div>
               <div class="card-body">
                 <input type="hidden" name="post_id" value="{{$post->id}}">
                 <div class="row justify-content-center">
-                  <embed id="pdf-preview" src="{{asset('storage/pdf/'.$post->imgname)}}"  width="650" height="300" />
+                  <embed id="pdf-preview" src="{{asset('/images/'.$post->image)}}"  width="650" height="300" />
                 </div>
         
                 <div class="row justify-content-center">
                   <div class="col-md-4">
-                    <div class="form-group">
-                      <label>Year</label>
-                      <select id="year-select" name="year" class="form-control" required>
-                        <option value="{{ $post->created_at->format('Y') }}">{{ $post->created_at->format('Y') }}</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-md-4">
                       <div class="form-group">
-                        <label>File Name</label>
-                        <input type="text" name="fileName" class="form-control" placeholder="Enter File Name.." value="{{$post->name}}">
+                          <label>Annual Name</label>
+                          <input type="text"  value="{{$post->title}}" name="name" class="form-control "
+                              placeholder="Enter  Name.." style="">
                       </div>
-                    </div>
                   </div>
-        
+              </div>
+              <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="file" class="custom-file-input" id="image-file"
+                            name="pdf"  style="padding: 10px;" value="{{ $post->pdflink }}">
+                        <label class="custom-file-label" for="image-file" >Upload PDF </label>
+                    </div>
+                </div>
+            </div>
                 <div class="row justify-content-center">
                   <div class="col-md-4">
                     <div class="form-group">
-                      <input type="file" class="custom-file-input" id="pdf-file" name="pdf" onchange="previewPDF()" style="padding: 10px;">
+                      <input type="file" class="custom-file-input" id="pdf-file" name="iamge" onchange="previewPDF()" style="padding: 10px;">
                       <label class="custom-file-label" for="pdf-file">Upload PDF</label>
                     </div>
                   </div>
@@ -64,7 +63,7 @@
                   </div>
                   <div class="col-sm-1">
                     <div class="form-group">
-                      <a href="{{route('IRAnalysis.index')}}" class="btn btn-default " id="btn-mission">Exit</a>
+                      <a href="{{route('user.annualReport.index')}}" class="btn btn-default " id="btn-mission">Exit</a>
                     </div>
                   </div>
                 </div>

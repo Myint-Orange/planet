@@ -197,7 +197,8 @@
                                                                 <span class="sr-only">Toggle Dropdown</span>
                                                             </button>
                                                             <div class="dropdown-menu" role="menu">
-                                                                <a class="dropdown-item" href="{{ route('IRFinancial.updateFile', $post->id) }}">Edit
+
+                                                                <a class="dropdown-item" href="{{ route('annualReport.updateFile', $post->id) }}">Edit
                                                                     {{ $post->id }}</a>
                                                                 <a class="dropdown-item delete-row" href=""
                                                                     id="delete-post-{{ $post->id }}">Delete</a>
@@ -268,7 +269,7 @@
                 event.preventDefault();
                 var postId = $(this).attr('id').replace('delete-post-', '');
                 if (confirm("Are you sure you sure to delete this row?")) {
-                    window.location.href = "{{ route('city.destroyPost', ':id') }}".replace(':id', postId);
+                    window.location.href = "{{ route('annualReport.destroyPost', ':id') }}".replace(':id', postId);
                 }
             });
         });
