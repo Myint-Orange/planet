@@ -27,8 +27,9 @@
                                 <div class="card-body">
 
                                     <div class="row justify-content-center">
-                                        <embed id="img-preview" src="{{ asset('storage/img/default.png')}}"
-                                            width="650" height="300" />
+                                        <img src="{{ asset('storage/img/default.png') }}" id="preview"
+                                            class="img-fluid mx-auto" alt="..."
+                                            style="height: 300px; width: 300;">
                                     </div>
                                     <div class="row justify-content-center">
                                         <div class="col-md-4">
@@ -51,8 +52,8 @@
                                     <div class="row justify-content-center">
                                       <div class="col-md-4">
                                           <div class="form-group">
-                                              <input type="file" class="custom-file-input" id="pdf-file"
-                                                  name="image" onchange="previewPDF()" style="padding: 10px;">
+                                              <input type="file" class="custom-file-input" id="image"
+                                                  name="image" onchange="updateLabel('image','preview')" style="padding: 10px;">
                                               <label class="custom-file-label " for="pdf-file">Upload Image</label>
                                           </div>
                                       </div>
@@ -86,16 +87,44 @@
         </form>
     </div>
 
+
     <script>
-        function previewPDF() {
-            const fileInput = document.getElementById('image-file');
-            const file = fileInput.files[0];
-            const reader = new FileReader();
+        $(document).ready(function() {
+            $('.dropdown-toggle').dropdown();
+        });
+
+        function updateLabel(inputId, previewId) {
+            var input = document.getElementById(inputId);
+            var preview = document.getElementById(previewId);
+            var file = input.files[0];
+            var reader = new FileReader();
+
             reader.onload = function(e) {
-                const preview = document.getElementById('img-preview');
-                preview.setAttribute('src', e.target.result);
+                preview.src = e.target.result;
             };
+
             reader.readAsDataURL(file);
         }
+        $(function() {
+            $("#example2").DataTable({
+                "responsive": true,
+                "lengthChange": true,
+                "ordering": true,
+                "autoWidth": true,
+                "info": true,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+        });
+
+        $(document).ready(function() {
+            $('.delete-row').click(function(event) {
+                event.preventDefault();
+                var postId = $(this).attr('id').replace('delete-post-', '');
+                if (confirm("Are you sure you sure to delete this row?")) {
+                    window.location.href = "{{ route('city.destroyPost', ':id') }}".replace(':id', postId);
+                }
+            });
+        });
     </script>
 @endsection

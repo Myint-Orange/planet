@@ -98,7 +98,7 @@ class EmailNotificationController extends Controller
 
     }
     public function editPost(Request $request){
-       // dd($request);
+       // d($request);
         $post=Post::find($request->post_id);
         $post->titles[0]->update([
             'title_en'=>$request->name_en,

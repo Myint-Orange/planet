@@ -59,7 +59,7 @@
 
             <div class="card-footer">
               <button type="submit" class="btn btn-primary">Submit</button>
-              <a href="{{route('shareholder.index')}}"  class="btn btn-default">Exist</a>
+              <a href="{{route('City.index')}}"  class="btn btn-default">Exist</a>
             </div>
           </form>
         </div>

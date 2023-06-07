@@ -14,7 +14,6 @@
 @section('contents')
 
 
-
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
@@ -39,7 +38,7 @@
           <div class="card-header">
             <h3 class="card-title">Add Shareholder Information</h3>
           </div>
-       
+      
           <form action='{{route('shareholder.storePost')}}' method="post" enctype="multipart/form-data" id='regform'>
             @csrf
          

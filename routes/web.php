@@ -289,7 +289,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/IRFinancialStatements/editBanner', [FinancialStatemantController::class,'editBanner'])->name('IRFinancial.editBanner');
         Route::post('/IRFinancialStatements/editFile', [FinancialStatemantController::class,'editFile'])->name('IRFinancial.editFile');
         Route::get('/IRFinancialStatements/deleteFile/{post_id}',[FinancialStatemantController::class,'destroyFile'])->name('IRFinancial.destroyFile');
+        
         Route::get('/IRFinancialStatements/updateFile/{post_id}',[FinancialStatemantController::class,'updateFile'])->name('IRFinancial.updateFile');
+        
         Route::get('/IRFinancialStatements/createFile',[FinancialStatemantController::class,'createFile'])->name('IRFinancial.createFile');
         ///
         Route::post('/IRFinancialStatements/storeFile',[FinancialStatemantController::class,'storeFile'])->name('IRFinancial.storeFile');
@@ -394,10 +396,14 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     //IR
     Route::get('/generalInformation', [GeneralInformationController::class, 'index'])->name('user.generalInformation.index');
     Route::get('/financialStatements', [FinancialStatementsController::class, 'index'])->name('user.financialStatements.index');
+    //Not Completed
     Route::get('/financialInformation', [FinancialInformationController::class, 'index'])->name('user.financialInformation.index');
+  /////
     Route::get('/managementDisscussion', [MangementDicussionInformationController::class, 'index'])->name('user.managementDiscussion.index');
     Route::get('/shareHolderStructure', [ShareHolderStructureInformationController::class, 'index'])->name('user.shareHolderStructure.index');
+    //Not complete
     Route::get('/dividendpolicy', [DividendpolicyandpaymentInformationController::class, 'index'])->name('user.dividendpolicy.index');
+    ///////
     Route::get('/shareHolderMeeting', [ShareHolderMeetingInformationController::class, 'index'])->name('user.shareHolderMeeting.index');
     
     Route::get('/purchasePolicy', [PurchaseInformationController::class, 'index'])->name('user.purchasePolicy.index');
@@ -414,6 +420,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     //
     Route::get('/nnualReports', [AnnualReportInformationController::class, 'index'])->name('user.annualReports.index');
     Route::get('/contactIV', [ContactIVInformationController::class, 'index'])->name('user.contactIV.index');
+   
     Route::get('/emailnotification', [EmailNotificationInformationController::class, 'index'])->name('user.emailnotification.index');
     Route::post('/emailnotification', [EmailNotificationInformationController::class, 'store'])->name('user.emailnotification.store');
 

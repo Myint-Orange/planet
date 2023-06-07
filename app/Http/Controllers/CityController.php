@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\City;
 use App\Models\IRBanner;
+
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class CityController extends Controller
@@ -11,11 +13,11 @@ class CityController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $type= IRBanner::where('irtype', 'EmailNotification')->first();
-        $posts = City::get();
-        return view('admin.irpages.emailNotification.index', compact('type','posts'));
+    public function index(){
+        $type = DB::table('irbanners')->where('irtype', 'EmailNotification')->first();
+        $posts =DB::table('cities')->get();
+       $useremailnotifications= DB::table('useremailnotifications')->get();
+        return view('admin.irpages.emailNotification.index', compact('type','posts','useremailnotifications'));
     }
 
     /**
@@ -53,6 +55,7 @@ class CityController extends Controller
      */
     public function edit($id)
     {
+        
         $post = City::find($id);
         return view('admin.irpages.emailNotification.update', compact('post'));   
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\IR;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Global\ImageController;
+use App\Models\Annualreport;
 use App\Models\Post;
 use App\Models\Title;
 use App\Models\Type;
@@ -53,8 +54,8 @@ class FinancialStatemantController extends Controller
          $post->delete();
          return redirect()->route('IRFinancial.index');
     }
-    public function updateFile($post_id){
-        $post=Post::find($post_id);
+    public function updateFile(Request $request, $post_id){
+        $post = Annualreport::findOrFail($post_id);
         return view('admin.irpages.irfinancial.update',compact('post'));
     }
 

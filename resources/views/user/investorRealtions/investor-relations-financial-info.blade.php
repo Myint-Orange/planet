@@ -10,8 +10,6 @@
 <div class="container-fluid">
 	
 @include('user.inc_menu')
-
-
 <section class="row">
     <div class="col-12 banner-inside wow fadeInDown">
         <figure><img src="images/banner-ir-financial.webp" alt=""></figure>

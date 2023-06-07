@@ -23,7 +23,6 @@ class AnnualreportController extends Controller
         $posts = City::get();
         return view('admin.irpages.annualreport.index', compact('type','annualreports'));
     }
-
     public function store(Request $request){
         $irBanner = new IRBanner();
         $irBanner->name_en = $request->menu_en;
@@ -91,10 +90,12 @@ class AnnualreportController extends Controller
     public function destroyFile($post_id){
     }
     public function updateFile($post_id){
+        dd($post_id);
         return view('admin.irpages.irfinancial.update',compact('post'));
     }
 
     public function editFile(Request $request){
+
     //   $post=Post::find($request->post_id);
     //   $fileName= ImageController::updatePdf($request);
     //   $yearDate = Carbon::createFromFormat('Y', $request->year)->startOfYear();   
