@@ -10,20 +10,21 @@ use Illuminate\Http\Request;
 class IrnewsController extends Controller
 {
 
-    public function indexs(){
+    public function indexs()
+    {
         $type = DB::table('irbanners')->where('irtype', 'IRNews')->first();
-        $posts =DB::table('irnews')->get();
-        
-        return view('admin.irpages.irnews.index', compact('type','posts'));
+        $posts = DB::table('irnews')->get();
+
+        return view('admin.irpages.irnews.index', compact('type', 'posts'));
     }
-    public function stored(Request $request){
+    public function stored(Request $request)
+    {
         $irBanner = new IRBanner();
         $irBanner->name_en = $request->menu_en;
         $irBanner->name_th = $request->menu_th;
         $irBanner->name_ch = $request->menu_ch;
-        $irBanner->irtype = "IRNews";
+        $irBanner->irtype = "IRSetNews";
         $irBanner->save();
-
         $image = $request->file('image');
         $imageName = $image->getClientOriginalName();
         $image->move(public_path('images'), $imageName);
@@ -31,9 +32,10 @@ class IrnewsController extends Controller
         $irBanner->save();
         return redirect()->route('news.indexs');
     }
-    public function editBanner(Request $request){
-        $type = IRBanner::where('irtype', 'IRNews')->where('id', $request->id)->first();
-        if($request->image != null && $request->hasFile('image')){
+    public function editBanner(Request $request)
+    {
+        $type = IRBanner::where('irtype', 'IRNews')->where('id', $request->type_id)->first();
+        if ($request->image != null && $request->hasFile('image')) {
             $filename = str_replace('/embryo-planet/public', '', public_path('/images/'));
             $filename =  $filename . $type->image;
             if (file_exists($filename)) {
@@ -51,15 +53,12 @@ class IrnewsController extends Controller
             'name_ch' => $request->menu_ch,
         ]);
         return redirect()->route('news.indexs');
-
     }
     public function index()
     {
-
         $type = DB::table('irbanners')->where('irtype', 'IRNews')->first();
-        $posts =DB::table('irnews')->get();
-       return view('admin.irpages.irnews.index', compact('type','posts'));
-        
+        $posts = DB::table('irnews')->get();
+        return view('admin.irpages.irnews.index', compact('type', 'posts'));
     }
 
     /**
@@ -67,7 +66,6 @@ class IrnewsController extends Controller
      */
     public function create()
     {
-        
         return view('admin.irpages.irnews.create');
     }
 
@@ -76,7 +74,6 @@ class IrnewsController extends Controller
      */
     public function store(Request $request)
     {
-
         $validation = $request->validate([
             'name' => 'required',
             'headline' => 'required',
@@ -85,7 +82,7 @@ class IrnewsController extends Controller
             'created' => $request->name,
             'headline' => $request->headline
         ]);
-        if($irnews){
+        if ($irnews) {
             return redirect()->route('news.indexs');
         }
     }
@@ -95,30 +92,36 @@ class IrnewsController extends Controller
      */
     public function show(Irnews $irnews)
     {
-        
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Irnews $irnews)
+    public function edit($post_id)
     {
-        
+        $post = Irnews::findOrFail($post_id);
+        return view('admin.irpages.irnews.update', compact('post'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Irnews $irnews)
+    public function editFiled(Request $request)
     {
-        //
+        $post = Irnews::findOrFail($request->$post_id);
+        return view('admin.irpages.irnews.update', compact('post'));
+    }
+    public function updated(Request $request)
+    {
+        $post = Irnews::findOrFail($request->post_id);
+        $post->update($request->all());
+        return redirect()->route('news.indexs');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Irnews $irnews)
-    {
-        //
+
+    public function destroyPost($post_id)
+    {   $post = Irnews::findOrFail($post_id);
+        $post->delete();
+        return redirect()->route('news.indexs');
     }
 }

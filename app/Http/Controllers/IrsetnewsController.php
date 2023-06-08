@@ -59,7 +59,7 @@ class IrsetnewsController extends Controller
     public function index()
     {
         $type = DB::table('irbanners')->where('irtype', 'IRNews')->first();
-        $posts = DB::table('irnews')->get();
+        $posts = DB::table('irsetnews')->get();
         return view('admin.irpages.irsetnews.index', compact('type', 'posts'));
     }
 
@@ -89,12 +89,6 @@ class IrsetnewsController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Irnews $irnews)
-    {
-    }
 
     /**
      * Show the form for editing the specified resource.

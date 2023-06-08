@@ -27,7 +27,7 @@
             <div class="card-header">
               <h3 class="card-title">
                 <i class="fas fa-edit"></i>
-              IR  News
+              IR News
               </h3>
             </div>
             <div class="card-body">
@@ -144,7 +144,7 @@
                       <td>
                         {{$post->created}}
                       </td>
-                      <td>{!! $post->headline !!}</td>
+                      <td>{!! $post->headline!!}</td>
 
                       <td>
                         <div class="btn-group">
@@ -153,8 +153,7 @@
                             <span class="sr-only">Toggle Dropdown</span>
                           </button>
                           <div class="dropdown-menu" role="menu">
-                            <a class="dropdown-item" href="{{route('news.edit',$post->id)}}">Edit</a>
-
+                            <a class="dropdown-item" href="{{route('City.edit',$post->id)}}">Edit</a>
                             <a class="dropdown-item delete-row" href="" id="delete-post-{{$post->id}}">Delete</a></div>
                       </td>
 
@@ -165,11 +164,9 @@
                   <tfoot>
                     <tr>
                       <th>ID</th>
-                      <th>Created At</th>
-                      <th>Headlines</th>
+                      <th>Name</th>
                       <th>Action</th>
                     </tr>
-
                   </tfoot>
                 </table>
               </div>
@@ -186,45 +183,5 @@
   </section>
 
 </div>
-
-<script>
-  $(document).ready(function() {
-   $('.dropdown-toggle').dropdown();
- });
- function updateLabel(inputId, previewId) {
-   var input = document.getElementById(inputId);
-   var preview = document.getElementById(previewId);
-   var file = input.files[0];
-   var reader = new FileReader();
-
-   reader.onload = function(e) {
-     preview.src = e.target.result;
-   };
-
-   reader.readAsDataURL(file);
- }
- $(function() {
-   $("#example2").DataTable({
-     "responsive": true,
-     "lengthChange": true,
-     "ordering": true,
-     "autoWidth": true,
-     "info": true,
-     "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-   }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
- 
- });
- $(document).ready(function() {
-            $('.delete-row').click(function(event) {
-                event.preventDefault();
-                var postId = $(this).attr('id').replace('delete-post-', '');
-                if (confirm("Are you sure you sure to delete this row?")) {
-                    window.location.href = "{{ route('news.destroyPostd', ':id') }}".replace(':id', postId);
-                }
-            });
-        });
- 
-
-</script>
 
 @endsection

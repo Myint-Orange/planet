@@ -318,6 +318,21 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/news/editnews', [EmailNotificationController::class,'editBanner'])->name('news.editBanner');
         Route::resource('/news', IrnewsController::class);
         Route::get('/news/delete/{post_id}',[IrnewsController::class,'destroyPost'])->name('news.destroyPost');
+
+
+        Route::get('/news/index', [IrnewsController::class,'indexs'])->name('news.indexs');
+        Route::post('/news/storenews', [IrnewsController::class,'stored'])->name('news.stored');
+        Route::post('/news/editnews', [IrnewsController::class,'editBanner'])->name('news.editBanner');
+        Route::resource('/news', IrnewsController::class);
+        Route::get('/news/index', [IrnewsController::class,'indexs'])->name('news.indexs');
+        Route::post('/news/storenews', [IrnewsController::class,'stored'])->name('news.stored');
+        Route::get('/news/editFile', [IrnewsController::class,'update'])->name('news.updated');
+        Route::post('/news/editFile', [IrnewsController::class,'updated'])->name('news.updated');
+        Route::get('/news/deleteFile/{post_id}',[IrnewsController::class,'destroyPost'])->name('news.destroyPostd');
+        Route::get('/news/delete/{post_id}',[IrnewsController::class,'destroyPost'])->name('news.destroyPost');
+
+
+
         //
         Route::get('/setnews/index', [IrsetnewsController::class,'indexs'])->name('setnews.indexs');
         Route::post('/setnews/storenews', [IrsetnewsController::class,'stored'])->name('setnews.stored');
@@ -328,11 +343,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/setnews/editFile', [IrsetnewsController::class,'update'])->name('setnews.updated');
         Route::post('/setnews/editFile', [IrsetnewsController::class,'updated'])->name('setnews.updated');
         Route::get('/setnews/deleteFile/{post_id}',[IrsetnewsController::class,'destroyPost'])->name('setnews.destroyPostd');
-
-
         Route::get('/setnews/delete/{post_id}',[IrsetnewsController::class,'destroyPost'])->name('setnews.destroyPost');
 
-        //
+
+        
         //CreditratingController
         Route::get('/creditrating/index', [CreditratingController::class,'indexs'])->name('creditrating.indexs');
         Route::post('/creditrating/storecontact', [CreditratingController::class,'stored'])->name('creditratings.stored');
