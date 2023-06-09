@@ -350,13 +350,13 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         //CreditratingController
         Route::get('/creditrating/index', [CreditratingController::class,'indexs'])->name('creditrating.indexs');
         Route::post('/creditrating/storecontact', [CreditratingController::class,'stored'])->name('creditratings.stored');
-
         Route::get('/creditrating/index', [CreditratingController::class,'index'])->name('creditrating.index');
         Route::get('/creditrating/create', [CreditratingController::class,'create'])->name('creditrating.create');
         Route::post('/creditrating/storecontact', [CreditratingController::class,'store'])->name('creditrating.store');
         Route::post('/creditrating/editcontact', [CreditratingController::class,'editBanner'])->name('creditrating.editBanner');
+        Route::get('/creditrating/deleteFile/{post_id}',[CreditratingController::class,'destroy'])->name('creditrating.destroy');
         Route::post('/creditrating/storecontactdetail', [CreditratingController::class,'storedetail'])->name('creditrating.detailstore');
-        Route::post('/creditrating/editcontactdetail', [CreditratingController::class,'editdetail'])->name('creditrating.detailedit');
+        Route::get('/creditrating/editcontactdetail/{id}', [CreditratingController::class,'editdetail'])->name('creditrating.detailedit');
      
         //PurchaseInformationController
         Route::get('/purchase/index', [PurchaseController::class,'indexs'])->name('purchase.indexs');

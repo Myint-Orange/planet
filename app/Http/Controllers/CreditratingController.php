@@ -11,13 +11,14 @@ use Illuminate\Http\Request;
 class CreditratingController extends Controller
 {
 
-    public function indexs(){
+    public function indexs()
+    {
         $type = DB::table('irbanners')->where('irtype', 'IRCreditRating')->first();
-        $posts =DB::table('creditratings')->get();
-        
-        return view('admin.irpages.ircreditrating.index', compact('type','posts'));
+        $posts = DB::table('creditratings')->get();
+        return view('admin.irpages.ircreditrating.index', compact('type', 'posts'));
     }
-    public function stored(Request $request){
+    public function stored(Request $request)
+    {
         $irBanner = new IRBanner();
         $irBanner->name_en = $request->menu_en;
         $irBanner->name_th = $request->menu_th;
@@ -32,9 +33,10 @@ class CreditratingController extends Controller
         return redirect()->route('creditrating.index');
     }
 
-    public function editBanner(Request $request){
+    public function editBanner(Request $request)
+    {
         $type = IRBanner::where('irtype', 'IRCreditRating')->where('id', $request->type_id)->first();
-        if($request->image != null && $request->hasFile('image')){
+        if ($request->image != null && $request->hasFile('image')) {
             $filename = str_replace('/embryo-planet/public', '', public_path('/images/'));
             $filename =  $filename . $type->image;
             if (file_exists($filename)) {
@@ -52,15 +54,13 @@ class CreditratingController extends Controller
             'name_ch' => $request->menu_ch,
         ]);
         return redirect()->route('creditrating.index');
-
     }
     public function index()
     {
-        $posts =DB::table('creditratings')->get();
+        $posts = DB::table('creditratings')->get();
         $type = DB::table('irbanners')->where('irtype', 'IRCreditRating')->first();
-        $posts =DB::table('creditratings')->get();
-       return view('admin.irpages.ircreditrating.index', compact('type','posts'));
-        
+        $posts = DB::table('creditratings')->get();
+        return view('admin.irpages.ircreditrating.index', compact('type', 'posts'));
     }
 
     /**
@@ -83,7 +83,7 @@ class CreditratingController extends Controller
             'credit_rating' => 'required',
             'rank_trend' => 'required',
             'issue_date' => 'required',
-            'pdflink' =>'required',
+            'pdflink' => 'required',
         ]);
         $credit_rating = new Creditrating();
         $credit_rating->credit_type = $request->credit_type;
@@ -97,7 +97,7 @@ class CreditratingController extends Controller
         $pdf->move(public_path('images'), $pdfName);
         $credit_rating->pdflink = $pdfName;
         $credit_rating->save();
-        if($credit_rating){
+        if ($credit_rating) {
             return redirect()->route('creditrating.index');
         }
     }
@@ -107,16 +107,39 @@ class CreditratingController extends Controller
      */
     public function show(Irnews $irnews)
     {
-        
+    }
+    public function editdetail($posts_id)
+    {
+        $post = DB::table('creditratings')->where('id', $posts_id)->first();
+        if ($post) {
+            return view('admin.irpages.ircreditrating.update', compact('post'));
+        } else {
+
+            return redirect()->route('creditrating.index');
+        }
+    }
+    public function storedetail(Request $request)
+    {
+
+        $credit_rating = Creditrating::findOrFail($request->post_id);
+        if ($credit_rating) {
+        if($request->hasFile('pdflink')){
+            $pdf = $request->file('pdflink');
+            $credit_rating->pdflink = $pdf->getClientOriginalName();
+            $pdfName = $pdf->getClientOriginalName();
+            $pdf->move(public_path('images'), $pdfName);
+            $credit_rating->pdflink = $pdfName;
+            $pdflink = $pdfName;
+        }else{
+            $pdflink = $credit_rating->pdflink;
+        }
+        $request->merge(['pdflink' => $pdflink]);
+        $credit_rating->update($request->all());
+        return redirect()->route('creditrating.index');
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Irnews $irnews)
-    {
-        
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -129,8 +152,9 @@ class CreditratingController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Irnews $irnews)
-    {
-        //
+    public function destroy($post_id)
+    {   $post = Creditrating::findOrFail($post_id);
+        $post->delete();
+        return redirect()->route('creditrating.index');
     }
 }
