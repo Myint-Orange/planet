@@ -27,10 +27,9 @@
             <div class="card-header">
               <h3 class="card-title">
                 <i class="fas fa-edit"></i>
-              Banner Image For ShareHolderr Structure
+              Banner Image For Email Notification
               </h3>
             </div>
-
             <div class="card-body">
               <form action='{{route('shareholder.editBanner')}}' method="post" enctype="multipart/form-data" id='regform'>
                 @csrf
@@ -77,7 +76,7 @@
       </div>
     </div>
   </section>
-  <section class="content">
+  {{-- <section class="content">
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
@@ -154,7 +153,7 @@
 
       </div>
     </div>
-  </section>
+  </section> --}}
 
 </div>
 

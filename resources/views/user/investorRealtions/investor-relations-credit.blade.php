@@ -10,15 +10,21 @@
 <div class="container-fluid">
 	
 @include('user.inc_menu')
-
-
+@if ($type)
 <section class="row">
-    <div class="col-12 banner-inside wow fadeInDown"">
-        <figure><img src="images/banner-shareholder.webp" alt=""></figure>
+    <div class="col-12 banner-inside wow fadeInDown">
+        <figure><img src="{{ asset('/images/'.$type->image)}}" alt=""></figure>
+        <h1>{{ $type->name_en }}</h1>
+    </div>
+</section>
+@else
+<section class="row">
+    <div class="col-12 banner-inside wow fadeInDown">
+        <figure><img src="images/banner-irnews.webp" alt=""></figure>
         <h1>อันดับความน่าเชื่อถือ</h1>
     </div>
 </section>
-
+@endif
 <section class="row">
     <div class="col-12 wrap-top-homeir wrap-tophistory wow fadeInDown">
         <div class="container">
@@ -39,13 +45,20 @@
                             </thead>
                             <tbody class="table-group-divider">
                                 <tr>
-                                    <th scope="row">อันดับบริษัท</th>
-                                    <th scope="row">TRIS</th>
-                                    <th scope="row">BBB</th>
-                                    <th scope="row">Stable</th>
-                                    <th scope="row">29 มิถุนายน 2565</th>
-                                    <td><a href="#" class="btn-download" target="_blank"><span>ดาวน์โหลด</span>  <i class="bi bi-file-earmark-arrow-down-fill"></i></a></td>
-                                </tr>
+                                    @foreach ($posts as $post)
+                                    <th scope="row">{{ $post->credit_type }}</th>
+                                    <th scope="row">{{ $post->rating_agency }}</th>
+                                    <th scope="row">{{ $post->credit_rating }}</th>
+                                    <th scope="row">{{ $post->credit_rating }}</th>
+                                    <th scope="row">
+                                        <?php
+                                        $date = date('d M y', strtotime($post->issue_date));
+                                           echo $date;
+                                       ?>
+                                    </th>
+                                    <td><a href="{{ asset('/images/'.$post->pdflink) }}" class="btn-download" target="_blank"><span>ดาวน์โหลด</span>  <i class="bi bi-file-earmark-arrow-down-fill"></i></a></td>
+                                    @endforeach
+                                    </tr>
                             </tbody>
                         </table>
                     </div>

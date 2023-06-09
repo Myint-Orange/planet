@@ -10,14 +10,21 @@
 <div class="container-fluid">
 	
 @include('user.inc_menu')
-
-
+@if ($type)
 <section class="row">
-    <div class="col-12 banner-inside wow fadeInDown"">
-        <figure><img src="images/banner-shareholder.webp" alt=""></figure>
+    <div class="col-12 banner-inside wow fadeInDown">
+        <figure><img src="{{ asset('/images/'.$type->image)}}" alt=""></figure>
+        <h1>{{ $type->name_en }}</h1>
+    </div>
+</section>
+@else
+<section class="row">
+    <div class="col-12 banner-inside wow fadeInDown">
+        <figure><img src="images/banner-irnews.webp" alt=""></figure>
         <h1>การซื้อหุ้นสามัญเพิ่มทุน</h1>
     </div>
 </section>
+@endif
 
 <section class="row">
     <div class="col-12 wrap-top-homeir wrap-tophistory wow fadeInDown">
@@ -34,26 +41,18 @@
                                 </tr>
                             </thead>
                             <tbody class="table-group-divider">
+                                @if (count($inContacts) > 0)
+                                @foreach ($inContacts as $inContact)
                                 <tr>
-                                    <th scope="row">ใบแจ้งการใช้สิทธิซื้อหุ้นสามัญครั้งที่ 3 ของใบสาคัญแสดงสิทธิฯ ที่จะซื้อหุ้นสามัญของบริษัท (“TFG-W3”)</th>
-                                    <td><a href="#" class="btn-download" target="_blank"><span>ดาวน์โหลด</span>  <i class="bi bi-file-earmark-arrow-down-fill"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">ใบแจ้งการใช้สิทธิซื้อหุ้นสามัญครั้งที่ 3 ของใบสาคัญแสดงสิทธิฯ ที่จะซื้อหุ้นสามัญของบริษัท (“TFG-W3”)</th>
-                                    <td><a href="#" class="btn-download" target="_blank"><span>ดาวน์โหลด</span>  <i class="bi bi-file-earmark-arrow-down-fill"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">ใบแจ้งการใช้สิทธิซื้อหุ้นสามัญครั้งที่ 3 ของใบสาคัญแสดงสิทธิฯ ที่จะซื้อหุ้นสามัญของบริษัท (“TFG-W3”)</th>
-                                    <td><a href="#" class="btn-download" target="_blank"><span>ดาวน์โหลด</span>  <i class="bi bi-file-earmark-arrow-down-fill"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">ใบแจ้งความจำนงการใช้สิทธิตามใบสำคัญแสดงสิทธิที่จะซื้อหุ้นสามัญ (TFG-W2) (การใช้สิทธิครั้งสุดท้าย)</th>
-                                    <td><a href="#" class="btn-download" target="_blank"><span>ดาวน์โหลด</span>  <i class="bi bi-file-earmark-arrow-down-fill"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">ใบแจ้งความจำนงการใช้สิทธิตามใบสำคัญแสดงสิทธิที่จะซื้อหุ้นสามัญ (TFG-W1) (การใช้สิทธิครั้งสุดท้าย)</th>
-                                    <td><a href="#" class="btn-download" target="_blank"><span>ดาวน์โหลด</span>  <i class="bi bi-file-earmark-arrow-down-fill"></i></a></td>
-                                </tr>
+                                    <th scope="row">{{  $inContact->name }}</th>
+                                    <td><a href="{{ asset('/images/'.$inContact->pdflink)}}" class="btn-download" target="_blank"><span>ดาวน์โหลด</span>  <i class="bi bi-file-earmark-arrow-down-fill"></i></a></td>
+                                </tr>  
+                                @endforeach
+                                @else
+                                <th>There is no data exit </th>
+                                @endif
+                               
+                        
                             </tbody>
                         </table>
                     </div>

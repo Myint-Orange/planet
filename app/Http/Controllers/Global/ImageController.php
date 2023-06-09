@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Global;
 use App\Http\Controllers\Controller;
 use App\Models\GpImage;
 use App\Models\Group;
+use App\Models\IRBanner;
 use App\Models\Post;
 use App\Models\PostImage;
 use App\Models\Type;
@@ -60,6 +61,28 @@ class ImageController extends Controller
             $type->update([
                 'imgname' => $newName,
                 'user_id' => $user->id,
+            ]);
+        }
+        return $newName;
+    }
+
+    public static function updateEmailNotificationImage($request)
+    {
+        $newName = null;
+        if ($request->image != null && $request->hasFile('image')) {
+            $image = $request->file('image');
+            $newName = time() . '.' . $image->getClientOriginalName();
+            $type = IRBanner::find($request->type_id);
+            $filename = str_replace('/embryo-planet/public', '', public_path('/storage/types/'));
+            $filename =  $filename . $type->imgname;
+            if ($type->imgname != null && file_exists($filename)) {
+                unlink($filename);
+            }
+            $destinationPath = str_replace('/embryo-planet/public', '', public_path('/storage/types'));
+            $path = $image->move($destinationPath,   $newName);
+            $user = Auth::user();
+            $type->update([
+                'image' => $newName,
             ]);
         }
         return $newName;

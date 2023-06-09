@@ -10,20 +10,37 @@
 <div class="container-fluid">
 	
 @include('user.inc_menu')
-
-
+@if ($type)
 <section class="row">
-    <div class="col-12 banner-inside wow fadeInDown"">
-        <figure><img src="images/banner-shareholder.webp" alt=""></figure>
+    <div class="col-12 banner-inside wow fadeInDown">
+        <figure><img src="{{ asset('/images/'.$type->image)}}" alt=""></figure>
+        <h1>{{ $type->name_en }}</h1>
+    </div>
+</section>
+@else
+<section class="row">
+    <div class="col-12 banner-inside wow fadeInDown">
+        <figure><img src="images/banner-irnews.webp" alt=""></figure>
         <h1>นโยบายและการจ่ายเงินปันผล</h1>
     </div>
 </section>
+@endif
+
 
 <section class="row">
     <div class="col-12 wrap-top-homeir wrap-tophistory wow fadeInDown">
         <div class="container">
             <div class="row">
                 <div class="col-12 page-content wow fadeInDown">
+                    @if ($dividendpolicyandpayment)
+                    <h2 class="topic-irpage">{{ $dividendpolicyandpayment->name_en }}</h2>
+                    <div class="ir-content-editor content-editor">
+                        <p style="font-size: 1.1rem; color: #000;">{!! $dividendpolicyandpayment->description_en !!}</p>
+                        <br>
+                    </div>
+                    @else
+                        
+                    
                     <h2 class="topic-irpage">นโยบายและการจ่ายเงินปันผล</h2>
                     <div class="ir-content-editor content-editor">
                         <p style="font-size: 1.1rem; color: #000;">บริษัทฯ มีนโยบายจ่ายเงินปันผลให้แก่ผู้ถือหุ้นในอัตราไม่น้อยกว่าร้อยละ 40 ของกำไรสุทธิภายหลังหักภาษีเงินได้นิติบุคคล เงินสำรองตามกฎหมาย และเงินสำรองอื่นๆ</p>
@@ -39,6 +56,7 @@
                         </p>
                         <br>
                     </div>
+                    @endif
                     <div class="ir-table table-responsive">
                         <table class="table table-striped text-center">
                             <thead class="top-headtable">
@@ -55,39 +73,19 @@
                                 </tr>
                             </thead>
                             <tbody class="table-group-divider">
-                                <tr>
-                                    <th scope="row">02/03/66</th>
-                                    <td>-</td>
-                                    <td>03/03/66</td>
-                                    <td>20/04/66</td>
-                                    <td>เงินปันผล</td>
-                                    <td>0.08</td>
-                                    <td>บาท</td>
-                                    <td>01/07/65 - 31/12/65</td>
-                                    <td>ปันผลจากกำไรสุทธิ</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">02/03/66</th>
-                                    <td>-</td>
-                                    <td>03/03/66</td>
-                                    <td>20/04/66</td>
-                                    <td>เงินปันผล</td>
-                                    <td>0.08</td>
-                                    <td>บาท</td>
-                                    <td>01/07/65 - 31/12/65</td>
-                                    <td>ปันผลจากกำไรสุทธิ</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">02/03/66</th>
-                                    <td>-</td>
-                                    <td>03/03/66</td>
-                                    <td>20/04/66</td>
-                                    <td>เงินปันผล</td>
-                                    <td>0.08</td>
-                                    <td>บาท</td>
-                                    <td>01/07/65 - 31/12/65</td>
-                                    <td>ปันผลจากกำไรสุทธิ</td>
-                                </tr>
+                                @foreach ($dividendDataLists as $dividendDataList)
+                                    <tr>
+                                        protected $fillable = ['markingdate', 'bookclosingdate', 'determiningdate', 'paymentdate', 'dividendpershare', 'unit', 'turnovercyclefrom', 'turnovercycleto', 'dividendsfrom'];
+                                    <th scope="row">{{ $dividendDataList->markingdate }}</th>
+                                    <td>{{ $dividendDataList->bookclosingdate }}</td>
+                                    <td>{{ $dividendDataList->determiningdate }}</td>
+                                    <td>{{ $dividendDataList->paymentdate }}</td>
+                                    <td>{{ $dividendDataList->dividendpershare }}</td>
+                                    <td>{{ $dividendDataList->unit }}</td>
+                                    <td>{{ $dividendDataList->turnovercyclefrom }} - {{ $dividendDataList->turnovercycleto }}</td>
+                                    <td>{{ $dividendDataList->dividendsfrom }}</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

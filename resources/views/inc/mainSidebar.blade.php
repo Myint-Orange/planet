@@ -90,6 +90,61 @@
             'route' => 'shareholder.index',
             'title' => 'IR Shareholder Structure',
           ],
+          [  
+            'prefix'=> 'IREmailNotification',
+            'route' => 'emailNotification.index',
+            'title' => 'IR Email Notification',
+          ],
+          [  
+            'prefix'=> 'IRContact',
+            'route' => 'contact.index',
+            'title' => 'IR Contact ',
+          ],
+          [  
+            'prefix'=> 'AnnualReport',
+            'route' => 'user.annualReport.index',
+            'title' => 'Annualual Report ',
+          ],
+          [  
+            'prefix'=> 'IR Set News',
+            'route' => 'setnews.indexs',
+            'title' => 'IR Set News ',
+          ],
+          [  
+            'prefix'=> 'IRNews',
+            'route' => 'news.indexs',
+            'title' => 'IR News ',
+          ],
+          [  
+            'prefix'=> 'IRCreditRating',
+            'route' => 'creditrating.index',
+            'title' => 'IR Credit Rating ',
+          ],
+          [  
+            'prefix'=> 'IRPurchaseIssuses',
+            'route' => 'purchase.index',
+            'title' => 'IR Purchase Issuses',
+          ],
+          
+          [  
+            'prefix'=> 'IRShareHolderMeeing',
+            'route' => 'shareholdermeeting.index',
+            'title' => 'IR Share Holder Meeting',
+          ],
+          [  
+            'prefix'=> 'IRDividendPolicyCon',
+            'route' =>'dividendpolicy.index',
+            'title' => 'IR Dividend Policy',
+          ],
+          [  
+            'prefix'=> 'IRDFinicialInformation',
+            'route' =>'finicialinformation.index',
+            'title' => 'R Finicial Information',
+          ],
+          
+        
+        
+
           
         ];
         @endphp

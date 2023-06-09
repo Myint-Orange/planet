@@ -163,7 +163,7 @@
                                             <div class="col-12 col-lg-2">
                                                 <div class="topic-submenu2">เอกสารเผยแพร่</div>
                                                 <ul>
-                                                    <li><a href="{{ route('user.annualReport.index') }}">รายงานประจำปี</a></li>
+                                                    <li><a href="{{ route('user.annualReports.index') }}">รายงานประจำปี</a></li>
                                                 </ul>
                                             </div>
                                             <div class="col-12 col-lg-2">

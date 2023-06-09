@@ -13,12 +13,32 @@
 
 
 <section class="row">
-    <div class="col-12 banner-inside wow fadeInDown"">
-        <figure><img src="images/banner-ir-home.webp" alt=""></figure>
-        <h1>ข้อมูลพื้นฐาน</h1>
+    <div class="col-12 banner-inside wow fadeInDown">
+        <figure><img src="{{ asset('storage/types/'.$type->imgname)}}" alt=""></figure>
+        <h1>{{ $type->typeTitles[0]->title_en }}</h1>
     </div>
 </section>
 
+{{-- company-history --}}
+@if ($typeHistory)
+<section class="row">
+    <div class="col-12 wrap-top-homeir wrap-tophistory wow fadeInDown">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 page-content wow fadeInDown">
+                    <div class="topic-history" id="subTitle">{{$typeHistory->typeTitles[0]->title_th}}</div>
+                    <div class="topic-pageinside" id="postTitle">{{$typeHistory->typeTitles[1]->title_th}}
+                        <div></div>
+                    </div>
+                    <div class="content-editor" id="content">
+                        {!!$typeHistory->typeContents[0]->content_th!!}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@else
 <section class="row">
     <div class="col-12 wrap-top-homeir wrap-tophistory wow fadeInDown">
         <div class="container">
@@ -52,8 +72,36 @@
         </div>
     </div>
 </section>
+@endif
 
+@if ($typeHistory)   
+<section class="container">
+    <div class="row">
+        <div class="col-12 wow fadeInDown">
+            <div class="row box-partner-ir box-partner justify-content-center">
+                @foreach($typeHistory->posts as $post)
+                    <div class="col-12 col-md-6 col-lg-5 item-partner">
+                        <figure>
+                            <div class="photo-partner"><img src="{{ asset('storage/posts/'.$post->imgname)}}" alt=""></div>
+                            <figcaption class="hello">
+                                <div class="title-post" data-th="{{$post->titles[0]->title_th}}" data-en="{{$post->titles[0]->title_en}}" data-ch="{{$post->titles[0]->title_ch}}">{{$post->titles[0]->title_th}}</div>
+                                <span class="subTitle-post" data-th="{{$post->titles[1]->title_th}}" data-en="{{$post->titles[1]->title_en}}" data-ch="{{$post->titles[1]->title_ch}}">{{$post->titles[1]->title_en}}</span>
 
+                            </figcaption>
+                        </figure>
+                    </div>
+                    @endforeach
+            </div>
+            <div class="content-editor">
+                <p>
+                    {!!$typeHistory->typeContents[3]->content_th!!}
+
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+@else
 <section class="container">
     <div class="row">
         <div class="col-12 wow fadeInDown">
@@ -88,49 +136,35 @@
         </div>
     </div>
 </section>
-
+@endif
+@if ($typeGpStructure)
 <section class="row">
     <div class="col-12 ir-wrap-deschistory wrap-deschistory wrap-structure wrap-tophistory wow fadeInDown">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="history-photocenter"><img src="images/photo-his02.webp" alt=""></div>
+                    <div class="history-photocenter"><img src="{{ asset('storage/types/'.$typeHistory->typeImages[1]->name_en)}}" alt=""></div>
                     <div class="topic-pageinside">เอ็มบริโอ แพลนเนท จำกัด<div></div></div>
-                    <div class="content-editor">
-                        <span style="color: #000;">บริษัท เอ็มบริโอ แพลนเนท จำกัด</span>  ประกอบธุรกิจด้านการรักษาผู้มีบุตรยากโดยอาศัยเทคโนโลยีการเจริญพันธุ์ ก่อตั้งคลินิก สยามเฟอร์ทิลิตี้ คลินิก แห่งแรก อยู่ในทำเลใจกลางเมือง ย่านพญาไทและดำเนินการเปิดคลินิกรักษาผู้มีบุตรยากในนามบริษัทย่อย อีก 3 แห่ง ได้แก่ <span style="color: #000;"> บริษัท ไอ สยาม โฮลดิ้ง จำกัด</span> เปิดสถานพยาบาล ภายใต้ชื่อ สไมล์ ไอวีเอฟ คลินิก (Smile IVF Clinic), <span style="color: #000;">บริษัท เออีเอ็ม 2022 จำกัด</span> เปิด สยาม เฟอร์ทิลิตี้ คลินิก  แอท เกษตร-นวมินทร์ (Siam Fertility Clinic @Kaset Nawamin)  และ <span style="color: #000;">บริษัท เบบี้ ครีเอเตอร์ จำกัด</span> เปิด สยาม เฟอร์ทิลิตี้ คลินิก  แอท ถนนวิทยุ (Siam Fertility Clinic @Wireless Road)
+                    {{-- <div class="topic-pageinside" id="companyName">{{$typeGpStructure->typeTitles[1]->title_th}}
+                        <div></div>
+                    </div> --}}
+                    <div class="content-editor" id="content">
+                        {!!$typeGpStructure->typeContents[0]->content_th!!}
                     </div>
                     <div class="company-structure">
                         <div class="owl-structure owl-carousel owl-theme">
+                            @foreach($typeGpStructure->posts as $post)
                             <div class="item-structure">
                                 <figure>
-                                    <div class="photo-structure"><img src="images/Rectangle 2156.png" alt=""></div>
-                                    <figcaption>
-                                        <div>บริษัท ไอ สยาม โฮลดิ้ง จำกัด</div>
-                                        เปิดสถานพยาบาล ภายใต้ชื่อ สไมล์ ไอวีเอฟ คลินิก<br>
-                                        (Smile IVF Clinic)
+                                    <div class="photo-structure"><img src="{{ asset('storage/posts/'.$post->imgname)}}" alt=""></div>
+                                    <figcaption class="hello">
+                                        <div class="figTitle" data-th="{!!$post->titles[0]->title_th!!}" data-en="{!!$post->titles[0]->title_en!!}" data-ch="{!!$post->titles[0]->title_ch!!}">{!!$post->titles[0]->title_th!!}</div>
+                                        <p class="figSubTitle" data-th="{!!$post->titles[1]->title_th!!}" data-en="{!!$post->titles[1]->title_en!!}" data-ch="{!!$post->titles[1]->title_ch!!}"> {!!$post->titles[1]->title_th!!}</p>
+
                                     </figcaption>
                                 </figure>
                             </div>
-                            <div class="item-structure">
-                                <figure>
-                                    <div class="photo-structure"><img src="images/Rectangle 1992.webp" alt=""></div>
-                                    <figcaption>
-                                        <div>บริษัท เออีเอ็ม 2022 จำกัด</div>
-                                        เปิด สยาม เฟอร์ทิลิตี้ คลินิก  แอท เกษตร-นวมินทร์ <br>
-                                        (Siam Fertility Clinic @Kaset Nawamin)
-                                    </figcaption>
-                                </figure>
-                            </div>
-                            <div class="item-structure">
-                                <figure>
-                                    <div class="photo-structure"><img src="images/Rectangle 1993.webp" alt=""></div>
-                                    <figcaption>
-                                        <div>บริษัท เบบี้ ครีเอเตอร์ จำกัด</div>
-                                        เปิด สยาม เฟอร์ทิลิตี้ คลินิก  แอท ถนนวิทยุ<br>
-                                        (Siam Fertility Clinic @Wireless Road)
-                                    </figcaption>
-                                </figure>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -138,6 +172,7 @@
         </div>
     </div>
 </section>
+@endif
 
 	
 @include('user.inc_footer')

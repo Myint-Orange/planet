@@ -10,14 +10,21 @@
 <div class="container-fluid">
 	
 @include('user.inc_menu')
-
-
+@if ($type)
 <section class="row">
     <div class="col-12 banner-inside wow fadeInDown">
-        <figure><img src="images/banner-ir-financial.webp" alt=""></figure>
+        <figure><img src="{{ asset('/images/'.$type->image)}}" alt=""></figure>
+        <h1>{{ $type->name_en }}</h1>
+    </div>
+</section>
+@else
+<section class="row">
+    <div class="col-12 banner-inside wow fadeInDown">
+        <figure><img src="images/banner-irnews.webp" alt=""></figure>
         <h1>ข้อมูลทางการเงิน</h1>
     </div>
 </section>
+@endif
 
 <section class="row">
     <div class="col-12 wrap-top-homeir wrap-tophistory wow fadeInDown">

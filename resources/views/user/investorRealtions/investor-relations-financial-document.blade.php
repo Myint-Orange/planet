@@ -13,9 +13,9 @@
 
 
 <section class="row">
-    <div class="col-12 banner-inside wow fadeInDown"">
-        <figure><img src="images/banner-ir-financial.webp" alt=""></figure>
-        <h1>คำอธิบายและการวิเคราะห์ของฝ่ายจัดการ</h1>
+    <div class="col-12 banner-inside wow fadeInDown">
+        <figure><img src="{{ asset('storage/types/'.$type->imgname)}}" alt=""></figure>
+        <h1>{{$type->typeTitles[0]->title_en}}</h1>
     </div>
 </section>
 
@@ -30,37 +30,28 @@
                 <div class="col-12 col-md-6">
                     <div class="ir-boxselect">
                         <span>ปี :</span>
-                        <select name="" id="">
-                            <option value="">เลือกปี</option>
-                            <option value="">2565</option>
+                        <select name="year" class="form-select" id="">
+                            <option selected disabled value="">เลือกปี</option>
+                            @foreach($type->posts as $post)
+                            <option class="selectbox" value="{{ $post->created_at }}">
+                                {{ $post->created_at->format('Y') }}
+                            </option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
+                
                 <div class="col-12">
                     <div class="box-ir-download">
-                        <div class="row list-ir-download">
-                            <div class="col-10 col-md-9">
-                                <i class="bi bi-file-earmark-pdf-fill"></i> คำอธิบายและการวิเคราะห์ของฝ่ายจัดการประจำปี 2565 ไตรมาสที่ 1
+                        <div class="box-ir-download">
+                            @foreach ( $type->posts as $post )
+                            <div class="row list-ir-download">
+                                <div class="col-10 col-md-9">
+                                    <i class="bi bi-file-earmark-pdf-fill"></i>  {{$post->name}} / {{ $post->created_at->format('Y') }}
+                                </div>
+                                <div class="col-2 col-md-3"><a href="{{asset('storage/pdf/'.$post->imgname)}}" target="_blank" download><span>ดาวน์โหลด</span>  <i class="bi bi-file-earmark-arrow-down-fill"></i></a></div>
                             </div>
-                            <div class="col-2 col-md-3"><a href="#" target="_blank"><span>ดาวน์โหลด</span>  <i class="bi bi-file-earmark-arrow-down-fill"></i></a></div>
-                        </div>
-                        <div class="row list-ir-download">
-                            <div class="col-10 col-md-9">
-                                <i class="bi bi-file-earmark-pdf-fill"></i> คำอธิบายและการวิเคราะห์ของฝ่ายจัดการประจำปี 2565 ไตรมาสที่ 2
-                            </div>
-                            <div class="col-2 col-md-3"><a href="#" target="_blank"><span>ดาวน์โหลด</span>  <i class="bi bi-file-earmark-arrow-down-fill"></i></a></div>
-                        </div>
-                        <div class="row list-ir-download">
-                            <div class="col-10 col-md-9">
-                                <i class="bi bi-file-earmark-pdf-fill"></i> คำอธิบายและการวิเคราะห์ของฝ่ายจัดการประจำปี 2565 ไตรมาสที่ 3
-                            </div>
-                            <div class="col-2 col-md-3"><a href="#" target="_blank"><span>ดาวน์โหลด</span>  <i class="bi bi-file-earmark-arrow-down-fill"></i></a></div>
-                        </div>
-                        <div class="row list-ir-download">
-                            <div class="col-10 col-md-9">
-                                <i class="bi bi-file-earmark-pdf-fill"></i> คำอธิบายและการวิเคราะห์ของฝ่ายจัดการประจำปี 2565
-                            </div>
-                            <div class="col-2 col-md-3"><a href="#" target="_blank"><span>ดาวน์โหลด</span>  <i class="bi bi-file-earmark-arrow-down-fill"></i></a></div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

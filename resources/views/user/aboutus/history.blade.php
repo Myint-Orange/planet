@@ -10,7 +10,7 @@
     <div class="container-fluid">
         @include('user.inc_menu')
         <section class="row">
-            <div class="col-12 banner-inside wow fadeInDown"">
+            <div class="col-12 banner-inside wow fadeInDown">
     <figure><img src=" {{ asset('storage/types/'.$typeHistory->imgname)}}" alt="">
                 </figure>
                 <h1 id="mainTitle">{{$typeHistory->typeTitles[0]->title_th}}</h1>
@@ -71,6 +71,7 @@
                 </div>
             </div>
         </section>
+        
         @include('user.inc_footer')
 
         <script>

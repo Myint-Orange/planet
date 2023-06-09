@@ -1,44 +1,59 @@
 <!doctype html>
 <html>
-
 <head>
 	@include('user.inc_head')
 </head>
-
 <body>
 
 <div class="container-fluid">
 	
 @include('user.inc_menu')
-
-
+@if ($type)
 <section class="row">
-    <div class="col-12 banner-inside wow fadeInDown"">
+    <div class="col-12 banner-inside wow fadeInDown">
+        <figure><img src="{{ asset('/images/'.$type->image)}}" alt=""></figure>
+        <h1>{{ $type->name_en }}</h1>
+    </div>
+</section>
+@else
+<section class="row">
+    <div class="col-12 banner-inside wow fadeInDown">
         <figure><img src="images/banner-irnews.webp" alt=""></figure>
         <h1>ข่าวจากสื่อสิ่งพิมพ์</h1>
     </div>
 </section>
+@endif
 
 <section class="row">
     <div class="col-12 wrap-top-homeir wrap-tophistory wow fadeInDown">
         <div class="container">
             <div class="row page-content ir-manytable">
                 <div class="col-12 wow fadeInDown">
-                    <h2 class="topic-irpage">ข่าวจากสื่อสิ่งพิมพ์</h2>
+                    <h2 class="topic-irpage">ข่าวแจ้งตลาดหลักทรัพย์</h2>
+                    <form action='{{route('user.news.search')}}' method="post" enctype="multipart/form-data" id='regform'>
+                    @csrf
+                    @method('POST')
                     <div class="box-search-irnews">
                         <div class="frm-searchnews-select">
                             <span>ค้นหา</span>
-                            <select>
-                                <option value="">ล่าสุด</option>
-                                <option value="">2565</option>
-                                <option value="">2564</option>
+                            <select name="created">
+                                <option value="" selected disabled>ล่าสุด</option>
+                                @foreach ($inContacts as $inContact)
+                                <option value="{{ $inContact->created }}" name ="created">
+                                <?php
+                                     $date = date('Y', strtotime($inContact->created));
+                                        echo $date;
+                                    ?>
+                                </option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="frm-searchnews-input">
-                            <input type="text" placeholder="กรอกคำที่ต้องการค้นหา...">
+                            <input type="text" name="headline" placeholder="กรอกคำที่ต้องการค้นหา...">
                         </div>
                         <button class="btn-search"><i class="bi bi-search"></i> ค้นหา</button>
                     </div>
+                    </form>
                     <div class="ir-table table-responsive">
                         <table class="table table-striped">
                             <thead class="top-headtable">
@@ -49,41 +64,18 @@
                                 </tr>
                             </thead>
                             <tbody class="table-group-divider">
+                                @foreach ($inContacts as $inContact)
                                 <tr>
-                                    <th scope="row" class="txt-nowrap">08 พฤษภาคม 2566</th>
-                                    <td>การเผยแพร่หนังสือเชิญประชุมสามัญผู้ถือหุ้นประจำปี 2566 บนเว็บไซต์บริษัทฯ</td>
+                                    <th scope="row" class="txt-nowrap"><?php
+                                        $date = date('d M Y', strtotime($inContact->created));
+                                        echo $date;
+                                        ?></th>
+                                    <td>{!! $inContact->headline !!}</td>
                                     <td><a href="#" class="btn-irnews" target="_blank"><span>อ่านเพิ่มเติม</span>  <i class="bi bi-arrow-right-circle"></i></a></td>
                                 </tr>
-                                <tr>
-                                    <th scope="row" class="txt-nowrap">08 พฤษภาคม 2566</th>
-                                    <td>รายงานผลการซื้อคืนกรณีเพื่อการบริหารทางการเงิน</td>
-                                    <td><a href="#" class="btn-irnews" target="_blank"><span>อ่านเพิ่มเติม</span>  <i class="bi bi-arrow-right-circle"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" class="txt-nowrap">03 พฤษภาคม 2566</th>
-                                    <td>รายงานผลการซื้อคืนกรณีเพื่อการบริหารทางการเงิน</td>
-                                    <td><a href="#" class="btn-irnews" target="_blank"><span>อ่านเพิ่มเติม</span>  <i class="bi bi-arrow-right-circle"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" class="txt-nowrap">03 พฤษภาคม 2566</th>
-                                    <td>การแต่งตั้งกรรมการใหม่แทนกรรมการเดิมที่ขอลาออก</td>
-                                    <td><a href="#" class="btn-irnews" target="_blank"><span>อ่านเพิ่มเติม</span>  <i class="bi bi-arrow-right-circle"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" class="txt-nowrap">03 พฤษภาคม 2566</th>
-                                    <td>คำอธิบายและวิเคราะห์ของฝ่ายจัดการ ไตรมาสที่ 1 สิ้นสุดวันที่ 31 มี.ค. 2566</td>
-                                    <td><a href="#" class="btn-irnews" target="_blank"><span>อ่านเพิ่มเติม</span>  <i class="bi bi-arrow-right-circle"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" class="txt-nowrap">03 พฤษภาคม 2566</th>
-                                    <td>สรุปผลการดำเนินงานของ บจ. ไตรมาสที่ 1 (F45) (สอบทานแล้ว)</td>
-                                    <td><a href="#" class="btn-irnews" target="_blank"><span>อ่านเพิ่มเติม</span>  <i class="bi bi-arrow-right-circle"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" class="txt-nowrap">03 พฤษภาคม 2566</th>
-                                    <td>งบการเงิน ไตรมาสที่ 1/2566 (สอบทานแล้ว)</td>
-                                    <td><a href="#" class="btn-irnews" target="_blank"><span>อ่านเพิ่มเติม</span>  <i class="bi bi-arrow-right-circle"></i></a></td>
-                                </tr>
+                                @endforeach
+                                
+                              
                             </tbody>
                         </table>
                     </div>
@@ -106,3 +98,4 @@
 </body>
 
 </html>
+

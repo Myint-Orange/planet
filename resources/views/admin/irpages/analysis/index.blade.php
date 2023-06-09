@@ -30,7 +30,6 @@
               Banner Image For IR Management & Analysis
               </h3>
             </div>
-
             <div class="card-body">
               <form action='{{route('IRAnalysis.editBanner')}}' method="post" enctype="multipart/form-data" id='regform'>
                 @csrf
