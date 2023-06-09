@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 class DividendpolicyController extends Controller
 {
-   
+
     public function indexs()
     {
         $type = DB::table('irbanners')->where('irtype', 'Dividendpolicy')->first();
@@ -56,19 +56,19 @@ class DividendpolicyController extends Controller
             'name_ch' => $request->menu_ch,
         ]);
         return redirect()->route('dividendpolicy.index');
-        
     }
 
-    public function index(){
+    public function index()
+    {
         $type = DB::table('irbanners')->where('irtype', 'Dividendpolicy')->first();
         $posts = DB::table('creditratings')->get();
         return view('admin.irpages.dividendpolicy.index', compact('type', 'posts'));
-
     }
     public function create()
     {
-        //
+         return view('admin.irpages.dividendpolicy.create');
     }
+
 
     /**
      * Store a newly created resource in storage.

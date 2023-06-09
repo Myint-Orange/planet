@@ -7,6 +7,7 @@ use App\Http\Controllers\AboutUs\HistoryController;
 
 use App\Http\Controllers\AboutUs\NetworkController;
 use App\Http\Controllers\AboutUs\OrgController;
+use App\Http\Controllers\DividendpolicyandpaymentController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\DividendpolicyController;
 use App\Http\Controllers\ShareholdermeetingController;
@@ -351,8 +352,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dividendpolicy/index', [DividendpolicyController::class, 'indexs'])->name('dividendpolicy.indexs');
         Route::post('/dividendpolicy/storecontact', [DividendpolicyController::class, 'stored'])->name('dividendpolicy.stored');
         Route::post('/dividendpolicy/storecontacted', [DividendpolicyController::class, 'storededit'])->name('dividendpolicy.storeded');
+
         
-        
+        Route::resource('/dividendpolicypayment', DividendpolicyandpaymentController::class);
+        Route::post('/dividendpolicypayment/updated/{id}',[DividendpolicyandpaymentController::class,'updated'])->name('dividendpolicypayment.updated');
+
         Route::get('/dividendpolicy/index', [DividendpolicyController::class, 'index'])->name('dividendpolicy.index');
         Route::get('/DividendpolicyController/create', [DividendpolicyController::class, 'create'])->name('dividendpolicy.create');
         Route::post('/creditrating/storecontact', [DividendpolicyController::class, 'store'])->name('dividendpolicy.store');

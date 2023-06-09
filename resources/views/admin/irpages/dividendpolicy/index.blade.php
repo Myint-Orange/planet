@@ -123,6 +123,9 @@
               <a href="{{route('dividendpolicy.create')}}" class="btn btn-primary">
                 <i class="fas fa-plus"></i> Add
               </a>
+              <a href="{{route('dividendpolicypayment.create')}}" class="btn btn-primary mx-2" >
+                <i class="fas fa-plus"></i> Dividend Policy And Payemnt 
+              </a>
 
               <div class="card-body">
                 <h3 class="card-title"><b>Cit List</b></h3>
