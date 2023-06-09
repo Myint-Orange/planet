@@ -131,6 +131,11 @@
             'route' => 'shareholdermeeting.index',
             'title' => 'IR Share Holder Meeting',
           ],
+          [  
+            'prefix'=> 'IRDividendPolicyCon',
+            'route' =>'dividendpolicy.index',
+            'title' => 'IR Dividend Policy',
+          ],
           
         
         

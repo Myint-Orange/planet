@@ -8,6 +8,7 @@ use App\Http\Controllers\AboutUs\HistoryController;
 use App\Http\Controllers\AboutUs\NetworkController;
 use App\Http\Controllers\AboutUs\OrgController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\DividendpolicyController;
 use App\Http\Controllers\ShareholdermeetingController;
 use App\Http\Controllers\CreditratingController;
 use App\Http\Controllers\AnnualreportController;
@@ -67,7 +68,7 @@ use Illuminate\Support\Facades\Artisan;
 
 
 Route::group(['namespace' => 'App\Http\Controllers'], function () {
-   
+
 
     Route::get('/clearcache', function () {
         $exitCode = Artisan::call('cache:clear');
@@ -285,131 +286,144 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/IRBasicInfo/index', [BasicInfoController::class, 'index'])->name('IRBasicInfo.index');
         Route::post('/IRBasicInfo/edit', [BasicInfoController::class, 'edit'])->name('IRBasicInfo.edit');
 
-        Route::get('/IRFinancialStatements/index', [FinancialStatemantController::class,'index'])->name('IRFinancial.index');
-        Route::post('/IRFinancialStatements/editBanner', [FinancialStatemantController::class,'editBanner'])->name('IRFinancial.editBanner');
-        Route::post('/IRFinancialStatements/editFile', [FinancialStatemantController::class,'editFile'])->name('IRFinancial.editFile');
-        Route::get('/IRFinancialStatements/deleteFile/{post_id}',[FinancialStatemantController::class,'destroyFile'])->name('IRFinancial.destroyFile');
-        
-        Route::get('/IRFinancialStatements/updateFile/{post_id}',[FinancialStatemantController::class,'updateFile'])->name('IRFinancial.updateFile');
-        
-        Route::get('/IRFinancialStatements/createFile',[FinancialStatemantController::class,'createFile'])->name('IRFinancial.createFile');
+        Route::get('/IRFinancialStatements/index', [FinancialStatemantController::class, 'index'])->name('IRFinancial.index');
+        Route::post('/IRFinancialStatements/editBanner', [FinancialStatemantController::class, 'editBanner'])->name('IRFinancial.editBanner');
+        Route::post('/IRFinancialStatements/editFile', [FinancialStatemantController::class, 'editFile'])->name('IRFinancial.editFile');
+        Route::get('/IRFinancialStatements/deleteFile/{post_id}', [FinancialStatemantController::class, 'destroyFile'])->name('IRFinancial.destroyFile');
+
+        Route::get('/IRFinancialStatements/updateFile/{post_id}', [FinancialStatemantController::class, 'updateFile'])->name('IRFinancial.updateFile');
+
+        Route::get('/IRFinancialStatements/createFile', [FinancialStatemantController::class, 'createFile'])->name('IRFinancial.createFile');
         ///
-        Route::post('/IRFinancialStatements/storeFile',[FinancialStatemantController::class,'storeFile'])->name('IRFinancial.storeFile');
+        Route::post('/IRFinancialStatements/storeFile', [FinancialStatemantController::class, 'storeFile'])->name('IRFinancial.storeFile');
 
-        Route::get('/IRAnalysis/index', [AnalysisController::class,'index'])->name('IRAnalysis.index');
-        Route::post('/IRAnalysis/editBanner', [AnalysisController::class,'editBanner'])->name('IRAnalysis.editBanner');
-        Route::post('/IRAnalysis/editFile', [AnalysisController::class,'editFile'])->name('IRAnalysis.editFile');
-        Route::get('/IRAnalysis/deleteFile/{post_id}',[AnalysisController::class,'destroyFile'])->name('IRAnalysis.destroyFile');
-        Route::get('/IRAnalysis/updateFile/{post_id}',[AnalysisController::class,'updateFile'])->name('IRAnalysis.updateFile');
-        Route::get('/IRAnalysis/createFile',[AnalysisController::class,'createFile'])->name('IRAnalysis.createFile');
-        Route::post('/IRAnalysis/storeFile',[AnalysisController::class,'storeFile'])->name('IRAnalysis.storeFile');
+        Route::get('/IRAnalysis/index', [AnalysisController::class, 'index'])->name('IRAnalysis.index');
+        Route::post('/IRAnalysis/editBanner', [AnalysisController::class, 'editBanner'])->name('IRAnalysis.editBanner');
+        Route::post('/IRAnalysis/editFile', [AnalysisController::class, 'editFile'])->name('IRAnalysis.editFile');
+        Route::get('/IRAnalysis/deleteFile/{post_id}', [AnalysisController::class, 'destroyFile'])->name('IRAnalysis.destroyFile');
+        Route::get('/IRAnalysis/updateFile/{post_id}', [AnalysisController::class, 'updateFile'])->name('IRAnalysis.updateFile');
+        Route::get('/IRAnalysis/createFile', [AnalysisController::class, 'createFile'])->name('IRAnalysis.createFile');
+        Route::post('/IRAnalysis/storeFile', [AnalysisController::class, 'storeFile'])->name('IRAnalysis.storeFile');
 
-        Route::get('/IRShareHolders/index', [ShareHolderController::class,'index'])->name('shareholder.index');
-        Route::get('/EmailNotifications/index', [EmailNotificationController::class,'index'])->name('emailNotification.index');
-        Route::post('/EmailNotifications/storeNotification', [EmailNotificationController::class,'store'])->name('emailNotification.store');
-        Route::post('/EmailNotifications/editNotification', [EmailNotificationController::class,'editBanner'])->name('emailNotification.editBanner');
+        Route::get('/IRShareHolders/index', [ShareHolderController::class, 'index'])->name('shareholder.index');
+        Route::get('/EmailNotifications/index', [EmailNotificationController::class, 'index'])->name('emailNotification.index');
+        Route::post('/EmailNotifications/storeNotification', [EmailNotificationController::class, 'store'])->name('emailNotification.store');
+        Route::post('/EmailNotifications/editNotification', [EmailNotificationController::class, 'editBanner'])->name('emailNotification.editBanner');
         Route::resource('/City', CityController::class);
-        Route::get('/City/delete/{post_id}',[CityController::class,'destroyPost'])->name('city.destroyPost');
+        Route::get('/City/delete/{post_id}', [CityController::class, 'destroyPost'])->name('city.destroyPost');
 
 
         //
-        Route::get('/news/index', [IrnewsController::class,'indexs'])->name('news.indexs');
-        Route::post('/news/storenews', [IrnewsController::class,'stored'])->name('news.stored');
-        Route::post('/news/editnews', [EmailNotificationController::class,'editBanner'])->name('news.editBanner');
+        Route::get('/news/index', [IrnewsController::class, 'indexs'])->name('news.indexs');
+        Route::post('/news/storenews', [IrnewsController::class, 'stored'])->name('news.stored');
+        Route::post('/news/editnews', [EmailNotificationController::class, 'editBanner'])->name('news.editBanner');
         Route::resource('/news', IrnewsController::class);
-        Route::get('/news/delete/{post_id}',[IrnewsController::class,'destroyPost'])->name('news.destroyPost');
+        Route::get('/news/delete/{post_id}', [IrnewsController::class, 'destroyPost'])->name('news.destroyPost');
 
 
-        Route::get('/news/index', [IrnewsController::class,'indexs'])->name('news.indexs');
-        Route::post('/news/storenews', [IrnewsController::class,'stored'])->name('news.stored');
-        Route::post('/news/editnews', [IrnewsController::class,'editBanner'])->name('news.editBanner');
+        Route::get('/news/index', [IrnewsController::class, 'indexs'])->name('news.indexs');
+        Route::post('/news/storenews', [IrnewsController::class, 'stored'])->name('news.stored');
+        Route::post('/news/editnews', [IrnewsController::class, 'editBanner'])->name('news.editBanner');
         Route::resource('/news', IrnewsController::class);
-        Route::get('/news/index', [IrnewsController::class,'indexs'])->name('news.indexs');
-        Route::post('/news/storenews', [IrnewsController::class,'stored'])->name('news.stored');
-        Route::get('/news/editFile', [IrnewsController::class,'update'])->name('news.updated');
-        Route::post('/news/editFile', [IrnewsController::class,'updated'])->name('news.updated');
-        Route::get('/news/deleteFile/{post_id}',[IrnewsController::class,'destroyPost'])->name('news.destroyPostd');
-        Route::get('/news/delete/{post_id}',[IrnewsController::class,'destroyPost'])->name('news.destroyPost');
+        Route::get('/news/index', [IrnewsController::class, 'indexs'])->name('news.indexs');
+        Route::post('/news/storenews', [IrnewsController::class, 'stored'])->name('news.stored');
+        Route::get('/news/editFile', [IrnewsController::class, 'update'])->name('news.updated');
+        Route::post('/news/editFile', [IrnewsController::class, 'updated'])->name('news.updated');
+        Route::get('/news/deleteFile/{post_id}', [IrnewsController::class, 'destroyPost'])->name('news.destroyPostd');
+        Route::get('/news/delete/{post_id}', [IrnewsController::class, 'destroyPost'])->name('news.destroyPost');
 
 
 
         //
-        Route::get('/setnews/index', [IrsetnewsController::class,'indexs'])->name('setnews.indexs');
-        Route::post('/setnews/storenews', [IrsetnewsController::class,'stored'])->name('setnews.stored');
-        Route::post('/setnews/editnews', [IrsetnewsController::class,'editBanner'])->name('setnews.editBanner');
+        Route::get('/setnews/index', [IrsetnewsController::class, 'indexs'])->name('setnews.indexs');
+        Route::post('/setnews/storenews', [IrsetnewsController::class, 'stored'])->name('setnews.stored');
+        Route::post('/setnews/editnews', [IrsetnewsController::class, 'editBanner'])->name('setnews.editBanner');
         Route::resource('/setnews', IrsetnewsController::class);
-        Route::get('/setnews/index', [IrsetnewsController::class,'indexs'])->name('setnews.indexs');
-        Route::post('/setnews/storenews', [IrsetnewsController::class,'stored'])->name('setnews.stored');
-        Route::get('/setnews/editFile', [IrsetnewsController::class,'update'])->name('setnews.updated');
-        Route::post('/setnews/editFile', [IrsetnewsController::class,'updated'])->name('setnews.updated');
-        Route::get('/setnews/deleteFile/{post_id}',[IrsetnewsController::class,'destroyPost'])->name('setnews.destroyPostd');
-        Route::get('/setnews/delete/{post_id}',[IrsetnewsController::class,'destroyPost'])->name('setnews.destroyPost');
+        Route::get('/setnews/index', [IrsetnewsController::class, 'indexs'])->name('setnews.indexs');
+        Route::post('/setnews/storenews', [IrsetnewsController::class, 'stored'])->name('setnews.stored');
+        Route::get('/setnews/editFile', [IrsetnewsController::class, 'update'])->name('setnews.updated');
+        Route::post('/setnews/editFile', [IrsetnewsController::class, 'updated'])->name('setnews.updated');
+        Route::get('/setnews/deleteFile/{post_id}', [IrsetnewsController::class, 'destroyPost'])->name('setnews.destroyPostd');
+        Route::get('/setnews/delete/{post_id}', [IrsetnewsController::class, 'destroyPost'])->name('setnews.destroyPost');
 
 
+        //DividendPolicy
+        Route::get('/dividendpolicy/index', [DividendpolicyController::class, 'indexs'])->name('dividendpolicy.indexs');
+        Route::post('/dividendpolicy/storecontact', [DividendpolicyController::class, 'stored'])->name('dividendpolicy.stored');
+        Route::post('/dividendpolicy/storecontacted', [DividendpolicyController::class, 'storededit'])->name('dividendpolicy.storeded');
         
+        
+        Route::get('/dividendpolicy/index', [DividendpolicyController::class, 'index'])->name('dividendpolicy.index');
+        Route::get('/DividendpolicyController/create', [DividendpolicyController::class, 'create'])->name('dividendpolicy.create');
+        Route::post('/creditrating/storecontact', [DividendpolicyController::class, 'store'])->name('dividendpolicy.store');
+        Route::get('/creditrating/deleteFile/{post_id}', [DividendpolicyController::class, 'destroy'])->name('dividendpolicy.destroy');
+        Route::post('/creditrating/storecontactdetail', [DividendpolicyController::class, 'storedetail'])->name('dividendpolicy.detailstore');
+        Route::get('/creditrating/editcontactdetail/{id}', [DividendpolicyController::class, 'editdetail'])->name('dividendpolicy.detailedit');
+
+
         //CreditratingController
-        Route::get('/creditrating/index', [CreditratingController::class,'indexs'])->name('creditrating.indexs');
-        Route::post('/creditrating/storecontact', [CreditratingController::class,'stored'])->name('creditratings.stored');
-        Route::get('/creditrating/index', [CreditratingController::class,'index'])->name('creditrating.index');
-        Route::get('/creditrating/create', [CreditratingController::class,'create'])->name('creditrating.create');
-        Route::post('/creditrating/storecontact', [CreditratingController::class,'store'])->name('creditrating.store');
-        Route::post('/creditrating/editcontact', [CreditratingController::class,'editBanner'])->name('creditrating.editBanner');
-        Route::get('/creditrating/deleteFile/{post_id}',[CreditratingController::class,'destroy'])->name('creditrating.destroy');
-        Route::post('/creditrating/storecontactdetail', [CreditratingController::class,'storedetail'])->name('creditrating.detailstore');
-        Route::get('/creditrating/editcontactdetail/{id}', [CreditratingController::class,'editdetail'])->name('creditrating.detailedit');
-     
+        Route::get('/creditrating/index', [CreditratingController::class, 'indexs'])->name('creditrating.indexs');
+        Route::post('/creditrating/storecontact', [CreditratingController::class, 'stored'])->name('creditratings.stored');
+        Route::get('/creditrating/index', [CreditratingController::class, 'index'])->name('creditrating.index');
+        Route::get('/creditrating/create', [CreditratingController::class, 'create'])->name('creditrating.create');
+        Route::post('/creditrating/storecontact', [CreditratingController::class, 'store'])->name('creditrating.store');
+        Route::post('/creditrating/editcontact', [CreditratingController::class, 'editBanner'])->name('creditrating.editBanner');
+        Route::get('/creditrating/deleteFile/{post_id}', [CreditratingController::class, 'destroy'])->name('creditrating.destroy');
+        Route::post('/creditrating/storecontactdetail', [CreditratingController::class, 'storedetail'])->name('creditrating.detailstore');
+        Route::get('/creditrating/editcontactdetail/{id}', [CreditratingController::class, 'editdetail'])->name('creditrating.detailedit');
+
         //PurchaseInformationController
-        Route::get('/purchase/index', [PurchaseController::class,'indexs'])->name('purchase.indexs');
-        Route::post('/purchase/storecontact', [PurchaseController::class,'stored'])->name('purchase.stored');
-        Route::get('/purchase/index', [PurchaseController::class,'index'])->name('purchase.index');
-        Route::get('/purchase/create', [PurchaseController::class,'create'])->name('purchase.create');
-        Route::post('/purchase/storecontact', [PurchaseController::class,'store'])->name('purchase.store');
-        Route::post('/purchase/editcontact', [PurchaseController::class,'editBanner'])->name('purchase.editBanner');
-        Route::post('/purchase/storecontactdetail', [PurchaseController::class,'storedetail'])->name('purchased.detailstore');
+        Route::get('/purchase/index', [PurchaseController::class, 'indexs'])->name('purchase.indexs');
+        Route::post('/purchase/storecontact', [PurchaseController::class, 'stored'])->name('purchase.stored');
+        Route::get('/purchase/index', [PurchaseController::class, 'index'])->name('purchase.index');
+        Route::get('/purchase/create', [PurchaseController::class, 'create'])->name('purchase.create');
+        Route::post('/purchase/storecontact', [PurchaseController::class, 'store'])->name('purchase.store');
+        Route::post('/purchase/editcontact', [PurchaseController::class, 'editBanner'])->name('purchase.editBanner');
+        Route::post('/purchase/storecontactdetail', [PurchaseController::class, 'storedetail'])->name('purchased.detailstore');
 
-        Route::get('/purchase/editcontactdetail/{id}', [PurchaseController::class,'edit'])->name('purchased.detailedit');
-        Route::post('/purchase/updated/{id}', [PurchaseController::class,'update'])->name('purchase.updated');
-        Route::get('/purchase/updated/{post_id}',[PurchaseController::class,'destroy'])->name('purchase.destroyPostd');
-     
-     
+        Route::get('/purchase/editcontactdetail/{id}', [PurchaseController::class, 'edit'])->name('purchased.detailedit');
+        Route::post('/purchase/updated/{id}', [PurchaseController::class, 'update'])->name('purchase.updated');
+        Route::get('/purchase/updated/{post_id}', [PurchaseController::class, 'destroy'])->name('purchase.destroyPostd');
+
+
         //PurchaseInformationController Letter
-        Route::get('/shareholdermeeting/index', [ShareholdermeetingController::class,'indexs'])->name('shareholdermeeting.indexs');
-        Route::post('/shareholdermeeting/storeconta', [ShareholdermeetingController::class,'storeBanner'])->name('shareholdermeeting.storeBanner');
-        Route::get('/shareholdermeeting/index', [ShareholdermeetingController::class,'index'])->name('shareholdermeeting.index');
+        Route::get('/shareholdermeeting/index', [ShareholdermeetingController::class, 'indexs'])->name('shareholdermeeting.indexs');
+        Route::post('/shareholdermeeting/storeconta', [ShareholdermeetingController::class, 'storeBanner'])->name('shareholdermeeting.storeBanner');
+        Route::get('/shareholdermeeting/index', [ShareholdermeetingController::class, 'index'])->name('shareholdermeeting.index');
 
-        Route::get('/shareholdermeeting/create', [ShareholdermeetingController::class,'create'])->name('shareholdermeeting.create');
-        Route::post('/shareholdermeeting/storecontact', [ShareholdermeetingController::class,'store'])->name('shareholdermeeting.store');
-        Route::post('/shareholdermeeting/editcontact', [ShareholdermeetingController::class,'editBanner'])->name('shareholdermeeting.editBanner');
+        Route::get('/shareholdermeeting/create', [ShareholdermeetingController::class, 'create'])->name('shareholdermeeting.create');
+        Route::post('/shareholdermeeting/storecontact', [ShareholdermeetingController::class, 'store'])->name('shareholdermeeting.store');
+        Route::post('/shareholdermeeting/editcontact', [ShareholdermeetingController::class, 'editBanner'])->name('shareholdermeeting.editBanner');
 
-        Route::get('/shareholdermeeting/editcontact/{id}', [ShareholdermeetingController::class,'edit'])->name('shareholdermeeting.editBanners');
-        Route::post('/shareholdermeeting/updated/{id}', [ShareholdermeetingController::class,'update'])->name('shareholdermeeting.updated');
-        Route::get('/purchase/updated/{post_id}',[ShareholdermeetingController::class,'destroy'])->name('shareholdermeeting.destroyPostd');
-        
-     
-        Route::post('/shareholdermeeting/storecontactdetail', [ShareholdermeetingController::class,'storedetail'])->name('purchase.detailstore');
-        Route::post('/shareholdermeeting/editcontactdetail', [ShareholdermeetingController::class,'editdetail'])->name('purchase.detailedit');
-        
+        Route::get('/shareholdermeeting/editcontact/{id}', [ShareholdermeetingController::class, 'edit'])->name('shareholdermeeting.editBanners');
+        Route::post('/shareholdermeeting/updated/{id}', [ShareholdermeetingController::class, 'update'])->name('shareholdermeeting.updated');
+        Route::get('/purchase/updated/{post_id}', [ShareholdermeetingController::class, 'destroy'])->name('shareholdermeeting.destroyPostd');
+
+
+        Route::post('/shareholdermeeting/storecontactdetail', [ShareholdermeetingController::class, 'storedetail'])->name('purchase.detailstore');
+        Route::post('/shareholdermeeting/editcontactdetail', [ShareholdermeetingController::class, 'editdetail'])->name('purchase.detailedit');
+
         //PurchaseInformationController Attachement
-        Route::get('/shareholdermeeting/attachementcreate', [ShareholdermeetingController::class,'attachementcreate'])->name('shareholdermeeting.attachementcreate');
-        Route::post('/shareholdermeeting/attachementstore', [ShareholdermeetingController::class,'attachementstore'])->name('shareholdermeeting.attachementstore');
+        Route::get('/shareholdermeeting/attachementcreate', [ShareholdermeetingController::class, 'attachementcreate'])->name('shareholdermeeting.attachementcreate');
+        Route::post('/shareholdermeeting/attachementstore', [ShareholdermeetingController::class, 'attachementstore'])->name('shareholdermeeting.attachementstore');
 
         //PurchaseInformationController Criteria
-        Route::get('/shareholdermeeting/criteriacreate', [ShareholdermeetingController::class,'criteriacreate'])->name('shareholdermeeting.criteriacreate');
-        Route::post('/shareholdermeeting/criteriastore', [ShareholdermeetingController::class,'criteriastore'])->name('shareholdermeeting.criteriastore');
-        
-        Route::post('/IRShareHolders/editBanner', [ShareHolderController::class,'editBanner'])->name('shareholder.editBanner');
-        Route::post('/IRShareHolders/editFile', [ShareHolderController::class,'editPost'])->name('shareholder.editPost');
-        Route::get('/IRShareHolders/deleteFile/{post_id}',[ShareHolderController::class,'destroyPost'])->name('shareholder.destroyPost');
-        Route::get('/IRShareHolders/updateFile/{post_id}',[ShareHolderController::class,'updatePost'])->name('shareholder.updatePost');
-        Route::get('/IRShareHolders/createFile',[ShareHolderController::class,'createPost'])->name('shareholder.createPost');
-        Route::post('/IRShareHolders/storeFile',[ShareHolderController::class,'storePost'])->name('shareholder.storePost');
+        Route::get('/shareholdermeeting/criteriacreate', [ShareholdermeetingController::class, 'criteriacreate'])->name('shareholdermeeting.criteriacreate');
+        Route::post('/shareholdermeeting/criteriastore', [ShareholdermeetingController::class, 'criteriastore'])->name('shareholdermeeting.criteriastore');
 
-       
+        Route::post('/IRShareHolders/editBanner', [ShareHolderController::class, 'editBanner'])->name('shareholder.editBanner');
+        Route::post('/IRShareHolders/editFile', [ShareHolderController::class, 'editPost'])->name('shareholder.editPost');
+        Route::get('/IRShareHolders/deleteFile/{post_id}', [ShareHolderController::class, 'destroyPost'])->name('shareholder.destroyPost');
+        Route::get('/IRShareHolders/updateFile/{post_id}', [ShareHolderController::class, 'updatePost'])->name('shareholder.updatePost');
+        Route::get('/IRShareHolders/createFile', [ShareHolderController::class, 'createPost'])->name('shareholder.createPost');
+        Route::post('/IRShareHolders/storeFile', [ShareHolderController::class, 'storePost'])->name('shareholder.storePost');
+
+
         Route::get('/adminHome', [DashboardController::class, 'index'])->name('dashboard.home');
         Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
         Route::get('/setLang/{lang}', [ForAllPageController::class, 'setLang'])->name('setLang');
     });
-        Route::group(['middleware' => ['guest']], function () {
+    Route::group(['middleware' => ['guest']], function () {
         Route::post('/login', [LoginController::class, 'login'])->name('login');
         Route::get('/login', [LoginController::class, 'show'])->name('login.show');
         Route::get('/show', [LoginController::class, 'show'])->name('show');
@@ -422,45 +436,45 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::get('/financialStatements', [FinancialStatementsController::class, 'index'])->name('user.financialStatements.index');
     //Not Completed
     Route::get('/financialInformation', [FinancialInformationController::class, 'index'])->name('user.financialInformation.index');
-  /////
+    /////
     Route::get('/managementDisscussion', [MangementDicussionInformationController::class, 'index'])->name('user.managementDiscussion.index');
     Route::get('/shareHolderStructure', [ShareHolderStructureInformationController::class, 'index'])->name('user.shareHolderStructure.index');
     //Not complete
     Route::get('/dividendpolicy', [DividendpolicyandpaymentInformationController::class, 'index'])->name('user.dividendpolicy.index');
     ///////
     Route::get('/shareHolderMeeting', [ShareHolderMeetingInformationController::class, 'index'])->name('user.shareHolderMeeting.index');
-    
+
     Route::get('/purchasePolicy', [PurchaseInformationController::class, 'index'])->name('user.purchasePolicy.index');
-    
-    
+
+
     //
     Route::get('/creditrating', [CreditRaringInformationController::class, 'index'])->name('user.creditrating.index');
     //
     Route::get('/news', [SetNewsInformationController::class, 'index'])->name('user.news.index');
     Route::post('/news/search', [SetNewsInformationController::class, 'search'])->name('user.news.search');
-    
+
     Route::get('/setnews', [NewsFromPrintInformationController::class, 'index'])->name('user.newsfrom.index');
     Route::post('/setnews/search', [NewsFromPrintInformationController::class, 'index'])->name('user.newsfrom.search');
     //
     Route::get('/nnualReports', [AnnualReportInformationController::class, 'index'])->name('user.annualReports.index');
     Route::get('/contactIV', [ContactIVInformationController::class, 'index'])->name('user.contactIV.index');
-   
+
     Route::get('/emailnotification', [EmailNotificationInformationController::class, 'index'])->name('user.emailnotification.index');
     Route::post('/emailnotification', [EmailNotificationInformationController::class, 'store'])->name('user.emailnotification.store');
 
     Route::get('/annualReport', [AnnualreportController::class, 'index'])->name('user.annualReport.index');
-    Route::post('/annualReport/store', [AnnualreportController::class,'store'])->name('user.annualReport.store');
-    Route::post('/annualReport/edit', [AnnualreportController::class,'editBanner'])->name('user.annualReport.editBanner');
-    Route::get('/annualReport/createFile',[AnnualreportController::class,'createFile'])->name('annualReport.createFile');
-    Route::post('/annualReport/storeFile',[AnnualreportController::class,'storeFile'])->name('annualReport.storeFile');
-    Route::get('/annualReport/updateFile/{post_id}',[AnnualreportController::class,'editFile'])->name('annualReport.updateFile');
-    Route::post('/annualReport/updateFile',[AnnualreportController::class,'editFiled'])->name('annualReport.editFiled');
-    Route::get('/annualReport/{post_id}',[AnnualreportController::class,'destroyPost'])->name('annualReport.destroyPost');
+    Route::post('/annualReport/store', [AnnualreportController::class, 'store'])->name('user.annualReport.store');
+    Route::post('/annualReport/edit', [AnnualreportController::class, 'editBanner'])->name('user.annualReport.editBanner');
+    Route::get('/annualReport/createFile', [AnnualreportController::class, 'createFile'])->name('annualReport.createFile');
+    Route::post('/annualReport/storeFile', [AnnualreportController::class, 'storeFile'])->name('annualReport.storeFile');
+    Route::get('/annualReport/updateFile/{post_id}', [AnnualreportController::class, 'editFile'])->name('annualReport.updateFile');
+    Route::post('/annualReport/updateFile', [AnnualreportController::class, 'editFiled'])->name('annualReport.editFiled');
+    Route::get('/annualReport/{post_id}', [AnnualreportController::class, 'destroyPost'])->name('annualReport.destroyPost');
 
-   
 
-       
-   
+
+
+
 
     Route::get('/home', [UserController::class, 'index'])->name('home.index');
     Route::get('/VisionAndMission', [UserVisionMissionController::class, 'index'])->name('user.vision.index');
