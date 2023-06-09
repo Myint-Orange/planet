@@ -133,12 +133,14 @@
                   <thead>
                     <tr>
                       <th>ID</th>
-                      <th>Credit Type</th>
-                      <th>Rating Agency</th>
-                      <th>Credit Rating</th>
-                      <th>Rank Trend</th>
-                      <th>Issue Date</th>
-                      <th>PDF Link</th>
+                      <th>Marking Date</th>
+                      <th>Book Closing Date</th>
+                      <th>Determination Date</th>
+                      <th>Payment Date</th>
+                      <th>Dividend Pershare</th>
+                      <th>Unit</th>
+                      <th>Turnover Cycle</th>
+                      <th>Dividends From</th>
                       <th>Action</th>
                     </tr>
 
@@ -148,13 +150,15 @@
                     <tr>
                       <td>{{ $post->id}}</td>
                       <td>
-                        {{$post->credit_type}}
+                        {{$post->markingdate}}</td>
                       </td>
-                      <td>{{ $post->rating_agency }}</td>
-                      <td>{{ $post->credit_rating }}</td>
-                      <td>{{ $post->rank_trend }}</td>
-                      <td>{{ $post->issue_date }}</td>
-                      <td>{{ $post->pdflink}}</td>
+                      <td>{{ $post->bookclosingdate }}</td>
+                      <td>{{ $post->determiningdate }}</td>
+                      <td>{{ $post->paymentdate }}</td>
+                      <td>{{ $post->dividendpershare}}</td>
+                      <td>{{ $post->unit}}</td>
+                      <td>{{ $post->turnovercyclefrom}} - {{ $post->turnovercycleto}}</td>
+                      <th>{{ $post->dividendsfrom}}</th>
                       <td>
                         <div class="btn-group">
                           <button type="button" class="btn btn-info">Action</button>
@@ -162,7 +166,7 @@
                             <span class="sr-only">Toggle Dropdown</span>
                           </button>
                           <div class="dropdown-menu" role="menu">
-                            <a class="dropdown-item" href="{{route('creditrating.detailedit',$post->id)}}">Edit</a>
+                            <a class="dropdown-item" href="{{route('dividendpolicy.detailedit',$post->id)}}">Edit</a>
                             <a class="dropdown-item delete-row" href="" id="delete-post-{{$post->id}}">Delete</a></div>
                       </td> 
                     </tr>
@@ -171,12 +175,14 @@
                   <tfoot>
                     <tr>
                       <th>ID</th>
-                      <th>Credit Type</th>
-                      <th>Rating Agency</th>
-                      <th>Credit Rating</th>
-                      <th>Rank Trend</th>
-                      <th>Issue Date</th>
-                      <th>PDF Link</th>
+                      <th>Marking Date</th>
+                      <th>Book Closing Date</th>
+                      <th>Determination Date</th>
+                      <th>Payment Date</th>
+                      <th>Dividend Pershare</th>
+                      <th>Unit</th>
+                      <th>Turnover Cycle</th>
+                      <th>Dividends From</th>
                       <th>Action</th>
                     </tr>
                   </tfoot>
@@ -227,7 +233,7 @@
                 event.preventDefault();
                 var postId = $(this).attr('id').replace('delete-post-', '');
                 if (confirm("Are you sure you sure to delete this row?")) {
-                    window.location.href = "{{ route('creditrating.destroy', ':id') }}".replace(':id', postId);
+                    window.location.href = "{{ route('dividendpolicy.destroy', ':id') }}".replace(':id', postId);
                 }
             });
         });

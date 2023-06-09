@@ -31,49 +31,6 @@
                 </div>
             </div><!-- /.container-fluid -->
         </section>
-
-
-
-        {{-- <section class="content">
-  <div class="container-fluid">
-  <div class="row">     
-      <div class="col-md-12">
-        <!-- general form elements -->
-        <div class="card card-info">
-          <div class="card-header">
-            <h3 class="card-title">Add City Information</h3>
-          </div>
-       
-          <form action='{{ route('City.update',['City' => $post]) }}' method="post" enctype="multipart/form-data">
-            @method('PUT')
-            @csrf
-            <input type="hidden" name="post_id" value="{{$post->id}}">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-md-8">
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">City Name </label>
-                      <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your City Name" value="{{$post->name}}">
-                    </div>
-                </div>
-               
-            </div>
-
-                          <!-- /.card-body -->
-
-            <div class="card-footer">
-              <button type="submit" class="btn btn-primary">Submit</button>
-              <a href="{{route('shareholder.index')}}"  class="btn btn-default">Exist</a>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  
-  </div>
- </section> --}}
-
-
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -83,72 +40,93 @@
                             <div class="card-header">
                                 <h3 class="card-title">IR Credit Rating Information</h3>
                             </div>
-                             <form action='{{ route('creditrating.detailstore', ['id' => $post]) }}' method="post"
-                                    enctype="multipart/form-data">
-                                    @csrf
-                                    <input type="hidden" name="post_id" value="{{ $post->id }}">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1"> Credit Type </label>
-                                                    <input type="text" class="form-control" id="credit_type"
-                                                        name="credit_type" value="{{ $post->credit_type }}"
-                                                        placeholder="Enter credit type..">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1"> Rating Agency </label>
-                                                    <input type="text" class="form-control" id="rating_agency"
-                                                        name="rating_agency" value="{{ $post->rating_agency }}"
-                                                        placeholder="Enter Rating Agency...">
-                                                </div>
+                            <form action='{{ route('dividendpolicy.detailstore', ['id' => $post]) }}' method="post"
+                                enctype="multipart/form-data" id='regform'>
+                                @csrf
+                                @method('POST')
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1"> Marking Date </label>
+                                                <input type="date" class="form-control" id="markingdate"
+                                                    name="markingdate" placeholder="Enter markingdate"
+                                                    value="{{ $post->markingdate }}">
                                             </div>
                                         </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1"> Book Closing Date </label>
+                                                <input type="date" class="form-control" id="bookclosingdate"
+                                                    name="bookclosingdate" placeholder="Enter bookclosingdate..." value ="{{ $post->bookclosingdate }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1"> Determining Date </label>
+                                                <input type="date" class="form-control" id="determiningdate"
+                                                    name="determiningdate" placeholder="Enter determiningdate.." value ="{{ $post->determiningdate }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Payment date</label>
+                                                <input type="date" class="form-control" id="paymentdate"
+                                                    name="paymentdate" placeholder="Enter paymentdate.." value ="{{ $post->paymentdate }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1"> Dividend per Share</label>
+                                                <input type="date" class="form-control" id="dividendpershare"
+                                                    name="dividendpershare" placeholder="Enter dividend per share..." value ="{{ $post->dividendpershare }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Unit</label>
+                                                <input type="text" class="form-control" id="unit" name="unit"
+                                                    placeholder="Enter unit.." value ="{{ $post->unit }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Turn Over Cycle From</label>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <input type="date" class="form-control" id="turnovercyclefrom"
+                                                            name="turnovercyclefrom"
+                                                            placeholder="Enter turnovercyclefrom.." value ="{{ $post->turnovercyclefrom }}">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input type="date" class="form-control" id="turnovercycleto"
+                                                            name="turnovercycleto" placeholder="Enter turnovercycleto.." value ="{{ $post->turnovercycleto }}">
+                                                    </div>
 
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1"> Credit Rating </label>
-                                                    <input type="text" class="form-control" id="credit_rating"
-                                                        name="credit_rating" value="{{ $post->credit_rating }}"
-                                                        placeholder="Enter credit rating..">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1"> Rank Trend</label>
-                                                    <input type="text" class="form-control" id="rank_trend"
-                                                        name="rank_trend" value="{{ $post->rank_trend }}"
-                                                        placeholder="Enter Rank Trend...">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1"> Issue Date</label>
-                                                    <input type="date" class="form-control" id="issue_date"
-                                                        name="issue_date" value="{{ $post->issue_date }}"
-                                                        placeholder="Enter Issue Date...">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1"> PDF </label>
-                                                    <input type="file" class="form-control" id="pdflink" name="pdflink"
-                                                        value="{{ $post->pdflink }}"
-                                                        placeholder="Please Select PDF File..">
-                                                </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Dividends From</label>
+                                                <input type="text" class="form-control" id="dividendsfrom"
+                                                    name="dividendsfrom" placeholder="Enter dividendsfrom.." value="{{ $post->dividendsfrom }}">
                                             </div>
                                         </div>
-                                        <div class="card-footer">
-                                            <button type="submit" class="btn btn-primary">Submit</button>
-                                            <a href="{{ route('creditrating.index') }}" class="btn btn-default">Exist</a>
-                                        </div>
-                                </form>
+                                    </div>
+
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <a href="{{ route('dividendpolicy.index') }}" class="btn btn-default">Exist</a>
+                                </div>
+                            </form>
                         </div>
+
                     </div>
                 </div>
 
@@ -157,111 +135,4 @@
 
 
     </div>
-
-
-    <script>
-        function updateLabel(inputId, previewId) {
-            var input = document.getElementById(inputId);
-            var preview = document.getElementById(previewId);
-            var file = input.files[0];
-            var reader = new FileReader();
-
-            reader.onload = function(e) {
-                preview.src = e.target.result;
-            };
-
-            reader.readAsDataURL(file);
-        }
-
-        function formatNumber(input) {
-            // Remove existing commas and non-numeric characters from the input value
-            var value = input.value.replace(/,/g, '').replace(/\D/g, '');
-
-            // Add commas as thousands separators
-            var formattedValue = value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
-            // Set the formatted value back to the input
-            input.value = formattedValue;
-        }
-    </script>
-
-
-@section('js-place')
-    <script>
-        $(document).ready(function() {
-            $('.dropdown-toggle').dropdown();
-        });
-
-        const deleteButtons = document.querySelectorAll('.delete-row');
-        deleteButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const row = button.closest('tr');
-                const id = row.querySelector('td:first-child').textContent;
-                const title = row.querySelector('td:nth-child(2)').textContent;
-                updateFormAction(id);
-                $('#inputId').val(id);
-                $('#inputTitle').val(title);
-                $("#delete-card").show();
-                $(".overlay").show();
-                console.log(`Row ID: ${id}`);
-            });
-        });
-
-        $(function() {
-            $("#example1").DataTable({
-                "responsive": true,
-                "lengthChange": false,
-                "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
-        });
-        $(document).ready(function() {
-            // Add a click event listener to each "Delete" button
-            $('.delete-row').click(function(event) {
-                event.preventDefault();
-                var postId = $(this).attr('id').replace('delete-post-', '');
-                if (confirm("Are you sure you want to delete this row?")) {
-                    // If the user clicks "OK", delete the row
-                    window.location.href = "{{ route('social.destroy', ':id') }}".replace(':id', postId);
-                }
-            });
-        });
-
-
-        $('#summernote').summernote();
-        $('#summernote1').summernote();
-        $('#summernote2').summernote();
-        $('#summernote3').summernote();
-        $('#summernote4').summernote();
-        $('#summernote5').summernote();
-        $('#summernote6').summernote();
-        $('#summernote7').summernote();
-        $('#summernote8').summernote();
-        $('#summernote9').summernote();
-        $('#summernote10').summernote();
-        $('#summernote11').summernote();
-        $('#summernote12').summernote();
-
-        function updateLabel(inputId, previewId) {
-            var input = document.getElementById(inputId);
-            var preview = document.getElementById(previewId);
-            var file = input.files[0];
-            var reader = new FileReader();
-
-            reader.onload = function(e) {
-                preview.src = e.target.result;
-            };
-
-            reader.readAsDataURL(file);
-        }
-    </script>
-@endsection
 @endsection

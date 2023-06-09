@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Dividendpolicy;
 use Illuminate\Http\Request;
 use App\Models\Creditrating;
+use App\Models\Dividenddatalist;
 use App\Models\Irnews;
 use App\Models\IRBanner;
 use Illuminate\Support\Facades\DB;
@@ -16,7 +17,8 @@ class DividendpolicyController extends Controller
     public function indexs()
     {
         $type = DB::table('irbanners')->where('irtype', 'Dividendpolicy')->first();
-        $posts = DB::table('creditratings')->get();
+        $posts = DB::table('dividenddatalists')->get();
+
         return view('admin.irpages.dividendpolicy.index', compact('type', 'posts'));
     }
     public function stored(Request $request)
@@ -61,7 +63,7 @@ class DividendpolicyController extends Controller
     public function index()
     {
         $type = DB::table('irbanners')->where('irtype', 'Dividendpolicy')->first();
-        $posts = DB::table('creditratings')->get();
+        $posts = DB::table('dividenddatalists')->get();
         return view('admin.irpages.dividendpolicy.index', compact('type', 'posts'));
     }
     public function create()
@@ -75,15 +77,41 @@ class DividendpolicyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data =Dividenddatalist::create($request->all());
+        if($data){
+            return redirect()->route('dividendpolicy.index');
+        }else{
+            return redirect()->route('dividendpolicy.create');
+        }
+
+
     }
 
-    /**
-     * Display the specified resource.
-     */
+    public function editdetail($posts_id)
+    {
+        $post = DB::table('dividenddatalists')->where('id', $posts_id)->first();
+        if ($post) {
+            return view('admin.irpages.dividendpolicy.update', compact('post'));
+        } else {
+
+            return redirect()->route('dividendpolicy.index');
+        }
+    }
+    public function storedetail(Request $request)
+    {
+        $data = Dividenddatalist::where('id', $request->id)->first();
+        if ($data) {
+            $data->update($request->all());
+        }
+        if($data){
+            return redirect()->route('dividendpolicy.index');
+        }else{
+            return redirect()->route('dividendpolicy.create');
+        }
+     }
     public function show(Dividendpolicy $dividendpolicy)
     {
-        //
+        
     }
 
     /**
@@ -102,11 +130,10 @@ class DividendpolicyController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Dividendpolicy $dividendpolicy)
-    {
-        //
+    public function destroy($post_id)
+    {   $post = Dividenddatalist::findOrFail($post_id);
+        $post->delete();
+        return redirect()->route('dividendpolicy.index');
     }
+    
 }

@@ -29,9 +29,6 @@
                 </div>
             </div><!-- /.container-fluid -->
         </section>
-
-
-
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -39,9 +36,9 @@
                         <!-- general form elements -->
                         <div class="card card-info">
                             <div class="card-header">
-                                <h3 class="card-title">IR Credit Rating Information</h3>
+                                <h3 class="card-title">IR Dividen Policy Data Create Information</h3>
                             </div>
-                            <form action='{{ route('creditrating.store') }}' method="post" enctype="multipart/form-data"
+                            <form action='{{ route('dividend.store') }}' method="post" enctype="multipart/form-data"
                                 id='regform'>
                                 @csrf
                                 @method('post')
@@ -49,55 +46,80 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1"> Credit Type </label>
-                                                <input type="text" class="form-control" id="credit_type"
-                                                    name="credit_type" placeholder="Enter credit type..">
+                                                <label for="exampleInputEmail1"> Marking Date </label>
+                                                <input type="date" class="form-control" id="markingdate"
+                                                    name="markingdate" placeholder="Enter markingdate">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1"> Rating Agency </label>
-                                                <input type="text" class="form-control" id="rating_agency"
-                                                    name="rating_agency" placeholder="Enter Rating Agency...">
+                                                <label for="exampleInputEmail1"> Book Closing Date </label>
+                                                <input type="date" class="form-control" id="bookclosingdate"
+                                                    name="bookclosingdate" placeholder="Enter bookclosingdate...">
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="row">
-                                      <div class="col-md-6">
-                                          <div class="form-group">
-                                              <label for="exampleInputEmail1"> Credit Rating </label>
-                                              <input type="text" class="form-control" id="credit_rating"
-                                                  name="credit_rating" placeholder="Enter credit rating..">
-                                          </div>
-                                      </div>
-                                      <div class="col-md-6">
-                                          <div class="form-group">
-                                              <label for="exampleInputEmail1"> Rank Trend</label>
-                                              <input type="text" class="form-control" id="rank_trend"
-                                                  name="rank_trend" placeholder="Enter Rank Trend...">
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1"> Issue Date</label>
-                                            <input type="date" class="form-control" id="issue_date"
-                                                name="issue_date" placeholder="Enter Issue Date...">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1"> Determining Date </label>
+                                                <input type="date" class="form-control" id="determiningdate"
+                                                    name="determiningdate" placeholder="Enter determiningdate..">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Payment date</label>
+                                                <input type="date" class="form-control" id="paymentdate"
+                                                    name="paymentdate" placeholder="Enter paymentdate..">
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                      <div class="form-group">
-                                          <label for="exampleInputEmail1"> PDF </label>
-                                          <input type="file" class="form-control" id="pdflink"
-                                              name="pdflink" placeholder="Please Select PDF File..">
-                                      </div>
-                                  </div>
-                                </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1"> Dividend per Share</label>
+                                                <input type="date" class="form-control" id="dividendpershare"
+                                                    name="dividendpershare" placeholder="Enter dividend per share...">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Unit</label>
+                                                <input type="text" class="form-control" id="unit" name="unit"
+                                                    placeholder="Enter unit..">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Turn Over Cycle From</label>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <input type="date" class="form-control" id="turnovercyclefrom"
+                                                            name="turnovercyclefrom"
+                                                            placeholder="Enter turnovercyclefrom..">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input type="date" class="form-control" id="turnovercycleto"
+                                                            name="turnovercycleto" placeholder="Enter turnovercycleto..">
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Dividends From</label>
+                                                    <input type="text" class="form-control" id="dividendsfrom"
+                                                        name="dividendsfrom" placeholder="Enter dividendsfrom..">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                     <div class="card-footer">
                                         <button type="submit" class="btn btn-primary">Submit</button>
-                                        <a href="{{ route('creditrating.index') }}" class="btn btn-default">Exist</a>
+                                        <a href="{{ route('dividendpolicy.index') }}" class="btn btn-default">Exist</a>
                                     </div>
                             </form>
                         </div>

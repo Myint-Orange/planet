@@ -20,6 +20,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\ContactUs\ContactFormController;
 use App\Http\Controllers\ContactUs\ContactUsController;
 use App\Http\Controllers\dashboard\DashboardController;
+use App\Http\Controllers\DividenddatalistController;
 use App\Http\Controllers\IR\AnalysisController;
 use App\Http\Controllers\IR\BasicInfoController;
 use App\Http\Controllers\IR\FinancialStatemantController;
@@ -358,11 +359,20 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/dividendpolicypayment/updated/{id}',[DividendpolicyandpaymentController::class,'updated'])->name('dividendpolicypayment.updated');
 
         Route::get('/dividendpolicy/index', [DividendpolicyController::class, 'index'])->name('dividendpolicy.index');
-        Route::get('/DividendpolicyController/create', [DividendpolicyController::class, 'create'])->name('dividendpolicy.create');
-        Route::post('/creditrating/storecontact', [DividendpolicyController::class, 'store'])->name('dividendpolicy.store');
-        Route::get('/creditrating/deleteFile/{post_id}', [DividendpolicyController::class, 'destroy'])->name('dividendpolicy.destroy');
-        Route::post('/creditrating/storecontactdetail', [DividendpolicyController::class, 'storedetail'])->name('dividendpolicy.detailstore');
-        Route::get('/creditrating/editcontactdetail/{id}', [DividendpolicyController::class, 'editdetail'])->name('dividendpolicy.detailedit');
+        Route::get('/dividendpolicy/create', [DividendpolicyController::class, 'create'])->name('dividendpolicy.create');
+        Route::post('/dividendpolicy/store', [DividendpolicyController::class, 'store'])->name('dividend.store');
+        Route::get('/dividendpolicy/deleteFile/{post_id}', [DividendpolicyController::class, 'destroy'])->name('dividendpolicy.destroy');
+        Route::post('/dividendpolicy/storecontactdetail', [DividendpolicyController::class, 'storedetail'])->name('dividendpolicy.detailstore');
+        Route::get('/dividendpolicy/editcontactdetail/{id}', [DividendpolicyController::class, 'editdetail'])->name('dividendpolicy.detailedit');
+
+        //DividenddatalistController
+        Route::get('/dividendpolicydatalist/index', [DividenddatalistController::class, 'index'])->name('dividendpolicydatalist.index');
+        Route::get('/dividendpolicydatalist/create', [DividenddatalistController::class, 'create'])->name('dividendpolicydatalist.create');
+        Route::post('/dividendpolicydatalist/storecontact', [DividenddatalistController::class, 'store'])->name('dividendpolicydatalist.store');
+        Route::get('/dividendpolicydatalist/deleteFile/{post_id}', [DividenddatalistController::class, 'destroy'])->name('dividendpolicydatalist.destroy');
+        Route::post('/dividendpolicydatalist/storecontactdetail', [DividenddatalistController::class, 'storedetail'])->name('dividendpolicydatalist.detailstore');
+
+        Route::get('/dividendpolicydatalist/editcontactdetail/{id}', [DividenddatalistController::class, 'editdetail'])->name('dividendpolicydatalist.detailedit');
 
 
         //CreditratingController
