@@ -150,7 +150,7 @@
                             <span class="sr-only">Toggle Dropdown</span>
                           </button>
                           <div class="dropdown-menu" role="menu">
-                            <a class="dropdown-item" href="{{route('purchase.editBanner',$post->id)}}">Edit</a>
+                            <a class="dropdown-item" href="{{route('purchased.detailedit',$post->id)}}">Edit</a>
                             <a class="dropdown-item delete-row" href="" id="delete-post-{{$post->id}}">Delete</a></div>
                       </td>
 
@@ -181,5 +181,44 @@
   </section>
 
 </div>
+<script>
+  $(document).ready(function() {
+   $('.dropdown-toggle').dropdown();
+ });
+ function updateLabel(inputId, previewId) {
+   var input = document.getElementById(inputId);
+   var preview = document.getElementById(previewId);
+   var file = input.files[0];
+   var reader = new FileReader();
+
+   reader.onload = function(e) {
+     preview.src = e.target.result;
+   };
+
+   reader.readAsDataURL(file);
+ }
+ $(function() {
+   $("#example2").DataTable({
+     "responsive": true,
+     "lengthChange": true,
+     "ordering": true,
+     "autoWidth": true,
+     "info": true,
+     "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+   }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+ 
+ });
+ $(document).ready(function() {
+            $('.delete-row').click(function(event) {
+                event.preventDefault();
+                var postId = $(this).attr('id').replace('delete-post-', '');
+                if (confirm("Are you sure you sure to delete this row?")) {
+                    window.location.href = "{{ route('purchase.destroyPostd', ':id') }}".replace(':id', postId);
+                }
+            });
+        });
+ 
+
+</script>
 
 @endsection

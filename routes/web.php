@@ -366,7 +366,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/purchase/storecontact', [PurchaseController::class,'store'])->name('purchase.store');
         Route::post('/purchase/editcontact', [PurchaseController::class,'editBanner'])->name('purchase.editBanner');
         Route::post('/purchase/storecontactdetail', [PurchaseController::class,'storedetail'])->name('purchased.detailstore');
-        Route::post('/purchase/editcontactdetail', [PurchaseController::class,'editdetail'])->name('purchased.detailedit');
+
+        Route::get('/purchase/editcontactdetail/{id}', [PurchaseController::class,'edit'])->name('purchased.detailedit');
+        Route::post('/purchase/updated/{id}', [PurchaseController::class,'update'])->name('purchase.updated');
+        Route::get('/purchase/updated/{post_id}',[PurchaseController::class,'destroy'])->name('purchase.destroyPostd');
      
      
         //PurchaseInformationController Letter

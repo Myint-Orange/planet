@@ -106,23 +106,44 @@ class PurchaseController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Irnews $irnews)
+    public function edit($posts_id)
     {
+        $post = Purchase::findOrFail($posts_id);
+        if($post){
+            return view('admin.irpages.purchaseissues.update', compact('post'));
+        }
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Irnews $irnews)
+    public function update($posts_id, Request $request)
     {
-        //
+        $post = Purchase::findOrFail($posts_id);
+        if($post){
+            if($request->hasFile('pdflink')){
+                $pdf = $request->file('pdflink');
+                $pdfName = $pdf->getClientOriginalName();
+                $pdf->move(public_path('images'), $pdfName);
+                $post->pdflink = $pdfName;
+                $post->save();
+            }
+            $post->name = $request->name;
+            $post->save();
+            return redirect()->route('purchase.index');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Irnews $irnews)
+    public function destroy($posts_id)
     {
-        //
+        $post = Purchase::findOrFail($posts_id);
+        if($post){
+            $post->delete();
+            return redirect()->route('purchase.index');
+        }
     }
 }
