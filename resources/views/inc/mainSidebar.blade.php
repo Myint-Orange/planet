@@ -136,6 +136,11 @@
             'route' =>'dividendpolicy.index',
             'title' => 'IR Dividend Policy',
           ],
+          [  
+            'prefix'=> 'IRDFinicialInformation',
+            'route' =>'finicialinformation.index',
+            'title' => 'R Finicial Information',
+          ],
           
         
         

@@ -1,5 +1,7 @@
 @extends('layout.app')
-@section('title') shareholder @endsection
+@section('title')
+    shareholder
+@endsection
 
 @section('css-place')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
@@ -14,6 +16,9 @@
     <link rel="stylesheet" href="{{ asset('dist/css/custom.css') }}">
 @endsection
 @section('contents')
+
+
+
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -33,135 +38,73 @@
                         <!-- general form elements -->
                         <div class="card card-info">
                             <div class="card-header">
-                                <h3 class="card-title">IR Dividend Policy And Payment Information</h3>
+                                <h3 class="card-title">Add City Information</h3>
                             </div>
-                            @if ($type)
-                                <form action='{{ route('dividendpolicypayment.updated', ['id' => $type->id]) }}'
-                                    method="post" enctype="multipart/form-data" id='regform'>
-                                    @csrf
-                                    <input type="hidden" name="type_id" value="{{ $type->id }}">
-                                    <div class="row mt-3 p-2">
+                            <form action='{{ route('finicialinformation.updated', ['id' => $post->id]) }}' method="post"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" name="post_id" value="{{ $post->id }}">
+                                <div class="card-body">
+                                    <div class="row">
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <label>Dividend Policy And Payment Title (English)</label>
+                                                <label>Ratio Title (English)</label>
                                                 <input type="text" name="menu_en" class="form-control"
-                                                    placeholder="Enter ..." value="{{ $type->name_en }}">
+                                                    placeholder="Enter ..."  value=" {{ $post->rationame_en }}">
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <label>Dividend Policy And Payment Title (Thai)</label>
+                                                <label>Ratio Title (Thai)</label>
                                                 <input type="text" name="menu_th" class="form-control"
-                                                    placeholder="Enter ..." value="{{ $type->name_th }}">
+                                                    placeholder="Enter ..." value=" {{ $post->rationame_th }}">
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <label>Dividend Policy And Payment Title (Chinese)</label>
+                                                <label>Ratio Title (Chinese)</label>
                                                 <input type="text" name="menu_ch" class="form-control"
-                                                    placeholder="Enter ..." value="{{ $type->name_ch }}">
+                                                    placeholder="Enter ..." value=" {{ $post->rationame_ch }}">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mt-3 p-2">
-                                        <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-sm-4">
                                             <div class="form-group">
-                                                <label>Content Description (en)</label>
-                                                <textarea id="summernote1" name="description_en" class="form-control" required>{{ $type->description_en ?? '' }}</textarea>
+                                                <label>For 2020</label>
+                                                <input type="text" name="yearone" class="form-control"
+                                                    placeholder="Enter ..." value=" {{ $post->yearone }}">
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row mt-3 p-2">
-                                        <div class="col-md-12">
+                                        <div class="col-sm-4">
                                             <div class="form-group">
-                                                <label>Content Description (th)</label>
-                                                <textarea id="summernote2" name="description_th" class="form-control" required>{{ $type->description_th ?? '' }} </textarea>
+                                                <label>For 2021</label>
+                                                <input type="text" name="yeartwo" class="form-control"
+                                                    placeholder="Enter ..." value="{{ $post->yeartwo }}">
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row mt-3 p-2">
-                                        <div class="col-md-12">
+                                        <div class="col-sm-4">
                                             <div class="form-group">
-                                                <label>Content Description (ch)</label>
-                                                <textarea id="summernote3" name="description_ch" class="form-control" required>{{ $typr->description_th ?? '' }}</textarea>
+                                                <label>For 2022</label>
+                                                <input type="text" name="yearthree" class="form-control"
+                                                    placeholder="Enter ..." value="{{ $post->yearthree }}">
                                             </div>
                                         </div>
                                     </div>
+                                </div>
 
-
-                                    <button type="submit" class="btn btn-primary">Submit OK</button>
-                                    <a href="{{ route('dividendpolicy.index') }}" class="btn btn-default">Exist</a>
-                                </form>
-                            @else
-                                <form action='{{ route('dividendpolicypayment.store') }}' method="post"
-                                    enctype="multipart/form-data" id='regform'>
-                                    @csrf
-                                    <div class="row mt-3 p-2">
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <label>Dividend Policy And Payment Title (English)</label>
-                                                <input type="text" name="menu_en" class="form-control"
-                                                    placeholder="Enter ..." value="">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <label>Dividend Policy And Payment Title (Thai)</label>
-                                                <input type="text" name="menu_th" class="form-control"
-                                                    placeholder="Enter ..." value="">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <label>Dividend Policy And Payment Title (Chinese)</label>
-                                                <input type="text" name="menu_ch" class="form-control"
-                                                    placeholder="Enter ..." value="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-3 p-2">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Content Description (en)</label>
-                                                <textarea id="summernote1" name="description_en" class="form-control" vale></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-3 p-2">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Content Description (th)</label>
-                                                <textarea id="summernote2" name="description_th" class="form-control" required></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-3 p-2">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Content Description (ch)</label>
-                                                <textarea id="summernote3" name="description_ch" class="form-control" required></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                        <a href="{{ route('dividendpolicy.index') }}" class="btn btn-default">Exist</a>
-                                    </div>
-                                </form>
-                            @endif
+                                <div class="card-footer">
+                                  <button type="submit" class="btn btn-primary">Submit</button>
+                                  <a href="{{ route('finicialinformation.index') }}" class="btn btn-default">Exist</a>
+                              </div>
+                            </form>
                         </div>
-
                     </div>
                 </div>
+
             </div>
         </section>
     </div>
-
-@section('js-place')
-    <script src="{{ asset('plugins/bs-stepper/js/bs-stepper.min.js') }}"></script>
-    <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
-    <script src="{{ asset('plugins/ekko-lightbox/ekko-lightbox.min.js') }}"></script>
-    <script src="{{ asset('plugins/filterizr/jquery.filterizr.min.js') }}"></script>
     <script>
         function updateLabel(inputId, previewId) {
             var input = document.getElementById(inputId);
@@ -190,8 +133,6 @@
 
 
 @section('js-place')
-
-
     <script>
         $(document).ready(function() {
             $('.dropdown-toggle').dropdown();
@@ -235,8 +176,7 @@
                 var postId = $(this).attr('id').replace('delete-post-', '');
                 if (confirm("Are you sure you want to delete this row?")) {
                     // If the user clicks "OK", delete the row
-                    window.location.href = "{{ route('dividendpolicypayment.destroy', ':id') }}".replace(
-                        ':id', postId);
+                    window.location.href = "{{ route('social.destroy', ':id') }}".replace(':id', postId);
                 }
             });
         });
@@ -269,4 +209,5 @@
             reader.readAsDataURL(file);
         }
     </script>
+@endsection
 @endsection

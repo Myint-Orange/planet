@@ -9,6 +9,8 @@ class Shareholdermeeting extends Model
 {
     use HasFactory;
 
+    protected $table ='shareholdermeetings';
+
     protected $fillable = [
         'name','pdflink','type'
     ];

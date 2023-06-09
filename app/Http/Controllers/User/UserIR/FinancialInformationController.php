@@ -13,9 +13,8 @@ class FinancialInformationController extends Controller
     {
 
 
-        $type = DB::table('irbanners')->where('irtype', 'Dividendpolicy')->first();
-        dd($type);
-        $dividendDataLists = DB::table('dividenddatalists')->get();
-        return view('user.investorRealtions.investor-relations-financial-info', compact('type', 'dividendDataLists'));
+        $type = DB::table('irbanners')->where('irtype', 'Finicialinformation')->first();
+        $financialinformations = DB::table('financialinformations')->get();
+        return view('user.investorRealtions.investor-relations-financial-info', compact('type', 'financialinformations'));
     }
 }

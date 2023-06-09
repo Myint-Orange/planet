@@ -38,6 +38,7 @@ use App\Http\Controllers\OurBusiness\BusinessGroupController;
 use App\Http\Controllers\OurBusiness\BusinessPostController;
 use App\Http\Controllers\OverView\OverViewController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\FinancialinformationController;
 use App\Http\Controllers\User\AboutUs\UserBusinessController;
 use App\Http\Controllers\User\AboutUs\UserCoreValueController;
 use App\Http\Controllers\User\AboutUs\UserVisionMissionController;
@@ -50,7 +51,6 @@ use App\Http\Controllers\User\UserIR\ShareHolderStructureInformationController;
 use App\Http\Controllers\User\UserIR\SetNewsInformationController;
 use App\Http\Controllers\User\UserIR\EmailNotificationInformationController;
 use App\Http\Controllers\User\UserIR\ShareholdermeetingInformationController;
-use App\Http\Controllers\User\UserIR\FinancialInformationController;
 use App\Http\Controllers\User\UserIR\CreditRaringInformationController;
 use App\Http\Controllers\User\UserIR\PurchaseInformationController;
 use App\Http\Controllers\User\UserIR\DividendpolicyandpaymentInformationController;
@@ -354,9 +354,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/dividendpolicy/storecontact', [DividendpolicyController::class, 'stored'])->name('dividendpolicy.stored');
         Route::post('/dividendpolicy/storecontacted', [DividendpolicyController::class, 'storededit'])->name('dividendpolicy.storeded');
 
-        
+
         Route::resource('/dividendpolicypayment', DividendpolicyandpaymentController::class);
-        Route::post('/dividendpolicypayment/updated/{id}',[DividendpolicyandpaymentController::class,'updated'])->name('dividendpolicypayment.updated');
+        Route::post('/dividendpolicypayment/updated/{id}', [DividendpolicyandpaymentController::class, 'updated'])->name('dividendpolicypayment.updated');
 
         Route::get('/dividendpolicy/index', [DividendpolicyController::class, 'index'])->name('dividendpolicy.index');
         Route::get('/dividendpolicy/create', [DividendpolicyController::class, 'create'])->name('dividendpolicy.create');
@@ -411,7 +411,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
         Route::get('/shareholdermeeting/editcontact/{id}', [ShareholdermeetingController::class, 'edit'])->name('shareholdermeeting.editBanners');
         Route::post('/shareholdermeeting/updated/{id}', [ShareholdermeetingController::class, 'update'])->name('shareholdermeeting.updated');
-        Route::get('/purchase/updated/{post_id}', [ShareholdermeetingController::class, 'destroy'])->name('shareholdermeeting.destroyPostd');
+        Route::get('/shareholdermeeting/updated/{post_id}', [ShareholdermeetingController::class, 'destroy'])->name('shareholdermeeting.destroyPostd');
 
 
         Route::post('/shareholdermeeting/storecontactdetail', [ShareholdermeetingController::class, 'storedetail'])->name('purchase.detailstore');
@@ -424,6 +424,33 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         //PurchaseInformationController Criteria
         Route::get('/shareholdermeeting/criteriacreate', [ShareholdermeetingController::class, 'criteriacreate'])->name('shareholdermeeting.criteriacreate');
         Route::post('/shareholdermeeting/criteriastore', [ShareholdermeetingController::class, 'criteriastore'])->name('shareholdermeeting.criteriastore');
+
+        //FinancialinformationController
+        Route::get('/finicialinformation/index', [FinancialinformationController::class, 'indexs'])->name('finicialinformation.indexs');
+        Route::post('/finicialinformation/storeconta', [FinancialinformationController::class, 'storeBanner'])->name('finicialinformation.storeBanner');
+        Route::get('/finicialinformation/index', [FinancialinformationController::class, 'index'])->name('finicialinformation.index');
+
+        Route::get('/finicialinformation/create', [FinancialinformationController::class, 'create'])->name('finicialinformation.create');
+        Route::post('/finicialinformation/storecontact', [FinancialinformationController::class, 'store'])->name('finicialinformation.store');
+        Route::post('/finicialinformation/editcontact', [FinancialinformationController::class, 'editBanner'])->name('finicialinformation.editBanner');
+
+        Route::get('/finicialinformation/editcontact/{id}', [FinancialinformationController::class, 'edit'])->name('finicialinformation.editBanners');
+        Route::post('/finicialinformation/updated/{id}', [FinancialinformationController::class, 'update'])->name('finicialinformation.updated');
+        Route::get('/finicialinformation/updated/{post_id}', [FinancialinformationController::class, 'destroy'])->name('finicialinformation.destroyPostd');
+
+
+        Route::post('/shareholdermeeting/storecontactdetail', [FinancialinformationController::class, 'storedetail'])->name('purchase.detailstore');
+        Route::post('/shareholdermeeting/editcontactdetail', [FinancialinformationController::class, 'editdetail'])->name('purchase.detailedit');
+        ///
+        //PurchaseInformationController Attachement
+        Route::get('/shareholdermeeting/attachementcreate', [ShareholdermeetingController::class, 'attachementcreate'])->name('shareholdermeeting.attachementcreate');
+        Route::post('/shareholdermeeting/attachementstore', [ShareholdermeetingController::class, 'attachementstore'])->name('shareholdermeeting.attachementstore');
+
+        //PurchaseInformationController Criteria
+        Route::get('/shareholdermeeting/criteriacreate', [ShareholdermeetingController::class, 'criteriacreate'])->name('shareholdermeeting.criteriacreate');
+        Route::post('/shareholdermeeting/criteriastore', [ShareholdermeetingController::class, 'criteriastore'])->name('shareholdermeeting.criteriastore');
+
+
 
         Route::post('/IRShareHolders/editBanner', [ShareHolderController::class, 'editBanner'])->name('shareholder.editBanner');
         Route::post('/IRShareHolders/editFile', [ShareHolderController::class, 'editPost'])->name('shareholder.editPost');
