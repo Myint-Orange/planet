@@ -58,8 +58,6 @@
                                                     placeholder="Please Select PDF File..">
                                             </div>
                                         </div>
-                                        
-
                                     </div>
 
                                     <div class="card-footer">

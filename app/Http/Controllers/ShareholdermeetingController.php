@@ -155,23 +155,48 @@ class ShareholdermeetingController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Irnews $irnews)
+    public function edit(Request $request,$post_id)
     {
+        $post = Shareholdermeeting::where('id',$post_id)->first();
+        if ($post) {
+            return view('admin.irpages.shareholdermeeting.update', compact('post'));
+        }
+        return view('admin.irpages.shareholdermeeting.create');
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Irnews $irnews)
-    {
-        //
+    public function update(Request $request, $post_id)
+    {   
+        $post = Shareholdermeeting::where('id',$post_id)->first();
+        if($post){
+            if($request->hasFile('pdflink')){
+                $pdf = $request->file('pdflink');
+                $pdfName = $pdf->getClientOriginalName();
+                $pdf->move(public_path('images'), $pdfName);
+                $post->pdflink = $pdfName;
+                $post->save();
+            }
+        $post->update([
+            'name' => $request->name
+        ]);
+        return redirect()->route('shareholdermeeting.index');
+        }else{
+            return view('admin.irpages.shareholdermeeting.create');
+        }
+        
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Irnews $irnews)
+    public function destroy($post_id)
     {
-        //
+        $post = Shareholdermeeting::where('id',$post_id)->first();
+        if($post){
+            $post->delete();
+        }
+        return redirect()->route('shareholdermeeting.index');
     }
 }

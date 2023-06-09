@@ -380,6 +380,12 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/shareholdermeeting/create', [ShareholdermeetingController::class,'create'])->name('shareholdermeeting.create');
         Route::post('/shareholdermeeting/storecontact', [ShareholdermeetingController::class,'store'])->name('shareholdermeeting.store');
         Route::post('/shareholdermeeting/editcontact', [ShareholdermeetingController::class,'editBanner'])->name('shareholdermeeting.editBanner');
+
+        Route::get('/shareholdermeeting/editcontact/{id}', [ShareholdermeetingController::class,'edit'])->name('shareholdermeeting.editBanners');
+        Route::post('/shareholdermeeting/updated/{id}', [ShareholdermeetingController::class,'update'])->name('shareholdermeeting.updated');
+        Route::get('/purchase/updated/{post_id}',[ShareholdermeetingController::class,'destroy'])->name('shareholdermeeting.destroyPostd');
+        
+     
         Route::post('/shareholdermeeting/storecontactdetail', [ShareholdermeetingController::class,'storedetail'])->name('purchase.detailstore');
         Route::post('/shareholdermeeting/editcontactdetail', [ShareholdermeetingController::class,'editdetail'])->name('purchase.detailedit');
         
